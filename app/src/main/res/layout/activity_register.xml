@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:maxImageSize="20dp"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ÄÄ‚NG KÃ"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginVertical="20dp"/>
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email: "
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_edittext"/>
+
+    <EditText
+        android:id="@+id/txtPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Sá»‘ Ä‘iá»‡n thoáº¡i: "
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_edittext"/>
+
+    <EditText
+        android:id="@+id/txtUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username: "
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_edittext"/>
+
+    <EditText
+        android:id="@+id/txtPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password: "
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_edittext"/>
+
+    <EditText
+        android:id="@+id/txtConfirmPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="XÃ¡c nháº­n pass: "
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_edittext"/>
+
+    <EditText
+        android:id="@+id/txtAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Avatar: "
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_edittext"/>
+
+    <Button
+        android:id="@+id/btnDangKy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ÄÄƒng kÃ½"
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="25dp"/>
+</LinearLayout>
