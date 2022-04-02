@@ -10,9 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.quanlyamnhac.sqline.SQLine;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class LogIn extends AppCompatActivity {
+
     EditText txtUser,txtPass;
     Button btnXacNhan;
     FloatingActionButton fbDangKy, fbThoat, fbBack;
@@ -32,24 +34,24 @@ public class LogIn extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtUser.getText().toString().equals("")){
-                    Toast.makeText(LogIn.this, "Vui lòng nhập Username", Toast.LENGTH_SHORT).show();
-                }
-                else if(txtPass.getText().toString().equals("")){
-                    Toast.makeText(LogIn.this, "Vui lòng nhập Password", Toast.LENGTH_SHORT).show();
-                }
-                else if(!txtUser.getText().toString().equals("admin") || !txtPass.getText().toString().equals("123")){
-                    Intent intent = new Intent(LogIn.this,Register.class);
-                    Toast.makeText(LogIn.this, "Thông tin không hợp lệ", Toast.LENGTH_SHORT).show();
-                }
-                else if(txtUser.getText().toString().equals("admin") && txtPass.getText().toString().equals("123")){
+//                if(txtUser.getText().toString().equals("")){
+//                    Toast.makeText(LogIn.this, "Vui lòng nhập Username", Toast.LENGTH_SHORT).show();
+//                }
+//                else if(txtPass.getText().toString().equals("")){
+//                    Toast.makeText(LogIn.this, "Vui lòng nhập Password", Toast.LENGTH_SHORT).show();
+//                }
+//                else if(!txtUser.getText().toString().equals("admin") || !txtPass.getText().toString().equals("123")){
+//                    Intent intent = new Intent(LogIn.this,Register.class);
+//                    Toast.makeText(LogIn.this, "Thông tin không hợp lệ", Toast.LENGTH_SHORT).show();
+//                }
+//                else if(txtUser.getText().toString().equals("admin") && txtPass.getText().toString().equals("123")){
                     // cho nay de chuyen sang home
 //                    Intent intent = new Intent(DangNhap.this,DangKy.class);
 //                    startActivity(intent);
                     Toast.makeText(LogIn.this, "HOME", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LogIn.this, Home.class);
                     startActivity(intent);
-                }
+                //}
             }
         });
 

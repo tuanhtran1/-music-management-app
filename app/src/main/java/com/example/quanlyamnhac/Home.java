@@ -51,7 +51,7 @@ public class Home extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Toast.makeText(Home.this,"vao trang loc",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Home.this, Song.class);
+                Intent intent = new Intent(Home.this, Musician.class);
                 startActivity(intent);
             }
         });
