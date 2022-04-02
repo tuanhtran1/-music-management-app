@@ -47,6 +47,8 @@ public class LogIn extends AppCompatActivity {
 //                    Intent intent = new Intent(DangNhap.this,DangKy.class);
 //                    startActivity(intent);
                     Toast.makeText(LogIn.this, "HOME", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LogIn.this, Home.class);
+                    startActivity(intent);
                 }
             }
         });

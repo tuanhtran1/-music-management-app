@@ -1,7 +1,6 @@
 package com.example.quanlyamnhac.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quanlyamnhac.BaiHat;
 import com.example.quanlyamnhac.R;
-import com.example.quanlyamnhac.model.HomeModel;
 import com.example.quanlyamnhac.model.SongModel;
 
 import java.util.List;

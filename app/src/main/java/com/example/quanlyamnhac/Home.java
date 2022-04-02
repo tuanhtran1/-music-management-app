@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.HomeAdapter;
 import com.example.quanlyamnhac.model.HomeModel;
-import com.example.quanlyamnhac.util.MenuUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class Home extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_home);
         mapping();
         setRecyclerHome();
         setButtonLoc();
@@ -52,7 +51,7 @@ public class Home extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Toast.makeText(Home.this,"vao trang loc",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Home.this, BaiHat.class);
+                Intent intent = new Intent(Home.this, Song.class);
                 startActivity(intent);
             }
         });

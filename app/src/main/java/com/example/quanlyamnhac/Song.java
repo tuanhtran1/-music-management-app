@@ -17,7 +17,7 @@ import com.example.quanlyamnhac.model.SongModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaiHat extends AppCompatActivity {
+public class Song extends AppCompatActivity {
 
     RecyclerView recycler_song;
     SongAdapter songAdapter;

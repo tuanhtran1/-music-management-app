@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.quanlyamnhac.BaiHat;
+import com.example.quanlyamnhac.Song;
 import com.example.quanlyamnhac.model.HomeModel;
 import com.example.quanlyamnhac.R;
 
@@ -48,7 +48,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context,model.getStt(),Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(context, BaiHat.class);
+                    Intent intent = new Intent(context, Song.class);
                     context.startActivity(intent);
                 }
             });
