@@ -6,9 +6,65 @@
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/home_fragment"/>
+        android:stretchColumns="1,2,3,4">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <TextView
+            android:text="Trang chủ"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:gravity="center"
+            />
+        <Button
+            android:text="Lọc"
+            android:id="@+id/bt_loc"
+            />
+        <TableRow>
+            <TextView
+                android:text="STT"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_column="1"
+                />
+            <TextView
+                android:text="Music"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_column="1"
+                />
+            <TextView
+                android:text="Musical"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_column="1"
+                />
+            <TextView
+                android:text="Year of creation"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_column="1"
+                />
+        </TableRow>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </TableLayout>
 </FrameLayout>

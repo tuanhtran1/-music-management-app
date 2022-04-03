@@ -21,18 +21,16 @@ import com.example.quanlyamnhac.R;
  */
 public class HomeFragment extends Fragment {
 
-
     public HomeFragment() {
         // Required empty public constructor
+
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+//        Home home = (Home) getActivity();
         return inflater.inflate(R.layout.activity_home, container, false);
     }
 }

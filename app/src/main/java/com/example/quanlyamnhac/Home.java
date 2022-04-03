@@ -34,17 +34,17 @@ public class Home extends AppCompatActivity{
         mapping();
         setRecyclerHome();
         setButtonLoc();
-        setToolBar();
+        //setToolBar();
     }
 
-    private void setToolBar() {
-        //Set toolbar as action bar
-        setSupportActionBar(toolbar);
-        //Enable Home icon
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Toolbar title
-        getSupportActionBar().setTitle(getString(R.string.app_name));
-    }
+//    private void setToolBar() {
+//        //Set toolbar as action bar
+//        setSupportActionBar(toolbar);
+//        //Enable Home icon
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        //Toolbar title
+//        getSupportActionBar().setTitle(getString(R.string.app_name));
+//    }
 
     private void setButtonLoc() {
         bt_loc.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +60,7 @@ public class Home extends AppCompatActivity{
     private void mapping() {
         recycler_home = findViewById(R.id.recycler_home);
         bt_loc = findViewById(R.id.bt_loc);
-        toolbar = findViewById(R.id.toolbar);
+//        toolbar = findViewById(R.id.toolbar);
     }
 
     private void setRecyclerHome() {
@@ -97,28 +97,28 @@ public class Home extends AppCompatActivity{
         return homeModels;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.it_search:
-                Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.it_home:
-                Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.it_advance_search:
-                Toast.makeText(this, "Ban chon advance search", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.it_log_out:
-                Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.it_search:
+//                Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.it_home:
+//                Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.it_advance_search:
+//                Toast.makeText(this, "Ban chon advance search", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.it_log_out:
+//                Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }

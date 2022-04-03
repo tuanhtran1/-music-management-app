@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainTabActivity">
-    
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabMain"
-        app:tabSelectedTextColor="@color/black"
+        android:background="#ccc"
+        app:tabTextColor="#000"
+        app:tabSelectedTextColor="#000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
