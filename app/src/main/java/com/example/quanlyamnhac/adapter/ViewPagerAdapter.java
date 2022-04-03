@@ -3,22 +3,25 @@ package com.example.quanlyamnhac.adapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.quanlyamnhac.fragment.HomeFragment;
 import com.example.quanlyamnhac.fragment.MusicianFragment;
 import com.example.quanlyamnhac.fragment.SingerFragment;
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-        super(fm, behavior);
+
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         switch (position){
             case 0:
                 return new HomeFragment();
@@ -32,26 +35,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return 3;
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        String title = "";
-        switch (position){
-            case 0:
-                title = "Home";
-                break;
-            case 1:
-                title = "Musician";
-                break;
-            case 2:
-                title = "Singer";
-                break;
-        }
-        return super.getPageTitle(position);
-
     }
 }

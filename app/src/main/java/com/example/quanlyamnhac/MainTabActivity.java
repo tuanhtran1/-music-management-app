@@ -1,18 +1,21 @@
 package com.example.quanlyamnhac;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
 import com.example.quanlyamnhac.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainTabActivity extends AppCompatActivity {
 
     TabLayout mTabLayout;
-    ViewPager mviewPager;
+    ViewPager2 mviewPager;
     ViewPagerAdapter viewPagerAdapter;
 
     @Override
@@ -24,9 +27,21 @@ public class MainTabActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPagerAdapter = new ViewPagerAdapter(this);
         mviewPager.setAdapter(viewPagerAdapter);
-        mTabLayout.setupWithViewPager(mviewPager);
+        new TabLayoutMediator(mTabLayout, mviewPager, (tab, position) -> {
+            switch (position){
+                case 0:
+                    tab.setText("home");
+                    break;
+                case 1:
+                    tab.setText("Musician");
+                    break;
+                case 2:
+                    tab.setText("Singer");
+                    break;
+            }
+        });
     }
 
     private void setControl() {

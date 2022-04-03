@@ -91,9 +91,9 @@ public class LogIn extends AppCompatActivity {
                     List<UserModel> userModels = new ArrayList<>();
                     while(cursor.moveToNext()){
                         if(cursor.getString(3).equals(userName) && cursor.getString(4).equals(password)) {
-                            Intent intent = new Intent(LogIn.this, Home.class);
+                            Intent intent = new Intent(LogIn.this, MainTabActivity.class);
                             startActivity(intent);
-                            Toast.makeText(LogIn.this, "HOME", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
                             return;
                         }
                     }
