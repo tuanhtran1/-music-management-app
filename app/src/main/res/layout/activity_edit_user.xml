@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="THÔNG TIN USER"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:background="@drawable/border_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="ID"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/tvID" />
+
+    <EditText
+        android:background="@drawable/border_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Email"
+        android:id="@+id/txtEmail"/>
+    <EditText
+        android:background="@drawable/border_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Phone"
+        android:id="@+id/txtPhone"/>
+    <EditText
+        android:background="@drawable/border_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Username"
+        android:id="@+id/txtUsername"/>
+    <EditText
+        android:background="@drawable/border_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Password"
+        android:id="@+id/txtPass"/>
+    <EditText
+        android:background="@drawable/border_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:maxHeight="300dp"
+        android:layout_margin="5dp"
+        android:hint="Avartar"
+        android:id="@+id/txtAvatar"/>
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SỬA"
+            android:layout_marginRight="5dp"
+            android:id="@+id/btnSua"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XÓA"
+            android:id="@+id/btnXoa"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HỦY"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/btnHuy"/>
+    </LinearLayout>
+</LinearLayout>

@@ -10,23 +10,37 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Register extends AppCompatActivity {
+
+    SQLite sqLite;
+
     EditText txtEmail,txtPhone, txtUsername, txtPass, txtConfirmPass, txtAvatar;
     Button btnDangKy;
     FloatingActionButton fbBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
-        getSupportActionBar().hide(); //hide the title bar
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         setControl();
         setEvent();
+    }
+
+    private void setControl() {
+
+        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPhone = findViewById(R.id.txtPhone);
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPass = findViewById(R.id.txtPass);
+        txtConfirmPass = findViewById(R.id.txtConfirmPass);
+        txtAvatar = findViewById(R.id.txtAvatar);
+        btnDangKy = findViewById(R.id.btnDangKy);
+        fbBack = findViewById(R.id.fbBack);
     }
 
     private void setEvent() {
@@ -42,25 +56,21 @@ public class Register extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtEmail.getText().toString().equals("")){
-                    Toast.makeText(Register.this, "Vui lòng nhập Email", Toast.LENGTH_SHORT).show();
+                String email = txtEmail.getText().toString();
+                String phone = txtPhone.getText().toString();
+                String userName = txtUsername.getText().toString();
+                String password = txtPass.getText().toString();
+                String confirmPass = txtConfirmPass.getText().toString();
+                String avatar = txtAvatar.getText().toString();
+                if(userName.equals("") || password.equals("") || confirmPass.equals("")){
+                    Toast.makeText(Register.this, "Phải có đầy đủ thông tin user name và password", Toast.LENGTH_SHORT).show();
                 }
-                else if(txtPhone.getText().toString().equals("")){
-                    Toast.makeText(Register.this, "Vui lòng nhập Phone", Toast.LENGTH_SHORT).show();
-                }
-                else if(txtUsername.getText().toString().equals("")){
-                    Toast.makeText(Register.this, "Vui lòng nhập Username", Toast.LENGTH_SHORT).show();
-                }
-                else if(txtPass.getText().toString().equals("")){
-                    Toast.makeText(Register.this, "Vui lòng nhập Password", Toast.LENGTH_SHORT).show();
-                }
-                else if(!txtConfirmPass.getText().toString().equals(txtPass.getText().toString())){
-                    Toast.makeText(Register.this, "Password xác nhận không khớp", Toast.LENGTH_SHORT).show();
-                }
-                else if(txtAvatar.getText().toString().equals("")){
-                    Toast.makeText(Register.this, "Vui lòng nhập Avatar", Toast.LENGTH_SHORT).show();
+                else if(!password.equals(confirmPass)){
+                    Toast.makeText(Register.this, "Password không khớp", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    String sql= "INSERT INTO User VALUES(null,'"+email+"','"+phone+"','"+userName+"','"+password+"','"+avatar+"')";
+                    sqLite.queryData(sql);
                     Intent intent = new Intent(Register.this, LogIn.class);
                     intent.putExtra("username", txtUsername.getText().toString());
                     intent.putExtra("password", txtPass.getText().toString());
@@ -71,16 +81,10 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    private void setControl() {
-        txtEmail = findViewById(R.id.txtEmail);
-        txtPhone = findViewById(R.id.txtPhone);
-        txtUsername = findViewById(R.id.txtUsername);
-        txtPass = findViewById(R.id.txtPass);
-        txtConfirmPass = findViewById(R.id.txtConfirmPass);
-        txtAvatar = findViewById(R.id.txtAvatar);
-        btnDangKy = findViewById(R.id.btnDangKy);
-        fbBack = findViewById(R.id.fbBack);
-    }
+
 }
+
+
+
 
 
