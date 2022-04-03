@@ -12,17 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuanLyAmNhac">
         <activity
+            android:name=".MusicianDetail"
+            android:exported="false" />
+        <activity
             android:name=".EditUser"
             android:exported="false" />
         <activity
             android:name=".MainTabActivity"
-            android:exported="false"
-        />
-        <activity
-            android:name=".Musician"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
             android:exported="false" />
         <activity
             android:name=".Register"
@@ -32,6 +28,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -39,4 +36,5 @@
             android:name=".Song"
             android:exported="false" />
     </application>
+
 </manifest>

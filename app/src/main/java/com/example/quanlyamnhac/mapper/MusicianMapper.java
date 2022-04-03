@@ -2,11 +2,7 @@ package com.example.quanlyamnhac.mapper;
 
 import android.database.Cursor;
 
-import com.example.quanlyamnhac.Musician;
 import com.example.quanlyamnhac.model.MusicianModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MusicianMapper {
     public static MusicianModel convertToModel(Cursor cursor){

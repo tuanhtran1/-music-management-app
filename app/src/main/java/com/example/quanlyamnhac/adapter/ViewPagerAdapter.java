@@ -1,11 +1,8 @@
 package com.example.quanlyamnhac.adapter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.quanlyamnhac.fragment.HomeFragment;
@@ -13,6 +10,7 @@ import com.example.quanlyamnhac.fragment.MusicianFragment;
 import com.example.quanlyamnhac.fragment.SingerFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
+
 
 
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
