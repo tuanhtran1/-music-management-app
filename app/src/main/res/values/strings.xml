@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">QuanLyAmNhac</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home_fragment">Home fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="musician_fragment">Musician fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="singer_fragment">Singer fragment</string>
 </resources>
