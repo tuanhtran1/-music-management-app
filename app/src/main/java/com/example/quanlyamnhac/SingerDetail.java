@@ -1,32 +1,28 @@
 package com.example.quanlyamnhac;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.SongAdapter;
 import com.example.quanlyamnhac.model.MusicianModel;
+import com.example.quanlyamnhac.model.SingerModel;
 import com.example.quanlyamnhac.model.SongModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicianDetail extends AppCompatActivity {
+public class SingerDetail extends AppCompatActivity {
+
     TextView tvId,tvFieldName, tvID, tvName, tvYear;
     ImageView ivImg;
     EditText txtName, txtLinkImg; // linkImg từ từ
@@ -34,6 +30,7 @@ public class MusicianDetail extends AppCompatActivity {
     RecyclerView rvDanhSachBaiHat;
     SongAdapter songAdapter;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,11 +97,11 @@ public class MusicianDetail extends AppCompatActivity {
     }
 
     private void layDL() {
-        MusicianModel musicianModel = (MusicianModel) getIntent().getSerializableExtra("item");
+        SingerModel singerModel = (SingerModel) getIntent().getSerializableExtra("item");
         //tvId.setText(nhacSi.getId()); //Không cần thiết id
-        txtName.setText(musicianModel.getName());
-        Picasso.get().load(musicianModel.getLinkImg()).into(ivImg);
-        tvFieldName.setText("Tên nhạc sĩ:");
+        txtName.setText(singerModel.getName());
+        Picasso.get().load(singerModel.getLinkImg()).into(ivImg);
+        tvFieldName.setText("Tên ca sĩ:");
     }
     //ánh xạ qua
     private void setControl() {
@@ -127,6 +124,7 @@ public class MusicianDetail extends AppCompatActivity {
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

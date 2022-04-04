@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1,2,3,4"
+    android:layout_margin="8dp"
+    >
+    <TableRow>
+        <TextView
+            android:id="@+id/tvID"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_column="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:padding="10dp"
+            android:id="@+id/tvName"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_column="1"
+            android:padding="10dp"
+            android:id="@+id/tvYear"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:layout_column="1"-->
+<!--            android:padding="10dp"-->
+<!--            android:id="@+id/tv"-->
+<!--            android:textSize="16dp"-->
+<!--            android:textStyle="bold" />-->
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</TableLayout>

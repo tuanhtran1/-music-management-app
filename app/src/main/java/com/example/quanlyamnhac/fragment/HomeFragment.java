@@ -21,7 +21,6 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recycler_home;
     HomeAdapter homeAdapter;
-
     View view;
 
     public HomeFragment() {

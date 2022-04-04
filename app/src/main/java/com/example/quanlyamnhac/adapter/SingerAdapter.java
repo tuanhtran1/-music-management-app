@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.SingerDetail;
 import com.example.quanlyamnhac.model.MusicianModel;
 import com.example.quanlyamnhac.model.SingerModel;
 import com.squareup.picasso.Picasso;
@@ -50,7 +52,9 @@ public class SingerAdapter extends ArrayAdapter<SingerModel> {
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, SingerDetail.class);
+                intent.putExtra("item", singerModel); // gửi 1 đối tượng qua intent
+                (context).startActivity(intent);
             }
         });
 

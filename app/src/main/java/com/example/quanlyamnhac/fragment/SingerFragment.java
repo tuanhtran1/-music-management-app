@@ -1,5 +1,6 @@
 package com.example.quanlyamnhac.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -10,19 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.example.quanlyamnhac.MusicianAdd;
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.SingerAdd;
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
 import com.example.quanlyamnhac.adapter.SingerAdapter;
 import com.example.quanlyamnhac.model.MusicianModel;
 import com.example.quanlyamnhac.model.SingerModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 
 public class SingerFragment extends Fragment {
 
-    View view;
+    //them menu de logout
 
+    View view;
+    FloatingActionButton fbThem;
     GridView gvListSinger;
 
     public SingerFragment() {
@@ -36,6 +42,17 @@ public class SingerFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_singer, container, false);
         setControl();
         setEvent();
+
+        fbThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(getContext(), "Add Musician", Toast.LENGTH_SHORT).show();
+//                openAddDialog(Gravity.CENTER);
+                Intent intent = new Intent(getContext(), SingerAdd.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -62,6 +79,7 @@ public class SingerFragment extends Fragment {
     }
 
     private void setControl() {
+        fbThem = view.findViewById(R.id.fbThem);
         gvListSinger = view.findViewById(R.id.gvDanhSachCasi);
     }
 }
