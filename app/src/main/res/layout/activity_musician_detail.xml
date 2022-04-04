@@ -64,6 +64,14 @@
                     android:gravity="right">
 
                     <androidx.constraintlayout.utils.widget.ImageFilterButton
+                        android:id="@+id/btnThem"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_button"
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/ic_baseline_library_music_24" />
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterButton
                         android:id="@+id/btnSua"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"

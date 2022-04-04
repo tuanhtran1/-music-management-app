@@ -13,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.quanlyamnhac.adapter.SongAdapter;
-import com.example.quanlyamnhac.model.MusicianModel;
-import com.example.quanlyamnhac.model.SingerModel;
+import com.example.quanlyamnhac.entity.SingerEntity;
 import com.example.quanlyamnhac.model.SongModel;
+import com.example.quanlyamnhac.model.reponse.SingerReponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -74,30 +74,19 @@ public class SingerDetail extends AppCompatActivity {
 
     }
 
-    private List<SongModel> getList() {
-        List<SongModel> songModels = new ArrayList<>();
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+    private List<SingerReponse> getList() {
+        List<SingerReponse> songModels = new ArrayList<>();
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
         return songModels;
     }
 
     private void layDL() {
-        SingerModel singerModel = (SingerModel) getIntent().getSerializableExtra("item");
+        SingerEntity singerModel = (SingerEntity) getIntent().getSerializableExtra("item");
         //tvId.setText(nhacSi.getId()); //Không cần thiết id
         txtName.setText(singerModel.getName());
         Picasso.get().load(singerModel.getLinkImg()).into(ivImg);
@@ -113,6 +102,8 @@ public class SingerDetail extends AppCompatActivity {
         tvFieldName = findViewById(R.id.tvFieldName);
         rvDanhSachBaiHat = findViewById(R.id.rvListData);
         toolbar = findViewById(R.id.toolbar);
+        btnXoa = findViewById(R.id.btnXoa);
+        btnSua = findViewById(R.id.btnSua);
     }
 
     private void setToolBar() {

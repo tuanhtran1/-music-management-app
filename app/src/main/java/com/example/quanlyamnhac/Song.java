@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.SongAdapter;
@@ -22,6 +23,8 @@ public class Song extends AppCompatActivity {
     RecyclerView recycler_song;
     SongAdapter songAdapter;
     Toolbar toolbar;
+
+    EditText et_songName, et_musicianName, et_yearOfCreation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,10 @@ public class Song extends AppCompatActivity {
     private void mapping() {
         recycler_song = findViewById(R.id.recycler_song);
         toolbar = findViewById(R.id.toolbar);
+
+        et_songName = findViewById(R.id.et_songName);
+        et_musicianName= findViewById(R.id.et_musicianName);
+        et_yearOfCreation = findViewById(R.id.et_yearOfCreation);
     }
 
     private void setRecyclerSong() {
@@ -55,31 +62,19 @@ public class Song extends AppCompatActivity {
 
     private List<SongModel> getList() {
         List<SongModel> songModels = new ArrayList<>();
-        songModels.add(new SongModel("1","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("2","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("3","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("4","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("5","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("6","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("7","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("8","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("9","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("10","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("11","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("12","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("13","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("14","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("15","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("16","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("17","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("18","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("19","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("20","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("21","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("22","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("23","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("24","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongModel("25","Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
+        songModels.add(new SongModel("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
         return songModels;
     }
 
@@ -108,4 +103,9 @@ public class Song extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

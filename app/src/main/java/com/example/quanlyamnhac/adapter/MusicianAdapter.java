@@ -14,17 +14,18 @@ import androidx.annotation.Nullable;
 
 import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
-import com.example.quanlyamnhac.model.MusicianModel;
+import com.example.quanlyamnhac.entity.MusicianEntity;
+import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MusicianAdapter extends ArrayAdapter<MusicianModel> {
+public class MusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
     Context context;
     int resource;
-    ArrayList<MusicianModel> musicianModels;
+    ArrayList<ItemMusicianReponse> musicianModels;
 
-    public MusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<MusicianModel> musicianModels) {
+    public MusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemMusicianReponse> musicianModels) {
         super(context, resource, musicianModels);
         this.context = context;
         this.resource = resource;
@@ -43,9 +44,9 @@ public class MusicianAdapter extends ArrayAdapter<MusicianModel> {
         ImageView ivImage = convertView.findViewById(R.id.ivImage);
         TextView tvName = convertView.findViewById(R.id.tvName);
 
-        MusicianModel musician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText(musician.getName());
-        Picasso.get().load(musician.getLinkImg()).into(ivImage);
+        ItemMusicianReponse musician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
+        tvName.setText(musician.getNameMusician());
+        Picasso.get().load(musician.getImageMusician()).into(ivImage);
         //set Event tại image để vào thông tin đối tượng
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override

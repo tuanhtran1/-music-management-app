@@ -1,6 +1,7 @@
 package com.example.quanlyamnhac.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.Song;
 import com.example.quanlyamnhac.model.SongModel;
+import com.example.quanlyamnhac.model.reponse.SongReponse;
 
 import java.util.List;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>{
 
     Context context;
-    List<SongModel> songModels;
+    List<SongReponse> songModels;
 
-    public SongAdapter(Context context, List<SongModel> songModels){
+    public SongAdapter(Context context, List<SongReponse> songModels){
         this.context = context;
         this.songModels = songModels;
     }
@@ -35,16 +38,18 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull SongAdapter.ViewHolder holder, int position) {
         if(songModels != null && songModels.size()>0){
-            SongModel model = songModels.get(position);
-            holder.tv_stt.setText(model.getStt());
-            holder.tv_singer_name.setText(model.getSingerName());
+            SongReponse model = songModels.get(position);
+            holder.tv_stt.setText(String.valueOf(position));
+            holder.tv_singer_name.setText(model.getMusicName());
             holder.tv_performance_day.setText(model.getPerformanceDay());
             holder.tv_place.setText(model.getPlace());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,model.getStt(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,position,Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(context, Song.class);
+                    context.startActivity(intent);
                 }
             });
         }else{

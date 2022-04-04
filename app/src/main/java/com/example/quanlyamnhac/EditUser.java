@@ -17,7 +17,6 @@ import com.example.quanlyamnhac.model.UserModel;
 import com.squareup.picasso.Picasso;
 
 public class EditUser extends AppCompatActivity {
-    TextView tvID;
     EditText txtEmail,txtPhone,txtUsername,txtPass,txtAvatar;
     ImageView ivAvatar;
     Button btnXoa,btnSua,btnHuy;
@@ -66,7 +65,6 @@ public class EditUser extends AppCompatActivity {
     }
 
     private void setControl() {
-        tvID = findViewById(R.id.tvID);
         txtEmail = findViewById(R.id.txtEmail);
         txtPhone = findViewById(R.id.txtPhone);
         txtUsername = findViewById(R.id.txtUsername);
@@ -80,7 +78,6 @@ public class EditUser extends AppCompatActivity {
 
     private UserModel getUser(){
         UserModel user = new UserModel();
-        user.setId(Integer.valueOf(tvID.getText().toString()));
         user.setEmail(txtEmail.getText().toString());
         user.setPhone(txtPhone.getText().toString());
         user.setUsername(txtUsername.getText().toString());
@@ -91,7 +88,6 @@ public class EditUser extends AppCompatActivity {
 
     private void layDL(){
         UserModel user = (UserModel) getIntent().getSerializableExtra("item");   //lay nguyen doi tuong(getSerializableExtra) country mà bên kia (adapter) gửi qua (bằng intent) (nhớ ép kiểu lại)
-        tvID.setText(String.valueOf(user.getId()));
         txtEmail.setText(user.getEmail());
         txtPhone.setText(user.getPhone());
         txtUsername.setText(user.getUsername());

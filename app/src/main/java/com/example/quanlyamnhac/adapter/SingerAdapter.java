@@ -12,21 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.SingerDetail;
-import com.example.quanlyamnhac.model.MusicianModel;
-import com.example.quanlyamnhac.model.SingerModel;
+import com.example.quanlyamnhac.entity.SingerEntity;
+import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class SingerAdapter extends ArrayAdapter<SingerModel> {
+public class SingerAdapter extends ArrayAdapter<ItemSingerReponse> {
     Context context;
     int resource;
-    ArrayList<SingerModel> singerModels;
+    ArrayList<ItemSingerReponse> singerModels;
 
-    public SingerAdapter(@NonNull Context context, int resource, @NonNull ArrayList<SingerModel> singerModels) {
+    public SingerAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemSingerReponse> singerModels) {
         super(context, resource, singerModels);
         this.context = context;
         this.resource = resource;
@@ -45,9 +44,9 @@ public class SingerAdapter extends ArrayAdapter<SingerModel> {
         ImageView ivImage = convertView.findViewById(R.id.ivImage);
         TextView tvName = convertView.findViewById(R.id.tvName);
 
-        SingerModel singerModel = singerModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText(singerModel.getName());
-        Picasso.get().load(singerModel.getLinkImg()).into(ivImage);
+        ItemSingerReponse singerModel = singerModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
+        tvName.setText(singerModel.getNameSinger());
+        Picasso.get().load(singerModel.getImageSinger()).into(ivImage);
         //set Event tại image để vào thông tin đối tượng
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override

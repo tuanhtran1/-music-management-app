@@ -6,11 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.SongAdapter;
-import com.example.quanlyamnhac.model.MusicianModel;
+import com.example.quanlyamnhac.entity.MusicianEntity;
 import com.example.quanlyamnhac.model.SongModel;
 import com.squareup.picasso.Picasso;
 
@@ -30,7 +31,7 @@ public class MusicianDetail extends AppCompatActivity {
     TextView tvId,tvFieldName, tvID, tvName, tvYear;
     ImageView ivImg;
     EditText txtName, txtLinkImg; // linkImg từ từ
-    ImageButton btnXoa, btnSua;
+    ImageButton btnThemBaiHat, btnXoa, btnSua;
     RecyclerView rvDanhSachBaiHat;
     SongAdapter songAdapter;
     Toolbar toolbar;
@@ -74,33 +75,58 @@ public class MusicianDetail extends AppCompatActivity {
 //                finish();
             }
         });
+        btnThemBaiHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(MusicianDetail.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.add_song_dialog);
 
+                //Initializing the views of the dialog.
+                final EditText nameSong = dialog.findViewById(R.id.et_songName);
+                final EditText yearOfCreation = dialog.findViewById(R.id.et_yearOfCreation);
+                Button submitButton = dialog.findViewById(R.id.btn_submit);
+
+
+                submitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MusicianDetail.this,"Da them bai hat",Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
     }
+
 
     private List<SongModel> getList() {
         List<SongModel> songModels = new ArrayList<>();
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+//        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
         return songModels;
     }
 
     private void layDL() {
-        MusicianModel musicianModel = (MusicianModel) getIntent().getSerializableExtra("item");
+        MusicianEntity musicianModel = (MusicianEntity) getIntent().getSerializableExtra("item");
         //tvId.setText(nhacSi.getId()); //Không cần thiết id
         txtName.setText(musicianModel.getName());
         Picasso.get().load(musicianModel.getLinkImg()).into(ivImg);
@@ -116,6 +142,9 @@ public class MusicianDetail extends AppCompatActivity {
         tvFieldName = findViewById(R.id.tvFieldName);
         rvDanhSachBaiHat = findViewById(R.id.rvListData);
         toolbar = findViewById(R.id.toolbar);
+        btnXoa = findViewById(R.id.btnXoa);
+        btnSua = findViewById(R.id.btnSua);
+        btnThemBaiHat = findViewById(R.id.btnThem);
     }
 
     private void setToolBar() {
@@ -125,11 +154,35 @@ public class MusicianDetail extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Toolbar title
         getSupportActionBar().setTitle(getString(R.string.app_name));
-
     }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.it_search:
+                Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.it_home:
+                Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.it_advance_search:
+                Toast.makeText(this, "Ban chon advance search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.it_log_out:
+                Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

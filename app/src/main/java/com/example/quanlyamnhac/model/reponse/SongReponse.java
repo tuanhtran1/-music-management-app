@@ -1,27 +1,24 @@
-package com.example.quanlyamnhac.model;
+package com.example.quanlyamnhac.model.reponse;
 
 import java.io.Serializable;
 
-public class SongModel implements Serializable {
-    private String musicName;
+public class SongReponse  implements Serializable {
+    private String singerName;
     private String performanceDay;
     private String place;
 
-    public SongModel() {
-    }
-
-    public SongModel(String musicName, String performanceDay, String place) {
-        this.musicName = musicName;
+    public SongReponse(String singerName, String performanceDay, String place) {
+        this.singerName = singerName;
         this.performanceDay = performanceDay;
         this.place = place;
     }
 
-    public String getMusicName() {
-        return musicName;
+    public String getSingerName() {
+        return singerName;
     }
 
-    public void setSingerName(String musicName) {
-        this.musicName = musicName;
+    public void setSingerName(String singerName) {
+        this.singerName = singerName;
     }
 
     public String getPerformanceDay() {

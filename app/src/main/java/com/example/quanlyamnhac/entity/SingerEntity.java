@@ -1,27 +1,27 @@
-package com.example.quanlyamnhac.model;
+package com.example.quanlyamnhac.entity;
 
 import java.io.Serializable;
 
-public class MusicianModel implements Serializable {
-    String id;
-    String name;
-    String linkImg;
+public class SingerEntity {
+    private Long id;
+    private String name;
+    private String linkImg;
 
-    public MusicianModel() {
+    public SingerEntity() {
 
     }
 
-    public MusicianModel(String id, String name, String linkImg) {
+    public SingerEntity(Long id, String name, String linkImg) {
         this.id = id;
         this.name = name;
         this.linkImg = linkImg;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
