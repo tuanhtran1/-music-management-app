@@ -1,6 +1,7 @@
 package com.example.quanlyamnhac.fragment;
 
 import android.app.Dialog;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,13 +19,19 @@ import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.adapter.ItemSingerAdapter;
 import com.example.quanlyamnhac.adapter.SingerAdapter;
 import com.example.quanlyamnhac.entity.SingerEntity;
+import com.example.quanlyamnhac.mapper.MusicianMapper;
+import com.example.quanlyamnhac.mapper.SingerMapper;
+import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 
 public class SingerFragment extends Fragment {
+
+    SQLite sqLite;
 
     //them menu de logout
 
@@ -79,21 +86,16 @@ public class SingerFragment extends Fragment {
     }
 
     private ArrayList<ItemSingerReponse> khoitao() {
-        ArrayList<ItemSingerReponse> data = new ArrayList<>();
-        ItemSingerReponse musician1 = new ItemSingerReponse( "Trịnh Công Sơn", "https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg");
-        ItemSingerReponse musician2 = new ItemSingerReponse( "Văn Cao", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg");
-        ItemSingerReponse musician3 = new ItemSingerReponse( "Trần Tiến", "http://baokhanhhoa.vn/dataimages/201507/original/images1088188_nhac_sy_Tran_tien.jpg");
-        ItemSingerReponse musician4 = new ItemSingerReponse( "Phương Uyên", "http://image.vtc.vn/files/f1/2012/09/17/avapu1jpg.jpg");
-        ItemSingerReponse musician5 = new ItemSingerReponse( "Ngọc Châu", "https://vtv1.mediacdn.vn/thumb_w/650/2022/3/17/104311693297023005203625988508962618143060o-16474902650871024895088-crop-1647490273721790446797.jpg");
-        data.add(musician1);
-        data.add(musician2);
-        data.add(musician3);
-        data.add(musician4);
-        data.add(musician5);
-        return data;
+        Cursor cursor = sqLite.getData("SELECT * FROM singer");
+        ArrayList<ItemSingerReponse> itemSingerReponses = new ArrayList<>();
+        while(cursor.moveToNext()){
+            itemSingerReponses.add(SingerMapper.toItemSingerReponse(cursor));
+        }
+        return itemSingerReponses;
     }
 
     private void setControl() {
+        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
         fbThem = view.findViewById(R.id.fbThem);
         gvListSinger = view.findViewById(R.id.gvDanhSachCasi);
 
