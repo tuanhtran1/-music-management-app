@@ -50,9 +50,9 @@ public class MusicianAdapter extends ArrayAdapter<MusicianModel> {
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MusicianDetail.class);
+                Intent intent = new Intent(getContext(), MusicianDetail.class);
                 intent.putExtra("item", musician); // gửi 1 đối tượng qua intent
-                (context).startActivity(intent);
+                getContext().startActivity(intent);
             }
         });
 

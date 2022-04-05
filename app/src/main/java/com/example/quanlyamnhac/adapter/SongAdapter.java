@@ -68,4 +68,5 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>{
             tv_place = itemView.findViewById(R.id.tv_place);
         }
     }
+
 }

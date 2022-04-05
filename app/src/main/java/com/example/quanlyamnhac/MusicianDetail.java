@@ -34,6 +34,7 @@ public class MusicianDetail extends AppCompatActivity {
     RecyclerView rvDanhSachBaiHat;
     SongAdapter songAdapter;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +117,8 @@ public class MusicianDetail extends AppCompatActivity {
         tvFieldName = findViewById(R.id.tvFieldName);
         rvDanhSachBaiHat = findViewById(R.id.rvListData);
         toolbar = findViewById(R.id.toolbar);
+        btnSua = findViewById(R.id.btnSua);
+        btnXoa = findViewById(R.id.btnXoa);
     }
 
     private void setToolBar() {

@@ -95,12 +95,11 @@ public class MusicianFragment extends Fragment {
         gvListMusician = view.findViewById(R.id.gvDanhSachMusician);
     }
 
-    o
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+     @Override
+     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        DanhLam danhLam = (DanhLam) data.getSerializableExtra("item");
+        MusicianModel musicianModel = (DanhLam) data.getSerializableExtra("item");
         if(requestCode ==2)
         {
             if(resultCode ==2){

@@ -11,8 +11,6 @@ import com.example.quanlyamnhac.fragment.SingerFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-
-
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }

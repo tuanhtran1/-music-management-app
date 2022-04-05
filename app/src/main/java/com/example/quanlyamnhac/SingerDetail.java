@@ -113,6 +113,8 @@ public class SingerDetail extends AppCompatActivity {
         tvFieldName = findViewById(R.id.tvFieldName);
         rvDanhSachBaiHat = findViewById(R.id.rvListData);
         toolbar = findViewById(R.id.toolbar);
+        btnSua = findViewById(R.id.btnSua);
+        btnXoa = findViewById(R.id.btnXoa);
     }
 
     private void setToolBar() {
