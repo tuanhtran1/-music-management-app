@@ -13,19 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.quanlyamnhac.adapter.SongAdapter;
-import com.example.quanlyamnhac.model.MusicianModel;
-import com.example.quanlyamnhac.model.SingerModel;
-import com.example.quanlyamnhac.model.SongModel;
+import com.example.quanlyamnhac.entity.SingerEntity;
+import com.example.quanlyamnhac.model.reponse.SingerReponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SingerDetail extends AppCompatActivity {
-
-    TextView tvId,tvFieldName, tvID, tvName, tvYear;
     ImageView ivImg;
-    EditText txtName, txtLinkImg; // linkImg từ từ
+    EditText et_name, txtLinkImg; // linkImg từ từ
     ImageButton btnXoa, btnSua;
     RecyclerView rvDanhSachBaiHat;
     SongAdapter songAdapter;
@@ -43,14 +40,11 @@ public class SingerDetail extends AppCompatActivity {
     private void setEvent() {
         layDL(); //lấy dữ liệu từ layout cũ qua layout_edit
 
-        tvID.setText("ID");
-        tvName.setText("Tên bài hát");
-        tvYear.setText("Năm sáng tác");
 
         //list Bai Hat
         rvDanhSachBaiHat.setHasFixedSize(true);
         rvDanhSachBaiHat.setLayoutManager(new LinearLayoutManager(this));
-        SongAdapter songAdapter= new SongAdapter(this, getList());
+        //SongAdapter songAdapter= new SongAdapter(this, getList());
         rvDanhSachBaiHat.setAdapter(songAdapter);
 
         btnXoa.setOnClickListener(new View.OnClickListener() {
@@ -74,47 +68,30 @@ public class SingerDetail extends AppCompatActivity {
 
     }
 
-    private List<SongModel> getList() {
-        List<SongModel> songModels = new ArrayList<>();
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SongModel("1","Hoa Nở Không Màu","2020","1"));
+    private List<SingerReponse> getList() {
+        List<SingerReponse> songModels = new ArrayList<>();
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
         return songModels;
     }
 
     private void layDL() {
-        SingerModel singerModel = (SingerModel) getIntent().getSerializableExtra("item");
+        SingerEntity singerModel = (SingerEntity) getIntent().getSerializableExtra("item");
         //tvId.setText(nhacSi.getId()); //Không cần thiết id
-        txtName.setText(singerModel.getName());
         Picasso.get().load(singerModel.getLinkImg()).into(ivImg);
-        tvFieldName.setText("Tên ca sĩ:");
     }
     //ánh xạ qua
     private void setControl() {
-        txtName = findViewById(R.id.txtName);
-        tvID = findViewById(R.id.tvID);
-        tvName = findViewById(R.id.tvName);
-        tvYear = findViewById(R.id.tvYear);
+        et_name = findViewById(R.id.et_name);
         ivImg = findViewById(R.id.ivImage);
-        tvFieldName = findViewById(R.id.tvFieldName);
         rvDanhSachBaiHat = findViewById(R.id.rvListData);
         toolbar = findViewById(R.id.toolbar);
-        btnSua = findViewById(R.id.btnSua);
         btnXoa = findViewById(R.id.btnXoa);
+        btnSua = findViewById(R.id.btnSua);
     }
 
     private void setToolBar() {

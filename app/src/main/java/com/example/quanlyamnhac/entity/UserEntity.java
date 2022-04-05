@@ -1,14 +1,16 @@
-package com.example.quanlyamnhac.model;
+package com.example.quanlyamnhac.entity;
 
 import java.io.Serializable;
 
-public class UserModel implements Serializable {
-    String email,phone,username,password,avatar;
+public class UserEntity{
+    private Integer id;
+    private String email,phone,username,password,avatar;
 
-    public UserModel() {
+    public UserEntity() {
     }
 
-    public UserModel(String email, String phone, String username, String password, String avatar) {
+    public UserEntity(int id, String email, String phone, String username, String password, String avatar) {
+        this.id = id;
         this.email = email;
         this.phone = phone;
         this.username = username;
@@ -56,5 +58,12 @@ public class UserModel implements Serializable {
         this.avatar = avatar;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 }

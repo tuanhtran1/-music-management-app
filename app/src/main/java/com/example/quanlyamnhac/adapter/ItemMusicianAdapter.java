@@ -12,29 +12,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
-import com.example.quanlyamnhac.SingerDetail;
-import com.example.quanlyamnhac.entity.SingerEntity;
-import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
+import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class SingerAdapter extends ArrayAdapter<ItemSingerReponse> {
+public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
     Context context;
     int resource;
-    ArrayList<ItemSingerReponse> singerModels;
+    ArrayList<ItemMusicianReponse> musicianModels;
 
-    public SingerAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemSingerReponse> singerModels) {
-        super(context, resource, singerModels);
+    public ItemMusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemMusicianReponse> musicianModels) {
+        super(context, resource, musicianModels);
         this.context = context;
         this.resource = resource;
-        this.singerModels = singerModels;
+        this.musicianModels = musicianModels;
     }
 
     @Override
     public int getCount() {
-        return singerModels.size();
+        return musicianModels.size();
     }
 
     @NonNull
@@ -44,16 +43,16 @@ public class SingerAdapter extends ArrayAdapter<ItemSingerReponse> {
         ImageView ivImage = convertView.findViewById(R.id.ivImage);
         TextView tvName = convertView.findViewById(R.id.tvName);
 
-        ItemSingerReponse singerModel = singerModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText(singerModel.getNameSinger());
-        Picasso.get().load(singerModel.getImageSinger()).into(ivImage);
+        ItemMusicianReponse musician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
+        tvName.setText(musician.getNameMusician());
+        Picasso.get().load(musician.getImageMusician()).into(ivImage);
         //set Event tại image để vào thông tin đối tượng
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, SingerDetail.class);
-                intent.putExtra("item", singerModel); // gửi 1 đối tượng qua intent
-                (context).startActivity(intent);
+                Intent intent = new Intent(getContext(), MusicianDetail.class);
+                intent.putExtra("item", musician); // gửi 1 đối tượng qua intent
+                getContext().startActivity(intent);
             }
         });
 

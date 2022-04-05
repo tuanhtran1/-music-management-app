@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.quanlyamnhac.Song;
-import com.example.quanlyamnhac.model.HomeModel;
+import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.R;
 
 import java.util.List;
@@ -21,9 +21,9 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
 
     Context context;
-    List<HomeModel> homeModels;
+    List<HomeReponse> homeModels;
 
-    public HomeAdapter( Context context, List<HomeModel> homeModels){
+    public HomeAdapter( Context context, List<HomeReponse> homeModels){
         this.context = context;
         this.homeModels = homeModels;
     }
@@ -38,18 +38,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
         if(homeModels != null && homeModels.size()>0){
-            HomeModel model = homeModels.get(position);
-            holder.tv_stt.setText(model.getStt());
-            holder.tv_music.setText(model.getMusic());
-            holder.tv_musical.setText(model.getMusical());
+            HomeReponse model = homeModels.get(position);
+            holder.tv_stt.setText(String.valueOf(position));
+            holder.tv_music.setText(model.getSongName());
+            holder.tv_musical.setText(model.getMusicianName());
             holder.tv_year_of_creation.setText(model.getYearOfCreation());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,model.getStt(),Toast.LENGTH_LONG).show();
+
                     Intent intent = new Intent(context, Song.class);
+                    intent.putExtra("songModel", model);
                     context.startActivity(intent);
+                    Toast.makeText(context,"vao SONG",Toast.LENGTH_LONG).show();
                 }
             });
         }else{

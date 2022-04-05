@@ -7,32 +7,38 @@
     >
     <TableRow>
         <TextView
-            android:id="@+id/tvID"
+            android:id="@+id/et_stt"
+            android:text="STT"
             android:textSize="16dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:layout_column="1"
             />
         <TextView
+            android:id="@+id/et_songName"
             android:layout_width="wrap_content"
             android:layout_column="1"
             android:padding="10dp"
-            android:id="@+id/tvName"
+            android:text="Music"
             android:textSize="16dp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/et_yearOfCreation"
+            android:layout_width="wrap_content"
             android:layout_column="1"
             android:padding="10dp"
-            android:id="@+id/tvYear"
+            android:text="Year of Creation"
             android:textSize="16dp"
             android:textStyle="bold" />
-<!--        <TextView-->
-<!--            android:layout_column="1"-->
-<!--            android:padding="10dp"-->
-<!--            android:id="@+id/tv"-->
-<!--            android:textSize="16dp"-->
-<!--            android:textStyle="bold" />-->
+
+        <TextView
+            android:id="@+id/et_singerName"
+            android:layout_column="1"
+            android:padding="10dp"
+            android:text="Singer"
+            android:textSize="16dp"
+            android:textStyle="bold" />
     </TableRow>
 
     <androidx.recyclerview.widget.RecyclerView

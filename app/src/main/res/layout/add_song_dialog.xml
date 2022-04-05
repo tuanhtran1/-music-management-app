@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add song for musician"
+        android:textSize="24sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song name"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        android:id="@+id/et_songName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Year of creation"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        android:id="@+id/et_yearOfCreation"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Submit"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorPrimary"
+        android:id="@+id/btn_submit"/>
+</LinearLayout>

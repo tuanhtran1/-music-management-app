@@ -2,13 +2,11 @@ package com.example.quanlyamnhac.mapper;
 
 import android.database.Cursor;
 
-import com.example.quanlyamnhac.model.MusicianModel;
 import com.example.quanlyamnhac.model.UserModel;
 
 public class UserMapper {
     public static UserModel convertToModel(Cursor cursor){
         UserModel userModel = new UserModel();
-        userModel.setId(Integer.parseInt(cursor.getString(0)));
         userModel.setEmail(cursor.getString(1)); //lay data tu cot 1: email
         userModel.setPhone(cursor.getString(2));
         userModel.setUsername(cursor.getString(3));

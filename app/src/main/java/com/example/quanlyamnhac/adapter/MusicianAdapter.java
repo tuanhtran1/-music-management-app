@@ -8,54 +8,79 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
-import com.example.quanlyamnhac.model.MusicianModel;
+import com.example.quanlyamnhac.Song;
+import com.example.quanlyamnhac.entity.MusicianEntity;
+import com.example.quanlyamnhac.model.reponse.HomeReponse;
+import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
+import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MusicianAdapter extends ArrayAdapter<MusicianModel> {
+public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHolder> {
+
     Context context;
-    int resource;
-    ArrayList<MusicianModel> musicianModels;
+    List<MusicianReponse> homeModels;
 
-    public MusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<MusicianModel> musicianModels) {
-        super(context, resource, musicianModels);
+    public MusicianAdapter(Context context, List<MusicianReponse> homeModels) {
         this.context = context;
-        this.resource = resource;
-        this.musicianModels = musicianModels;
-    }
-
-    @Override
-    public int getCount() {
-        return musicianModels.size();
+        this.homeModels = homeModels;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(resource,null);
-        ImageView ivImage = convertView.findViewById(R.id.ivImage);
-        TextView tvName = convertView.findViewById(R.id.tvName);
+    public MusicianAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_musician_detail_layout, parent, false);
+        return new ViewHolder(view);
+    }
 
-        MusicianModel musician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText(musician.getName());
-        Picasso.get().load(musician.getLinkImg()).into(ivImage);
-        //set Event tại image để vào thông tin đối tượng
-        ivImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), MusicianDetail.class);
-                intent.putExtra("item", musician); // gửi 1 đối tượng qua intent
-                getContext().startActivity(intent);
-            }
-        });
+    @Override
+    public void onBindViewHolder(@NonNull MusicianAdapter.ViewHolder holder, int position) {
+        if (homeModels != null && homeModels.size() > 0) {
+            MusicianReponse model = homeModels.get(position);
+            holder.et_stt.setText(String.valueOf(position));
+            holder.et_songName.setText(model.getSongName());
+            holder.et_singerName.setText(model.getSingerName());
+            holder.et_yearOfCreation.setText(model.getYearOfCreation());
 
-        return convertView;
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(context, Song.class);
+                    intent.putExtra("songModel", model);
+                    context.startActivity(intent);
+                    Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
+            return;
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return homeModels.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView et_stt, et_songName, et_singerName, et_yearOfCreation;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            et_stt =  itemView.findViewById(R.id.et_stt);
+            et_songName = itemView.findViewById(R.id.et_songName);
+            et_singerName = itemView.findViewById(R.id.et_singerName);
+            et_yearOfCreation = itemView.findViewById(R.id.et_yearOfCreation);
+        }
     }
 }
