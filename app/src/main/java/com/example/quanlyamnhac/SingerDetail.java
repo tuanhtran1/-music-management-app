@@ -49,6 +49,7 @@ public class SingerDetail extends AppCompatActivity {
 
     private void setEvent() {
         layDL(); //lấy dữ liệu từ layout cũ qua layout_edit
+
         //list Bai Hat
         rvDanhSachBaiHat.setHasFixedSize(true);
         rvDanhSachBaiHat.setLayoutManager(new LinearLayoutManager(this));
@@ -109,6 +110,11 @@ public class SingerDetail extends AppCompatActivity {
         songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
         songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
         songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
+        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
         return songModels;
     }
 
@@ -122,7 +128,7 @@ public class SingerDetail extends AppCompatActivity {
     private void setControl() {
         et_name = findViewById(R.id.et_name);
         ivImg = findViewById(R.id.ivImage);
-        rvDanhSachBaiHat = findViewById(R.id.rvListData);
+        rvDanhSachBaiHat = findViewById(R.id.rvListDataSinger);
         toolbar = findViewById(R.id.toolbar);
         btnXoa = findViewById(R.id.btnXoa);
         btnSua = findViewById(R.id.btnSua);

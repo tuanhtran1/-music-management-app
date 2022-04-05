@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="1,2,3,4"
+    android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    >
+    android:stretchColumns="1,2,3,4">
+
     <TableRow>
+
         <TextView
             android:id="@+id/et_stt"
+            android:layout_column="1"
+            android:padding="10dp"
             android:text="STT"
             android:textSize="16dp"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:layout_column="1"
-            />
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/et_songName"
             android:layout_width="wrap_content"
@@ -42,9 +43,9 @@
     </TableRow>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListData"
+        android:id="@+id/rvListDataMusician"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
 
 </TableLayout>

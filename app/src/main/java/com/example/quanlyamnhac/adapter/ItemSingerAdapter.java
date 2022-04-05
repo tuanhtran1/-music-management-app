@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ItemSingerAdapter extends ArrayAdapter<ItemSingerReponse> {
+
     Context context;
     int resource;
     ArrayList<ItemSingerReponse> singerModels;
@@ -35,6 +36,7 @@ public class ItemSingerAdapter extends ArrayAdapter<ItemSingerReponse> {
 
     @Override
     public int getCount() {
+
         return singerModels.size();
     }
 

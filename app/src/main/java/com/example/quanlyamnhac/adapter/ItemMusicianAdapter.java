@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
+
     Context context;
     int resource;
     ArrayList<ItemMusicianReponse> musicianModels;
@@ -33,6 +34,7 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
 
     @Override
     public int getCount() {
+
         return musicianModels.size();
     }
 
@@ -43,15 +45,15 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
         ImageView ivImage = convertView.findViewById(R.id.ivImage);
         TextView tvName = convertView.findViewById(R.id.tvName);
 
-        ItemMusicianReponse musician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText(musician.getNameMusician());
-        Picasso.get().load(musician.getImageMusician()).into(ivImage);
+        ItemMusicianReponse itemMusician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
+        tvName.setText(itemMusician.getNameMusician());
+        Picasso.get().load(itemMusician.getImageMusician()).into(ivImage);
         //set Event tại image để vào thông tin đối tượng
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MusicianDetail.class);
-                intent.putExtra("item", musician); // gửi 1 đối tượng qua intent
+                intent.putExtra("item", itemMusician); // gửi 1 đối tượng qua intent
                 getContext().startActivity(intent);
             }
         });

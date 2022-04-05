@@ -129,7 +129,7 @@ public class MusicianDetail extends AppCompatActivity {
     private void setControl() {
         et_name = findViewById(R.id.et_name);
         ivImg = findViewById(R.id.ivImage);
-        rvDanhSachBaiHat = findViewById(R.id.rvListData);
+        rvDanhSachBaiHat = findViewById(R.id.rvListDataMusician);
         toolbar = findViewById(R.id.toolbar);
         btnXoa = findViewById(R.id.btnXoa);
         btnSua = findViewById(R.id.btnSua);

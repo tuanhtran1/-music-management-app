@@ -41,7 +41,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
     @Override
     public SingerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_singer_detail_layout, parent, false);
-        return new SingerAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
                     Intent intent = new Intent(context, Song.class);
                     intent.putExtra("songModel", model);
                     context.startActivity(intent);
-                    Toast.makeText(context,"vao SONG",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,model.getSongName(),Toast.LENGTH_LONG).show();
                 }
             });
         } else {

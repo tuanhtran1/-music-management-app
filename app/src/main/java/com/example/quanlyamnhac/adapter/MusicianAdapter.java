@@ -29,11 +29,11 @@ import java.util.List;
 public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHolder> {
 
     Context context;
-    List<MusicianReponse> homeModels;
+    List<MusicianReponse> musicianModels;
 
-    public MusicianAdapter(Context context, List<MusicianReponse> homeModels) {
+    public MusicianAdapter(Context context, List<MusicianReponse> musicianModels) {
         this.context = context;
-        this.homeModels = homeModels;
+        this.musicianModels = musicianModels;
     }
 
     @NonNull
@@ -45,8 +45,8 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MusicianAdapter.ViewHolder holder, int position) {
-        if (homeModels != null && homeModels.size() > 0) {
-            MusicianReponse model = homeModels.get(position);
+        if (musicianModels != null && musicianModels.size() > 0) {
+            MusicianReponse model = musicianModels.get(position);
             holder.et_stt.setText(String.valueOf(position));
             holder.et_songName.setText(model.getSongName());
             holder.et_singerName.setText(model.getSingerName());
@@ -69,7 +69,7 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return homeModels.size();
+        return musicianModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
