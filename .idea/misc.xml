@@ -32,6 +32,7 @@
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_main_tab.xml" value="0.1" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_musician.xml" value="0.303125" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_musician_detail.xml" value="0.33" />
+        <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_performance_detail.xml" value="0.3578125" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_register.xml" value="0.3343589743589744" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_singer_detail.xml" value="0.22" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_song.xml" value="0.25" />
@@ -41,6 +42,7 @@
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/item_home_layout.xml" value="0.3578125" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/item_musician_detail_layout.xml" value="0.22" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/item_musician_layout.xml" value="0.3078125" />
+        <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/item_performance_detail.xml" value="0.3578125" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/item_singer_detail_layout.xml" value="0.33" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/item_singer_layout.xml" value="0.3578125" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/layout_header_nav.xml" value="0.31197916666666664" />
