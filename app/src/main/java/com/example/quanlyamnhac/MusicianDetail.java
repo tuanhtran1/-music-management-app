@@ -38,7 +38,6 @@ public class MusicianDetail extends AppCompatActivity {
     EditText et_name, txtLinkImg; // linkImg từ từ
     ImageButton btnXoa, btnSua, btnThemBaiHat;
     RecyclerView rvDanhSachBaiHat;
-    SongAdapter songAdapter;
     Toolbar toolbar;
 
     @Override

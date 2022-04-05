@@ -15,6 +15,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.adapter.ItemSingerAdapter;
 import com.example.quanlyamnhac.adapter.SingerAdapter;
 import com.example.quanlyamnhac.entity.SingerEntity;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
@@ -73,7 +74,7 @@ public class SingerFragment extends Fragment {
     private void setEvent() {
         ArrayList<ItemSingerReponse> singerModels = khoitao(); // doc du lieu tu SQL
         //list Nhac si
-        SingerAdapter singerAdapter = new SingerAdapter(getContext(), R.layout.item_singer_layout, singerModels);
+        ItemSingerAdapter singerAdapter = new ItemSingerAdapter(getContext(), R.layout.item_singer_layout, singerModels);
         gvListSinger.setAdapter(singerAdapter);
     }
 

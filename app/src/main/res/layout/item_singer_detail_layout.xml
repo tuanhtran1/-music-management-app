@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1,2,3,4"
+    android:layout_margin="8dp"
+    >
+    <TableRow>
+        <TextView
+            android:id="@+id/et_stt"
+            android:text="STT"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_column="1"
+            />
+        <TextView
+            android:id="@+id/et_music"
+            android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:padding="10dp"
+            android:text="Music"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/et_musician"
+            android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:padding="10dp"
+            android:text="Musician"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/et_year_of_creation"
+            android:layout_column="1"
+            android:padding="10dp"
+            android:text="Year of creation"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</TableLayout>
