@@ -58,6 +58,9 @@ public class MainTabActivity extends AppCompatActivity {
                 case 2:
                     tab.setText("Singer");
                     break;
+                case 3:
+                    tab.setText("Rank");
+                    break;
             }
         }).attach();
     }

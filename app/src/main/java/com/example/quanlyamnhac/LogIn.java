@@ -10,8 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.quanlyamnhac.mapper.HomeMapper;
 import com.example.quanlyamnhac.mapper.UserMapper;
 import com.example.quanlyamnhac.model.UserModel;
+import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -20,7 +22,7 @@ import java.util.List;
 
 public class LogIn extends AppCompatActivity {
 
-    SQLite sqLite;
+    //SQLite sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);;
 
     EditText txtUser,txtPass;
     Button btnXacNhan;
@@ -36,28 +38,67 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setDatabase() {
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
-                "avatar VARCHAR(50))");
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
+//                "avatar VARCHAR(500))");
+//
+//        // musician
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name VARCHAR(50), image VARCHAR(500))");
+//        // song
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS song(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name VARCHAR(50), yearofcreation VARCHAR(50), id_musician INTEGER," +
+//                "FOREIGN KEY (id_musician) REFERENCES musician(id))");
+//
+//        // singer
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS singer(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name VARCHAR(50), image VARCHAR(500))");
+//
+//        // performance_info
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS performance_info(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "singer_id INTEGER , song_id INTEGER, username VARCHAR(50), performance_day VARCHAR(50), " +
+//                "place VARCHAR(50)," +
+//                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
+//
+//
+//        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
+//        sqLite.queryData("INSERT INTO musician VALUES(null,'Long Le', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
+//
+//
+//        sqLite.queryData("INSERT INTO song VALUES(null,'Yeu duoi', '1990', 1)");
+//        sqLite.queryData("INSERT INTO song VALUES(null,'Hoa no khong mau', '1995', 1)");
+//
+//        sqLite.queryData("INSERT INTO song VALUES(null,'La lung', '2000', 2)");
+//
+//        Cursor cursor = sqLite.getData("SELECT song.name, musician.name, song.yearofcreation FROM song, musician"
+//                + " WHERE song.id_musician = musician.id");
+//
+//        List<HomeReponse> homeReponses = new ArrayList<>();
+//        while(cursor.moveToNext()){
+//            homeReponses.add(HomeMapper.toHomeReponse(cursor));
+//        }
 
-        // musician
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name VARCHAR(50), image VARCHAR(50))");
-        // song
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS song(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name VARCHAR(50), yearofcreation VARCHAR(50), id_musician INTEGER," +
-                "FOREIGN KEY (id_musician) REFERENCES musician(id))");
-
-        // singer
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS singer(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name VARCHAR(50), image VARCHAR(50))");
-
-        // performance_info
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS performance_info(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "singer_id INTEGER , song_id INTEGER, username VARCHAR(50), performance_day VARCHAR(50), " +
-                "place VARCHAR(50)," +
-                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
+//                "avatar VARCHAR(500))");
+//
+//        // musician
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name VARCHAR(50), image VARCHAR(500))");
+//        // song
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS song(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name VARCHAR(50), yearofcreation VARCHAR(50), id_musician INTEGER," +
+//                "FOREIGN KEY (id_musician) REFERENCES musician(id))");
+//
+//        // singer
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS singer(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name VARCHAR(50), image VARCHAR(500))");
+//
+//        // performance_info
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS performance_info(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "singer_id INTEGER , song_id INTEGER, username VARCHAR(50), performance_day VARCHAR(50), " +
+//                "place VARCHAR(50)," +
+//                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
 
         //sqLite.queryData("INSERT INTO song VALUES(null,'canh','2022',1)");
 

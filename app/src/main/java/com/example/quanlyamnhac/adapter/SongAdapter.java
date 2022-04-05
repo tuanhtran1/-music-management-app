@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quanlyamnhac.PerformanceInfo;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.Song;
 import com.example.quanlyamnhac.model.reponse.SongReponse;
@@ -47,8 +48,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>{
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,position,Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(context, Song.class);
+                    Toast.makeText(context,"vao ber phone minh",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(context, PerformanceInfo.class);
                     context.startActivity(intent);
                 }
             });

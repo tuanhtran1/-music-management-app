@@ -1,5 +1,6 @@
 package com.example.quanlyamnhac.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,42 +11,43 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quanlyamnhac.PerformanceInfo;
 import com.example.quanlyamnhac.R;
-import com.example.quanlyamnhac.model.PerformanceModel;
+import com.example.quanlyamnhac.model.reponse.PerformanceInfoReponse;
 
 import java.util.List;
 
-public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.ViewHolder> {
+public class PerformanceInfoAdapter extends RecyclerView.Adapter<PerformanceInfoAdapter.ViewHolder> {
     Context context;
-    List<PerformanceModel> performanceModels;
+    List<PerformanceInfoReponse> performanceModels;
 
-    public PerformanceAdapter(Context context, List<PerformanceModel> performanceModels){
+    public PerformanceInfoAdapter(Context context, List<PerformanceInfoReponse> performanceModels){
         this.context = context;
         this.performanceModels = performanceModels;
     }
 
     @NonNull
     @Override
-    public PerformanceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PerformanceInfoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_performance_detail,parent,false);
         return new ViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull PerformanceAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PerformanceInfoAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if(performanceModels != null && performanceModels.size()>0){
-            PerformanceModel model = performanceModels.get(position);
-            holder.tv_stt.setText(model.getStt());
+            PerformanceInfoReponse model = performanceModels.get(position);
+            holder.tv_stt.setText(String.valueOf(position));
             holder.tv_singer_name.setText(model.getSingerName());
             holder.tv_song_name.setText(model.getSongName());
-            holder.tv_performance_day.setText(model.getPerformanceDay());
+            holder.tv_performance_day.setText(model.getDate().toString());
             holder.tv_place.setText(model.getPlace());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,model.getStt(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,position +"",Toast.LENGTH_LONG).show();
                 }
             });
         }else{

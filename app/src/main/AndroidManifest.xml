@@ -12,11 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuanLyAmNhac">
         <activity
-            android:name=".PerformanceDetail"
+            android:name=".PerformanceInfo"
             android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".DialogMain" -->
-        <!-- android:exported="false" /> -->
         <activity
             android:name=".SingerDetail"
             android:exported="false" />
