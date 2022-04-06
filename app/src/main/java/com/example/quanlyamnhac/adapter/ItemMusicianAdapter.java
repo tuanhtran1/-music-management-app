@@ -31,6 +31,9 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
     int resource;
     ArrayList<ItemMusicianReponse> musicianModels;
 
+
+    MusicianEntity musicianEntity;
+
     public ItemMusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemMusicianReponse> musicianModels) {
         super(context, resource, musicianModels);
         this.context = context;
@@ -53,11 +56,6 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
 
         ItemMusicianReponse itemMusician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
 
-        // tìm ra row trong table musician có vi tri = positon = entiy
-        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
-        Cursor cursor = sqLite.getData("SELECT * FROM musician LIMIT 1 OFFSET " + position);
-        MusicianEntity musicianEntity = MusicianMapper.toMusicianEntity(cursor);
-
         tvName.setText(itemMusician.getNameMusician());
         Picasso.get().load(itemMusician.getImageMusician()).into(ivImage);
         //set Event tại image để vào thông tin đối tượng
@@ -66,7 +64,15 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MusicianDetail.class);
                 intent.putExtra("item", itemMusician); // gửi 1 đối tượng qua intent
+
+                // tìm ra row trong table musician có vi tri = positon = entiy
+                sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
+                Cursor cursor = sqLite.getData("SELECT * FROM musician LIMIT 1 OFFSET " + position);
+                if(cursor.moveToNext()){
+                    musicianEntity = MusicianMapper.toMusicianEntity(cursor);
+                }
                 intent.putExtra("musicianEntity", musicianEntity);
+
                 getContext().startActivity(intent);
             }
         });

@@ -38,7 +38,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
         if (homeModels != null && homeModels.size() > 0) {
             HomeReponse model = homeModels.get(position);
-            holder.tv_stt.setText(String.valueOf(position));
+            holder.tv_stt.setText(String.valueOf(position+1));
             holder.tv_music.setText(model.getSongName());
             holder.tv_musical.setText(model.getMusicianName());
             holder.tv_year_of_creation.setText(model.getYearOfCreation());

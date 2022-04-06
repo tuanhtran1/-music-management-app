@@ -40,7 +40,6 @@ public class MusicianFragment extends Fragment {
     GridView gvListMusician;
 
     public MusicianFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -86,7 +85,6 @@ public class MusicianFragment extends Fragment {
     }
 
     private ArrayList<ItemMusicianReponse> khoitao() {
-
         Cursor cursor = sqLite.getData("SELECT * FROM musician");
         ArrayList<ItemMusicianReponse> itemMusicianReponses = new ArrayList<>();
         while(cursor.moveToNext()){
