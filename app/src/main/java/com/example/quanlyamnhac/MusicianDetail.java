@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,15 +26,20 @@ import com.example.quanlyamnhac.adapter.HomeAdapter;
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
 import com.example.quanlyamnhac.adapter.SongAdapter;
 import com.example.quanlyamnhac.entity.MusicianEntity;
+import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MusicianDetail extends AppCompatActivity {
+
+    SQLite sqLite;
+
     ImageView ivImg;
     EditText et_name, txtLinkImg; // linkImg từ từ
     ImageButton btnXoa, btnSua, btnThemBaiHat;
@@ -105,17 +111,30 @@ public class MusicianDetail extends AppCompatActivity {
 
 
     private ArrayList<MusicianReponse> getList() {
-        ArrayList<MusicianReponse> songModels = new ArrayList<>();
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-        return songModels;
+        MusicianEntity musicianEntity = (MusicianEntity) getIntent().getSerializableExtra("musicianEntity");
+        Long idMusician =  musicianEntity.getId();
+
+
+        Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation, singer.name " +
+                " FROM song, singer, performance_info " +
+                " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
+                " AND song.id_musician = " + idMusician);
+        ArrayList<MusicianReponse> musicianReponses = new ArrayList<>();
+        while(cursor.moveToNext()){
+            musicianReponses.add(MusicianMapper.toMusicianReponse(cursor));
+        }
+        return musicianReponses;
+//        ArrayList<MusicianReponse> songModels = new ArrayList<>();
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
+//        return songModels;
     }
 
     private void layDL() {
@@ -127,6 +146,9 @@ public class MusicianDetail extends AppCompatActivity {
 
     //ánh xạ qua
     private void setControl() {
+
+        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+
         et_name = findViewById(R.id.et_name);
         ivImg = findViewById(R.id.ivImage);
         rvDanhSachBaiHat = findViewById(R.id.rvListDataMusician);

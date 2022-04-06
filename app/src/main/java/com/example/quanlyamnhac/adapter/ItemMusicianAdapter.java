@@ -2,6 +2,7 @@ package com.example.quanlyamnhac.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,17 @@ import androidx.annotation.Nullable;
 
 import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.entity.MusicianEntity;
+import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
+
+    SQLite sqLite;
 
     Context context;
     int resource;
@@ -46,6 +52,12 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
         TextView tvName = convertView.findViewById(R.id.tvName);
 
         ItemMusicianReponse itemMusician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
+
+        // tìm ra row trong table musician có vi tri = positon = entiy
+        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
+        Cursor cursor = sqLite.getData("SELECT * FROM musician LIMIT 1 OFFSET " + position);
+        MusicianEntity musicianEntity = MusicianMapper.toMusicianEntity(cursor);
+
         tvName.setText(itemMusician.getNameMusician());
         Picasso.get().load(itemMusician.getImageMusician()).into(ivImage);
         //set Event tại image để vào thông tin đối tượng
@@ -54,6 +66,7 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MusicianDetail.class);
                 intent.putExtra("item", itemMusician); // gửi 1 đối tượng qua intent
+                intent.putExtra("musicianEntity", musicianEntity);
                 getContext().startActivity(intent);
             }
         });

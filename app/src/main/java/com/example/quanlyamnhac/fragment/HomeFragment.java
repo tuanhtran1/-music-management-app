@@ -21,7 +21,9 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
+
     SQLite sqLite;
+
     RecyclerView recycler_home;
     HomeAdapter homeAdapter;
     View view;
@@ -40,7 +42,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void mapping() {
-        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);;
+
+        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
         recycler_home = view.findViewById(R.id.recycler_home);
     }
 
@@ -54,63 +57,13 @@ public class HomeFragment extends Fragment {
 
     private List<HomeReponse> getList() {
 
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
-//                "avatar VARCHAR(500))");
-//
-//        // musician
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "name VARCHAR(50), image VARCHAR(500))");
-//        // song
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS song(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "name VARCHAR(50), yearofcreation VARCHAR(50), id_musician INTEGER," +
-//                "FOREIGN KEY (id_musician) REFERENCES musician(id))");
-//
-//        // singer
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS singer(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "name VARCHAR(50), image VARCHAR(500))");
-//
-//        // performance_info
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS performance_info(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "singer_id INTEGER , song_id INTEGER, username VARCHAR(50), performance_day VARCHAR(50), " +
-//                "place VARCHAR(50)," +
-//                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
-//
-//
-//        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
-//        sqLite.queryData("INSERT INTO musician VALUES(null,'Long Le', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
-//
-//
-//        sqLite.queryData("INSERT INTO song VALUES(null,'Yeu duoi', '1990', 1)");
-//        sqLite.queryData("INSERT INTO song VALUES(null,'Hoa no khong mau', '1995', 1)");
-//
-//        sqLite.queryData("INSERT INTO song VALUES(null,'La lung', '2000', 2)");
-//
-//        System.out.println("canh hahaha");
-//
-//        Cursor cursor = sqLite.getData("SELECT song.name, musician.name, song.yearofcreation FROM song, musician"
-//        + " WHERE song.id_musician = musician.id");
-//        List<HomeReponse> homeModels = new ArrayList<>();
-//        while(cursor.moveToNext()){
-//            homeModels.add(HomeMapper.toHomeReponse(cursor));
-//        }
+        Cursor cursor = sqLite.getData("SELECT song.name, musician.name, song.yearofcreation FROM song, musician"
+        + " WHERE song.id_musician = musician.id");
+        List<HomeReponse> homeReponses = new ArrayList<>();
+        while(cursor.moveToNext()){
+            homeReponses.add(HomeMapper.toHomeReponse(cursor));
+        }
 
-
-        List<HomeReponse> homeModels = new ArrayList<>();
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        homeModels.add(new HomeReponse("Đi và suy", "C-ANH", "2021"));
-        return homeModels;
+        return homeReponses;
     }
 }

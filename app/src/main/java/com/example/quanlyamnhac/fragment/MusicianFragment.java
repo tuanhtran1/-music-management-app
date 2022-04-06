@@ -1,6 +1,7 @@
 package com.example.quanlyamnhac.fragment;
 
 import android.app.Dialog;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,14 +19,21 @@ import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.adapter.ItemMusicianAdapter;
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
 import com.example.quanlyamnhac.entity.MusicianEntity;
+import com.example.quanlyamnhac.mapper.HomeMapper;
+import com.example.quanlyamnhac.mapper.MusicianMapper;
+import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MusicianFragment extends Fragment {
+
+    SQLite sqLite;
 
     View view;
     FloatingActionButton fbThem;
@@ -78,27 +86,17 @@ public class MusicianFragment extends Fragment {
     }
 
     private ArrayList<ItemMusicianReponse> khoitao() {
-        ArrayList<ItemMusicianReponse> data = new ArrayList<>();
-        ItemMusicianReponse musician1 = new ItemMusicianReponse( "Trịnh Công Sơn", "https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg");
-        ItemMusicianReponse musician2 = new ItemMusicianReponse("Văn Cao", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg");
-        ItemMusicianReponse musician3 = new ItemMusicianReponse("Trần Tiến", "http://baokhanhhoa.vn/dataimages/201507/original/images1088188_nhac_sy_Tran_tien.jpg");
-        ItemMusicianReponse musician4 = new ItemMusicianReponse("Phương Uyên", "http://image.vtc.vn/files/f1/2012/09/17/avapu1jpg.jpg");
-        ItemMusicianReponse musician5 = new ItemMusicianReponse("Ngọc Châu", "https://vtv1.mediacdn.vn/thumb_w/650/2022/3/17/104311693297023005203625988508962618143060o-16474902650871024895088-crop-1647490273721790446797.jpg");
-        ItemMusicianReponse musician6 = new ItemMusicianReponse("Đoàn Chuẩn", "https://image.thanhnien.vn/w1024/Uploaded/2022/wpdhnwejw/2021_03_20/doanchuan_omql.jpg");
-        ItemMusicianReponse musician7 = new ItemMusicianReponse("Phan Mạnh Quỳnh", "https://10hay.com/wp-content/uploads/2016/07/phan-manh-quynh-vo-nguoi-ta.jpg");
-        ItemMusicianReponse musician8 = new ItemMusicianReponse( "Khắc Việt", "https://toplist.vn/images/800px/khac-viet-556237.jpg");
-        data.add(musician1);
-        data.add(musician2);
-        data.add(musician3);
-        data.add(musician4);
-        data.add(musician5);
-        data.add(musician6);
-        data.add(musician7);
-        data.add(musician8);
-        return data;
+
+        Cursor cursor = sqLite.getData("SELECT * FROM musician");
+        ArrayList<ItemMusicianReponse> itemMusicianReponses = new ArrayList<>();
+        while(cursor.moveToNext()){
+            itemMusicianReponses.add(MusicianMapper.toItemMusicianReponse(cursor));
+        }
+        return itemMusicianReponses;
     }
 
     private void setControl() {
+        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
         fbThem = view.findViewById(R.id.fbThem);
         gvListMusician = view.findViewById(R.id.gvDanhSachMusician);
     }
