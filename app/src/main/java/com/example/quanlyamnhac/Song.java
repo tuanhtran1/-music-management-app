@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.quanlyamnhac.adapter.SongAdapter;
 import com.example.quanlyamnhac.entity.MusicianEntity;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
+import com.example.quanlyamnhac.mapper.SongMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.model.reponse.SongReponse;
@@ -34,6 +35,8 @@ public class Song extends AppCompatActivity {
     Toolbar toolbar;
 
     EditText et_songName, et_musicianName, et_singerName;
+
+    public static Integer idSong, idSinger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,35 +76,29 @@ public class Song extends AppCompatActivity {
     }
 
     private void layDL() {
-        MusicianReponse musicianReponse = (MusicianReponse) getIntent().getSerializableExtra("musicianReponse");
-        MusicianEntity musicianEntity = (MusicianEntity) getIntent().getSerializableExtra("musicianEntity");
 
-        et_songName.setText(musicianReponse.getSongName());
-        et_musicianName.setText(musicianEntity.getName());
-        et_singerName.setText(musicianReponse.getSingerName());
+        Song.idSong = (Integer) getIntent().getSerializableExtra("idSong");
+        Song.idSinger = (Integer) getIntent().getSerializableExtra("idSinger");
+        Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
+                " FROM song, singer, musician " +
+                " WHERE song.id = " + Song.idSong + " AND singer.id = " + Song.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
+        if(cursor.moveToNext()){
+            et_songName.setText(cursor.getString(0));
+            et_musicianName.setText(cursor.getString(2));
+            et_singerName.setText(cursor.getString(1));
+        }
     }
 
     private List<SongReponse> getList() {
-        List<SongReponse> songModels = new ArrayList<>();
-//        Cursor cursor = sqLite.getData(" SELECT singer.name, performance_info.performance_day, performance_info.place " +
-//                " FROM singer, performance_info, song " +
-//                " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
-//                " AND song.id_musician = " + idMusician);
-//        ArrayList<MusicianReponse> musicianReponses = new ArrayList<>();
-//        while (cursor.moveToNext()) {
-//            musicianReponses.add(MusicianMapper.toMusicianReponse(cursor));
-//        }
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        return songModels;
+        List<SongReponse> songReponses = new ArrayList<>();
+        Cursor cursor = sqLite.getData(" SELECT singer.name, performance_info.performance_day, performance_info.place " +
+                " FROM singer, performance_info, song " +
+                " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
+                " AND song.id = " + Song.idSong + " AND singer.id = " + Song.idSinger);
+        while (cursor.moveToNext()) {
+            songReponses.add(SongMapper.toSongReponse(cursor));
+        }
+        return songReponses;
     }
 
     @Override

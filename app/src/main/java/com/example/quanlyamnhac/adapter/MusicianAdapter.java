@@ -77,13 +77,6 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                         intent.putExtra("idSong", cursor.getInt(0));
                         intent.putExtra("idSinger", cursor.getInt(1));
                     }
-
-                    cursor = sqLite.getData("SELECT * FROM musician WHERE id = " + MusicianDetail.idMusician);
-                    if(cursor.moveToNext()){
-                        musicianEntity = MusicianMapper.toMusicianEntity(cursor);
-                    }
-                    intent.putExtra("musicianEntity", musicianEntity);
-
                     context.startActivity(intent);
                     Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();
                 }

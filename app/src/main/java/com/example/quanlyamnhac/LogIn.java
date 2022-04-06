@@ -76,6 +76,10 @@ public class LogIn extends AppCompatActivity {
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/04/06', 'quan khu 9')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/04/06', 'quan khu 10')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/04/06', 'quan khu 11')");
+//        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/09/10', 'PTIT')");
+//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/07/08', 'Ha Noi')");
+//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/11/06', 'Bac Giang')");
+//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/03/12', 'DakLak')");
 
     }
 

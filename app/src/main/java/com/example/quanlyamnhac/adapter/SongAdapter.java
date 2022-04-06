@@ -40,7 +40,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull SongAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if(songModels != null && songModels.size()>0){
             SongReponse model = songModels.get(position);
-            holder.tv_stt.setText(String.valueOf(position));
+            holder.tv_stt.setText(String.valueOf(position+1));
             holder.tv_singer_name.setText(model.getSingerName());
             holder.tv_performance_day.setText(model.getPerformanceDay());
             holder.tv_place.setText(model.getPlace());

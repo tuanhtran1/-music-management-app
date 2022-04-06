@@ -67,12 +67,10 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
 
                 // tìm ra row trong table musician có vi tri = positon = entiy
                 sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
-                Cursor cursor = sqLite.getData("SELECT * FROM musician LIMIT 1 OFFSET " + position);
+                Cursor cursor = sqLite.getData("SELECT musician.id FROM musician LIMIT 1 OFFSET " + position);
                 if(cursor.moveToNext()){
-                    musicianEntity = MusicianMapper.toMusicianEntity(cursor);
+                    intent.putExtra("idMusician", cursor.getInt(0));
                 }
-                intent.putExtra("musicianEntity", musicianEntity);
-
                 getContext().startActivity(intent);
             }
         });
