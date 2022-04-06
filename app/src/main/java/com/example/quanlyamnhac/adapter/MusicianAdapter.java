@@ -37,7 +37,6 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
     Context context;
     List<MusicianReponse> musicianModels;
 
-    MusicianEntity musicianEntity;
 
     public MusicianAdapter(Context context, List<MusicianReponse> musicianModels) {
         this.context = context;
@@ -65,7 +64,6 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                 public void onClick(View v) {
 
                     Intent intent = new Intent(context, Song.class);
-                    intent.putExtra("musicianReponse", musicianReponse);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
                     Cursor cursor = sqLite.getData(" SELECT song.id, singer.id " +

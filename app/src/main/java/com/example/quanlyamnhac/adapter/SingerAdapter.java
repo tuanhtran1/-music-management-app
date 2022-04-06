@@ -1,7 +1,9 @@
 package com.example.quanlyamnhac.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.SingerDetail;
 import com.example.quanlyamnhac.Song;
@@ -22,12 +25,15 @@ import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.model.reponse.SingerReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder> {
+
+    SQLite sqLite;
 
     Context context;
     List<SingerReponse> singerModels;
@@ -45,22 +51,33 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SingerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SingerAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (singerModels != null && singerModels.size() > 0) {
-            SingerReponse model = singerModels.get(position);
-            holder.et_stt.setText(String.valueOf(position));
-            holder.et_music.setText(model.getSongName());
-            holder.et_musician.setText(model.getMusicianName());
-            holder.et_year_of_creation.setText(model.getYearOfCreation());
+            SingerReponse singerReponse = singerModels.get(position);
+            holder.et_stt.setText(String.valueOf(position+1));
+            holder.et_music.setText(singerReponse.getSongName());
+            holder.et_musician.setText(singerReponse.getMusicianName());
+            holder.et_year_of_creation.setText(singerReponse.getYearOfCreation());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     Intent intent = new Intent(context, Song.class);
-                    intent.putExtra("songModel", model);
+
+                    sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
+                    Cursor cursor = sqLite.getData(" SELECT song.id, singer.id, musician.id " +
+                            " FROM song, singer, performance_info, musician " +
+                            " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
+                            " AND song.id_musician = musician.id AND song.id = " + SingerDetail.idSinger + " LIMIT 1 OFFSET " + position);
+                    if(cursor.moveToNext()){
+                        System.out.println(cursor.getInt(0) + " "+ cursor.getInt(1));
+                        intent.putExtra("idSong", cursor.getInt(0));
+                        intent.putExtra("idSinger", cursor.getInt(1));
+                        MusicianDetail.idMusician = cursor.getInt(2);
+                    }
                     context.startActivity(intent);
-                    Toast.makeText(context,model.getSongName(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();
                 }
             });
         } else {

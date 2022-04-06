@@ -32,8 +32,6 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
     ArrayList<ItemMusicianReponse> musicianModels;
 
 
-    MusicianEntity musicianEntity;
-
     public ItemMusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemMusicianReponse> musicianModels) {
         super(context, resource, musicianModels);
         this.context = context;

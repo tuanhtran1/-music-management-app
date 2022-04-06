@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,16 +23,24 @@ import android.widget.Toast;
 import com.example.quanlyamnhac.adapter.SingerAdapter;
 import com.example.quanlyamnhac.adapter.SongAdapter;
 import com.example.quanlyamnhac.entity.SingerEntity;
+import com.example.quanlyamnhac.mapper.MusicianMapper;
+import com.example.quanlyamnhac.mapper.SingerMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.model.reponse.SingerReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SingerDetail extends AppCompatActivity {
+
+    public static Integer idSinger;
+
+    SQLite sqLite;
+
     ImageView ivImg;
     EditText et_name, txtLinkImg; // linkImg từ từ
     ImageButton btnXoa, btnSua, btnThemBaiHat;
@@ -103,19 +112,16 @@ public class SingerDetail extends AppCompatActivity {
     }
 
     private ArrayList<SingerReponse> getList() {
-        ArrayList<SingerReponse> songModels = new ArrayList<>();
-        songModels.add(new SingerReponse("Di va Suy","2020","1"));
-        songModels.add(new SingerReponse("abc","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        songModels.add(new SingerReponse("Hoa Nở Không Màu","2020","1"));
-        return songModels;
+        SingerDetail.idSinger = (Integer) getIntent().getSerializableExtra("idSinger");
+        Cursor cursor = sqLite.getData(" SELECT DISTINCT song.name, musician.name, song.yearofcreation " +
+                " FROM song, musician, singer, performance_info " +
+                " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
+                " AND song.id_musician = musician.id AND singer.id = " + SingerDetail.idSinger);
+        ArrayList<SingerReponse> singerReponses = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            singerReponses.add(SingerMapper.toSingerReponse(cursor));
+        }
+        return singerReponses;
     }
 
     private void layDL() {
@@ -124,8 +130,11 @@ public class SingerDetail extends AppCompatActivity {
         et_name.setText(singerModel.getNameSinger());
         Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
     }
+
     //ánh xạ qua
     private void setControl() {
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
+
         et_name = findViewById(R.id.et_name);
         ivImg = findViewById(R.id.ivImage);
         rvDanhSachBaiHat = findViewById(R.id.rvListDataSinger);

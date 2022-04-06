@@ -2,6 +2,7 @@ package com.example.quanlyamnhac.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,14 @@ import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.SingerDetail;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ItemSingerAdapter extends ArrayAdapter<ItemSingerReponse> {
+
+    SQLite sqLite;
 
     Context context;
     int resource;
@@ -56,6 +60,13 @@ public class ItemSingerAdapter extends ArrayAdapter<ItemSingerReponse> {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SingerDetail.class);
                 intent.putExtra("item", itemSinger); // gửi 1 đối tượng qua intent
+
+                // tìm ra row trong table musician có vi tri = positon = entiy
+                sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
+                Cursor cursor = sqLite.getData("SELECT singer.id FROM singer LIMIT 1 OFFSET " + position);
+                if(cursor.moveToNext()){
+                    intent.putExtra("idSinger", cursor.getInt(0));
+                }
                 getContext().startActivity(intent);
             }
         });

@@ -31,7 +31,6 @@ import java.util.ArrayList;
 
 public class MusicianDetail extends AppCompatActivity {
 
-
     public static Integer idMusician;
 
     SQLite sqLite;
@@ -104,7 +103,7 @@ public class MusicianDetail extends AppCompatActivity {
             }
         });
     }
-    
+
     private ArrayList<MusicianReponse> getList() {
         MusicianDetail.idMusician = (Integer) getIntent().getSerializableExtra("idMusician");
         Cursor cursor = sqLite.getData(" SELECT DISTINCT song.name, song.yearofcreation, singer.name " +
