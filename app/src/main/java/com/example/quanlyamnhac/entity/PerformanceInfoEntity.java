@@ -1,16 +1,16 @@
 package com.example.quanlyamnhac.entity;
 
 public class PerformanceInfoEntity {
-    private Long id;
-    private Long singerId;
-    private Long songId;
+    private Integer id;
+    private Integer singerId;
+    private Integer songId;
     private String performanceDay;
     private String place;
 
     public PerformanceInfoEntity(){
     }
 
-    public PerformanceInfoEntity(Long id, Long singerId, Long songId, String performanceDay, String place) {
+    public PerformanceInfoEntity(Integer id, Integer singerId, Integer songId, String performanceDay, String place) {
         this.id = id;
         this.singerId = singerId;
         this.songId = songId;
@@ -18,27 +18,27 @@ public class PerformanceInfoEntity {
         this.place = place;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getSingerId() {
+    public Integer getSingerId() {
         return singerId;
     }
 
-    public void setSingerId(Long singerId) {
+    public void setSingerId(Integer singerId) {
         this.singerId = singerId;
     }
 
-    public Long getSongId() {
+    public Integer getSongId() {
         return songId;
     }
 
-    public void setSongId(Long songId) {
+    public void setSongId(Integer songId) {
         this.songId = songId;
     }
 

@@ -17,7 +17,7 @@ public class MusicianMapper {
 
     public static MusicianEntity toMusicianEntity(Cursor cursor){
         MusicianEntity musicianEntity = new MusicianEntity();
-        musicianEntity.setId(cursor.getLong(0));
+        musicianEntity.setId(cursor.getInt(0));
         musicianEntity.setName(cursor.getString(1));
         musicianEntity.setLinkImg(cursor.getString(2));
         return musicianEntity;

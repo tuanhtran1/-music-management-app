@@ -11,19 +11,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.Song;
 import com.example.quanlyamnhac.model.reponse.HomeReponse;
-import com.example.quanlyamnhac.R;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     Context context;
     List<HomeReponse> homeModels;
 
-    public HomeAdapter( Context context, List<HomeReponse> homeModels){
+    public HomeAdapter(Context context, List<HomeReponse> homeModels) {
         this.context = context;
         this.homeModels = homeModels;
     }
@@ -31,13 +30,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     @NonNull
     @Override
     public HomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_layout,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_layout, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
-        if(homeModels != null && homeModels.size()>0){
+        if (homeModels != null && homeModels.size() > 0) {
             HomeReponse model = homeModels.get(position);
             holder.tv_stt.setText(String.valueOf(position));
             holder.tv_music.setText(model.getSongName());
@@ -51,10 +50,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
                     Intent intent = new Intent(context, Song.class);
                     intent.putExtra("songModel", model);
                     context.startActivity(intent);
-                    Toast.makeText(context,"vao SONG",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();
                 }
             });
-        }else{
+        } else {
             return;
         }
     }
@@ -66,6 +65,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_stt, tv_music, tv_musical, tv_year_of_creation;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

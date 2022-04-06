@@ -1,7 +1,7 @@
 package com.example.quanlyamnhac.entity;
 
 public class SongEntity {
-    private Long id;
+    private Integer id;
     private String name;
     private String yearCreation;
     private Long musicianId;
@@ -9,18 +9,18 @@ public class SongEntity {
     public SongEntity() {
     }
 
-    public SongEntity(Long id, String name, String yearCreation, Long musicianId) {
+    public SongEntity(Integer id, String name, String yearCreation, Long musicianId) {
         this.id = id;
         this.name = name;
         this.yearCreation = yearCreation;
         this.musicianId = musicianId;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

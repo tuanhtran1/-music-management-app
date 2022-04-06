@@ -1,40 +1,33 @@
 package com.example.quanlyamnhac;
 
+import android.app.Dialog;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.quanlyamnhac.adapter.HomeAdapter;
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
-import com.example.quanlyamnhac.adapter.SongAdapter;
 import com.example.quanlyamnhac.entity.MusicianEntity;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
-import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MusicianDetail extends AppCompatActivity {
 
@@ -112,7 +105,7 @@ public class MusicianDetail extends AppCompatActivity {
 
     private ArrayList<MusicianReponse> getList() {
         MusicianEntity musicianEntity = (MusicianEntity) getIntent().getSerializableExtra("musicianEntity");
-        Long idMusician =  musicianEntity.getId();
+        Integer idMusician = musicianEntity.getId();
 
 
         Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation, singer.name " +
@@ -120,7 +113,7 @@ public class MusicianDetail extends AppCompatActivity {
                 " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
                 " AND song.id_musician = " + idMusician);
         ArrayList<MusicianReponse> musicianReponses = new ArrayList<>();
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             musicianReponses.add(MusicianMapper.toMusicianReponse(cursor));
         }
         return musicianReponses;
@@ -147,7 +140,7 @@ public class MusicianDetail extends AppCompatActivity {
     //ánh xạ qua
     private void setControl() {
 
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
 
         et_name = findViewById(R.id.et_name);
         ivImg = findViewById(R.id.ivImage);

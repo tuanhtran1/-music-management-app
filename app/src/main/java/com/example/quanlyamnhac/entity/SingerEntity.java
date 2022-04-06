@@ -3,7 +3,7 @@ package com.example.quanlyamnhac.entity;
 import java.io.Serializable;
 
 public class SingerEntity {
-    private Long id;
+    private Integer id;
     private String name;
     private String linkImg;
 
@@ -11,17 +11,17 @@ public class SingerEntity {
 
     }
 
-    public SingerEntity(Long id, String name, String linkImg) {
+    public SingerEntity(Integer id, String name, String linkImg) {
         this.id = id;
         this.name = name;
         this.linkImg = linkImg;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
