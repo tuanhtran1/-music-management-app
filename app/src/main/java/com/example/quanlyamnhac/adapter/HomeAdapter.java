@@ -21,7 +21,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     Context context;
     List<HomeReponse> homeModels;
-
     public HomeAdapter(Context context, List<HomeReponse> homeModels) {
         this.context = context;
         this.homeModels = homeModels;
@@ -65,7 +64,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_stt, tv_music, tv_musical, tv_year_of_creation;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

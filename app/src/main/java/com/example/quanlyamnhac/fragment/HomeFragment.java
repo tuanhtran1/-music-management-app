@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment {
             homeReponses.add(HomeMapper.toHomeReponse(cursor));
         }
 
+        cursor.close();
         return homeReponses;
     }
 }

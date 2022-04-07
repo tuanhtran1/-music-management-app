@@ -30,6 +30,7 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
     Context context;
     int resource;
     ArrayList<ItemMusicianReponse> musicianModels;
+    MusicianEntity musicianEntity = new MusicianEntity();
 
     public ItemMusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemMusicianReponse> musicianModels) {
         super(context, resource, musicianModels);
@@ -50,13 +51,16 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
         convertView = LayoutInflater.from(context).inflate(resource,null);
         ImageView ivImage = convertView.findViewById(R.id.ivImage);
         TextView tvName = convertView.findViewById(R.id.tvName);
+        System.out.println(position);
 
         ItemMusicianReponse itemMusician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
 
         // tìm ra row trong table musician có vi tri = positon = entiy
         sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
         Cursor cursor = sqLite.getData("SELECT * FROM musician LIMIT 1 OFFSET " + position);
-        MusicianEntity musicianEntity = MusicianMapper.toMusicianEntity(cursor);
+        if(cursor.moveToNext()) {
+            musicianEntity = MusicianMapper.toMusicianEntity(cursor);
+        }
 
         tvName.setText(itemMusician.getNameMusician());
         Picasso.get().load(itemMusician.getImageMusician()).into(ivImage);
@@ -70,7 +74,6 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
                 getContext().startActivity(intent);
             }
         });
-
         return convertView;
     }
 }
