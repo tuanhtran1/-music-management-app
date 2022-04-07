@@ -13,10 +13,7 @@
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_log_in.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_main_tab.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_musician_detail.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_song.xml" value="0.2706209453197405" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/add_musician_dialog.xml" value="0.1787037037037037" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/add_song_dialog.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/fragment_home.xml" value="0.20427305888483585" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/item_home_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/item_user_layout.xml" value="0.20416666666666666" />
@@ -40,7 +37,7 @@
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_register.xml" value="0.3343589743589744" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_singer_detail.xml" value="0.33" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/activity_song.xml" value="0.33" />
-        <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/add_musician_dialog.xml" value="0.1" />
+        <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/add_musician_dialog.xml" value="0.25" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/add_singer_dialog.xml" value="0.29635416666666664" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/add_song_dialog.xml" value="0.33" />
         <entry key="..\:/android project/-music-management-app/app/src/main/res/layout/fragment_home.xml" value="0.33" />

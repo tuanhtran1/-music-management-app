@@ -67,8 +67,9 @@ public class SingerFragment extends Fragment {
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getContext(),"Da them ca si",Toast.LENGTH_LONG).show();
+                        sqLite.queryData("INSERT INTO singer VALUES(null, '" + singerName.getText() + "','" + linkImageSinger.getText() + "')");
                         dialog.dismiss();
+                        setEvent();
                     }
                 });
                 dialog.show();

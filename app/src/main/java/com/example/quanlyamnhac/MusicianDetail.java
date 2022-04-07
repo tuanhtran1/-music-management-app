@@ -42,7 +42,7 @@ public class MusicianDetail extends AppCompatActivity {
     SQLite sqLite;
 
     ImageView ivImg;
-    TextView et_name; // linkImg từ từ
+    TextView et_name;
     ImageButton btnXoa, btnSua, btnThemBaiHat;
     RecyclerView rvDanhSachBaiHat;
     Toolbar toolbar;

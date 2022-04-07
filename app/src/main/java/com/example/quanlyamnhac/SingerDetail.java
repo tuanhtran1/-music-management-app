@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +24,8 @@ import android.widget.Toast;
 import com.example.quanlyamnhac.adapter.SingerAdapter;
 import com.example.quanlyamnhac.adapter.SongAdapter;
 import com.example.quanlyamnhac.entity.SingerEntity;
+import com.example.quanlyamnhac.fragment.MusicianFragment;
+import com.example.quanlyamnhac.fragment.SingerFragment;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.mapper.SingerMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
@@ -42,7 +45,7 @@ public class SingerDetail extends AppCompatActivity {
     SQLite sqLite;
 
     ImageView ivImg;
-    EditText et_name, txtLinkImg; // linkImg từ từ
+    TextView et_name;
     ImageButton btnXoa, btnSua, btnThemBaiHat;
     RecyclerView rvDanhSachBaiHat;
     Toolbar toolbar;
@@ -68,45 +71,77 @@ public class SingerDetail extends AppCompatActivity {
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.putExtra("item",getDanhLam());
-//                setResult(3,intent);
-//                finish();
+                Cursor cursor = sqLite.getData("SELECT singer.id FROM singer WHERE EXISTS " +
+                        " (SELECT performance_info.singer_id FROM performance_info WHERE performance_info.singer_id = " + SingerDetail.idSinger + ")");
+                if(cursor.moveToNext()){
+                    Toast.makeText(view.getContext(),"Hay chac chan vi da co  ",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                sqLite.queryData("DELETE FROM singer WHERE singer.id = " + SingerDetail.idSinger);
+                Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), SingerFragment.class);
+                startActivity(intent);
             }
         });
         btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.putExtra("item",getDanhLam());
-//                setResult(2,intent);
-//                finish();
+                final Dialog dialog = new Dialog(view.getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.add_singer_dialog);
+
+                //Initializing the views of the dialog.
+                final EditText singerName = dialog.findViewById(R.id.et_singerName);
+                final EditText linkImageSinger = dialog.findViewById(R.id.et_linkImageSinger);
+                Button submitButton = dialog.findViewById(R.id.btn_submit);
+
+                ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
+                String name = singerModel.getNameSinger(), image = singerModel.getImageSinger() ;
+                singerName.setText(name);
+                linkImageSinger.setText(image);
+
+                submitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sqLite.queryData("UPDATE singer SET name = '" + singerName.getText() + "', image = '" + linkImageSinger.getText()+ "'" +
+                                " WHERE musician.id = " + MusicianDetail.idMusician);
+                        dialog.dismiss();
+                        Intent intent = new Intent(view.getContext(), SingerFragment.class);
+                        startActivity(intent);
+                    }
+                });
+                dialog.show();
             }
         });
 
         btnThemBaiHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(SingerDetail.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setCancelable(true);
-                dialog.setContentView(R.layout.add_song_dialog);
-
-                //Initializing the views of the dialog.
-                final EditText nameSong = dialog.findViewById(R.id.et_songName);
-                final EditText yearOfCreation = dialog.findViewById(R.id.et_yearOfCreation);
-                Button submitButton = dialog.findViewById(R.id.btn_submit);
-
-
-                submitButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(SingerDetail.this, "Da them bai hat", Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
+//                final Dialog dialog = new Dialog(SingerDetail.this);
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setCancelable(true);
+//                dialog.setContentView(R.layout.add_song_dialog);
+//
+//                //Initializing the views of the dialog.
+//                final TextView tv_musicianName = dialog.findViewById(R.id.tv_musicianName);
+//                final EditText et_songName = dialog.findViewById(R.id.et_songName);
+//                final EditText et_yearOfCreation = dialog.findViewById(R.id.et_yearOfCreation);
+//                Button btn_submit = dialog.findViewById(R.id.btn_submit);
+//
+//                ItemSingerReponse musicianModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
+//                tv_musicianName.setText(musicianModel.getNameMusician());
+//
+//                btn_submit.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        sqLite.queryData("INSERT INTO song VALUES(null, '" + et_songName.getText() + "','" + et_yearOfCreation.getText() + "')");
+//                        dialog.dismiss();
+//                        setEvent();
+//                    }
+//                });
+//
+//                dialog.show();
             }
         });
     }
