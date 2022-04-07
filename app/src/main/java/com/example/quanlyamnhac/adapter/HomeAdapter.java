@@ -1,7 +1,9 @@
 package com.example.quanlyamnhac.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.SingerDetail;
 import com.example.quanlyamnhac.Song;
 import com.example.quanlyamnhac.model.reponse.HomeReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+
+    SQLite sqLite;
 
     Context context;
     List<HomeReponse> homeModels;
@@ -34,12 +41,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (homeModels != null && homeModels.size() > 0) {
             HomeReponse model = homeModels.get(position);
-            holder.tv_stt.setText(String.valueOf(position));
+            holder.tv_stt.setText(String.valueOf(position+1));
             holder.tv_music.setText(model.getSongName());
             holder.tv_musical.setText(model.getMusicianName());
+            holder.tv_singer_name.setText(model.getSingerName());
             holder.tv_year_of_creation.setText(model.getYearOfCreation());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +55,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 public void onClick(View v) {
 
                     Intent intent = new Intent(context, Song.class);
-                    intent.putExtra("songModel", model);
+
+                    sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
+
+                    Cursor cursor = sqLite.getData("SELECT song.id, singer.id, musician.id"
+                            + " FROM song, musician, singer "
+                            + " WHERE song.id_musician = musician.id LIMIT 1 OFFSET " + position);
+
+                    if(cursor.moveToNext()){
+                        Song.idSong = cursor.getInt(0);
+                        SingerDetail.idSinger = cursor.getInt(1);
+                        MusicianDetail.idMusician = cursor.getInt(2);
+                        System.out.println(Song.idSong + " " + SingerDetail.idSinger + " "+ MusicianDetail.idMusician);
+                    }
                     context.startActivity(intent);
                     Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();
                 }
@@ -63,13 +83,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_stt, tv_music, tv_musical, tv_year_of_creation;
+
+        TextView tv_stt, tv_music, tv_musical, tv_year_of_creation, tv_singer_name;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_stt = itemView.findViewById(R.id.tv_stt);
             tv_music = itemView.findViewById(R.id.tv_music);
             tv_musical = itemView.findViewById(R.id.tv_musical);
+            tv_singer_name = itemView.findViewById(R.id.tv_singer_name);
             tv_year_of_creation = itemView.findViewById(R.id.tv_year_of_creation);
         }
     }

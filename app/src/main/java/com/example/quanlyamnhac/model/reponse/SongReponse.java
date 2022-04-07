@@ -1,11 +1,15 @@
 package com.example.quanlyamnhac.model.reponse;
 
+import com.example.quanlyamnhac.Song;
+
 import java.io.Serializable;
 
 public class SongReponse  implements Serializable {
     private String singerName;
     private String performanceDay;
     private String place;
+
+    public SongReponse(){}
 
     public SongReponse(String singerName, String performanceDay, String place) {
         this.singerName = singerName;

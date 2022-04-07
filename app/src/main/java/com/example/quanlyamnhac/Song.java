@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,18 +14,29 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.SongAdapter;
+import com.example.quanlyamnhac.entity.MusicianEntity;
+import com.example.quanlyamnhac.mapper.MusicianMapper;
+import com.example.quanlyamnhac.mapper.SongMapper;
+import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
+import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.model.reponse.SongReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Song extends AppCompatActivity {
 
+    SQLite sqLite;
+
     RecyclerView recycler_song;
     SongAdapter songAdapter;
     Toolbar toolbar;
 
-    EditText et_songName, et_musicianName, et_yearOfCreation;
+    EditText et_songName, et_musicianName, et_singerName;
+
+    public static Integer idSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +45,7 @@ public class Song extends AppCompatActivity {
         mapping();
         setRecyclerSong();
         setToolBar();
+        layDL();
     }
 
     private void setToolBar() {
@@ -45,12 +58,14 @@ public class Song extends AppCompatActivity {
     }
 
     private void mapping() {
+        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+
         recycler_song = findViewById(R.id.recycler_song);
         toolbar = findViewById(R.id.toolbar);
 
         et_songName = findViewById(R.id.et_songName);
         et_musicianName= findViewById(R.id.et_musicianName);
-        et_yearOfCreation = findViewById(R.id.et_yearOfCreation);
+        et_singerName = findViewById(R.id.et_singerName);
     }
 
     private void setRecyclerSong() {
@@ -60,19 +75,28 @@ public class Song extends AppCompatActivity {
         recycler_song.setAdapter(songAdapter);
     }
 
+    private void layDL() {
+
+        Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
+                " FROM song, singer, musician " +
+                " WHERE song.id = " + Song.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
+        if(cursor.moveToNext()){
+            et_songName.setText(cursor.getString(0));
+            et_musicianName.setText(cursor.getString(2));
+            et_singerName.setText(cursor.getString(1));
+        }
+    }
+
     private List<SongReponse> getList() {
-        List<SongReponse> songModels = new ArrayList<>();
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        songModels.add(new SongReponse("Trần Anh Tú", "4/1/2022", "97 Man Thiện"));
-        return songModels;
+        List<SongReponse> songReponses = new ArrayList<>();
+        Cursor cursor = sqLite.getData(" SELECT singer.name, performance_info.performance_day, performance_info.place " +
+                " FROM singer, performance_info, song " +
+                " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
+                " AND song.id = " + Song.idSong + " AND singer.id = " + SingerDetail.idSinger);
+        while (cursor.moveToNext()) {
+            songReponses.add(SongMapper.toSongReponse(cursor));
+        }
+        return songReponses;
     }
 
     @Override

@@ -55,11 +55,11 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="Năm sáng tác"/>
+                android:text="Ca sĩ"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_yearOfCreation"/>
+                android:id="@+id/et_singerName"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +92,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Danh sách"
+            android:text="Danh sách biểu diễn"
             android:textSize="30dp"
             android:textAlignment="center"/>
         <TableRow>

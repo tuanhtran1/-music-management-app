@@ -31,6 +31,8 @@ import java.util.ArrayList;
 
 public class MusicianDetail extends AppCompatActivity {
 
+    public static Integer idMusician;
+
     SQLite sqLite;
 
     ImageView ivImg;
@@ -56,7 +58,6 @@ public class MusicianDetail extends AppCompatActivity {
         rvDanhSachBaiHat.setLayoutManager(new LinearLayoutManager(this));
         MusicianAdapter musicianAdapter = new MusicianAdapter(this, getList());
         rvDanhSachBaiHat.setAdapter(musicianAdapter);
-
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,37 +103,20 @@ public class MusicianDetail extends AppCompatActivity {
         });
     }
 
-
     private ArrayList<MusicianReponse> getList() {
-        MusicianEntity musicianEntity = (MusicianEntity) getIntent().getSerializableExtra("musicianEntity");
-        Integer idMusician = musicianEntity.getId();
-
-
-        Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation, singer.name " +
+        Cursor cursor = sqLite.getData(" SELECT DISTINCT song.name, song.yearofcreation, singer.name " +
                 " FROM song, singer, performance_info " +
                 " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
-                " AND song.id_musician = " + idMusician);
+                " AND song.id_musician = " + MusicianDetail.idMusician);
         ArrayList<MusicianReponse> musicianReponses = new ArrayList<>();
         while (cursor.moveToNext()) {
             musicianReponses.add(MusicianMapper.toMusicianReponse(cursor));
         }
         return musicianReponses;
-//        ArrayList<MusicianReponse> songModels = new ArrayList<>();
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        songModels.add(new MusicianReponse("Hoa Nở Không Màu", "2020", "Hoai Lam"));
-//        return songModels;
     }
 
     private void layDL() {
         ItemMusicianReponse musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("item");
-        //tvId.setText(nhacSi.getId()); //Không cần thiết id
         et_name.setText(musicianModel.getNameMusician());
         Picasso.get().load(musicianModel.getImageMusician()).into(ivImg);
     }
