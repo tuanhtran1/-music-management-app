@@ -67,10 +67,11 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                     Intent intent = new Intent(context, Song.class);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
-                    Cursor cursor = sqLite.getData(" SELECT song.id, singer.id " +
+                    Cursor cursor = sqLite.getData(" SELECT DISTINCT song.id, singer.id, song.name, song.yearofcreation, singer.name" +
                             " FROM song, singer, performance_info " +
                             " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
                             " AND song.id_musician = " + MusicianDetail.idMusician + " LIMIT 1 OFFSET " + position);
+                    System.out.println("Vi tri: " + position);
                     if(cursor.moveToNext()){
                         System.out.println(cursor.getInt(0) + " "+ cursor.getInt(1));
                         Song.idSong =  cursor.getInt(0);

@@ -83,7 +83,6 @@ public class LogIn extends AppCompatActivity {
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/11/06', 'Bac Giang')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/03/12', 'DakLak')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 2, '2022/03/12', 'Nha Hoang')");
-
     }
 
     private void setControl() {
