@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.quanlyamnhac.adapter.PerformanceInfoAdapter;
+//import com.example.quanlyamnhac.adapter.PerformanceInfoAdapter;
 import com.example.quanlyamnhac.model.reponse.PerformanceInfoReponse;
 
 
@@ -22,7 +22,7 @@ import java.util.List;
 public class PerformanceInfo extends AppCompatActivity {
 
     RecyclerView recycler_performance;
-    PerformanceInfoAdapter performanceAdapter;
+//    PerformanceInfoAdapter performanceAdapter;
     Toolbar toolbar;
 
     @Override
@@ -30,7 +30,7 @@ public class PerformanceInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performance_detail);
         mapping();
-        setRecyclerPerformance();
+//        setRecyclerPerformance();
         setToolBar();
     }
     private void setToolBar() {
@@ -43,25 +43,25 @@ public class PerformanceInfo extends AppCompatActivity {
     }
 
     private void mapping() {
-        recycler_performance = findViewById(R.id.recycler_performance);
+//        recycler_performance = findViewById(R.id.recycler_performance);
         toolbar = findViewById(R.id.toolbar);
     }
 
-    private void setRecyclerPerformance() {
-        recycler_performance.setHasFixedSize(true);
-        recycler_performance.setLayoutManager(new LinearLayoutManager((this)));
-        performanceAdapter = new PerformanceInfoAdapter(this,getList());
-        recycler_performance.setAdapter(performanceAdapter);
-    }
+//    private void setRecyclerPerformance() {
+//        recycler_performance.setHasFixedSize(true);
+//        recycler_performance.setLayoutManager(new LinearLayoutManager((this)));
+//        performanceAdapter = new PerformanceInfoAdapter(this,getList());
+//        recycler_performance.setAdapter(performanceAdapter);
+//    }
 
-    private List<PerformanceInfoReponse> getList() {
-        List<PerformanceInfoReponse> performanceModels = new ArrayList<>();
-        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-        return performanceModels;
-    }
+//    private List<PerformanceInfoReponse> getList() {
+//        List<PerformanceInfoReponse> performanceModels = new ArrayList<>();
+//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
+//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
+//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
+//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
+//        return performanceModels;
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
@@ -84,5 +84,10 @@ public class PerformanceInfo extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

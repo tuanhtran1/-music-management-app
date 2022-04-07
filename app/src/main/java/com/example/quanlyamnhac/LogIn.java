@@ -66,6 +66,7 @@ public class LogIn extends AppCompatActivity {
 //        sqLite.queryData("INSERT INTO song VALUES(null,'Hoa no khong mau', '1995', 1)");
 //        sqLite.queryData("INSERT INTO song VALUES(null,'La lung', '2000', 2)");
 //        // add data for user
+
 //        sqLite.queryData("INSERT INTO user VALUES(null,'admin@gmail','0987654321','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
 //        sqLite.queryData("INSERT INTO user VALUES(null,'hoang@gmail','0123456789','hoang','321','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
 //        // add data for singer
@@ -75,6 +76,7 @@ public class LogIn extends AppCompatActivity {
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/04/06', 'quan khu 7')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/04/06', 'quan khu 9')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/04/06', 'quan khu 10')");
+
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/04/06', 'quan khu 11')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/09/10', 'PTIT')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/07/08', 'Ha Noi')");

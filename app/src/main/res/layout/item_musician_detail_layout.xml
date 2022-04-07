@@ -42,10 +42,13 @@
             android:textStyle="bold" />
     </TableRow>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListDataMusician"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" />
+    <TableLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListDataMusician"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </TableLayout>
+
 
 </TableLayout>

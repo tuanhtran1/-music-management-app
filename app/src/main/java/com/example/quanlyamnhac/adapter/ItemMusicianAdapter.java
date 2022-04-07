@@ -30,6 +30,7 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
     Context context;
     int resource;
     ArrayList<ItemMusicianReponse> musicianModels;
+    MusicianEntity musicianEntity = new MusicianEntity();
 
 
     public ItemMusicianAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemMusicianReponse> musicianModels) {
@@ -51,6 +52,7 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
         convertView = LayoutInflater.from(context).inflate(resource,null);
         ImageView ivImage = convertView.findViewById(R.id.ivImage);
         TextView tvName = convertView.findViewById(R.id.tvName);
+        System.out.println(position);
 
         ItemMusicianReponse itemMusician = musicianModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
 
@@ -72,7 +74,6 @@ public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
                 getContext().startActivity(intent);
             }
         });
-
         return convertView;
     }
 }
