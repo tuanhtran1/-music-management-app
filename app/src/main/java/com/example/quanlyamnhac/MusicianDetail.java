@@ -1,7 +1,9 @@
 package com.example.quanlyamnhac;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,11 +24,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
 import com.example.quanlyamnhac.entity.MusicianEntity;
+import com.example.quanlyamnhac.fragment.MusicianFragment;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -36,7 +42,7 @@ public class MusicianDetail extends AppCompatActivity {
     SQLite sqLite;
 
     ImageView ivImg;
-    EditText et_name, txtLinkImg; // linkImg từ từ
+    TextView et_name; // linkImg từ từ
     ImageButton btnXoa, btnSua, btnThemBaiHat;
     RecyclerView rvDanhSachBaiHat;
     Toolbar toolbar;
@@ -61,19 +67,47 @@ public class MusicianDetail extends AppCompatActivity {
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.putExtra("item",getDanhLam());
-//                setResult(3,intent);
-//                finish();
+                    Cursor cursor = sqLite.getData("SELECT musician.id FROM musician WHERE EXISTS " +
+                            " (SELECT song.id_musician FROM song WHERE song.id_musician = " + MusicianDetail.idMusician + ")");
+                    if(cursor.moveToNext()){
+                        Toast.makeText(view.getContext(),"Hay chac chan vi da co bai hat",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    sqLite.queryData("DELETE FROM musician WHERE musician.id = " + MusicianDetail.idMusician);
+                    Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(view.getContext(), MusicianFragment.class);
+                    startActivity(intent);
             }
         });
         btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.putExtra("item",getDanhLam());
-//                setResult(2,intent);
-//                finish();
+                final Dialog dialog = new Dialog(view.getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.add_musician_dialog);
+
+                //Initializing the views of the dialog.
+                final EditText musicianName = dialog.findViewById(R.id.et_musicianName);
+                final EditText linkImageMusician = dialog.findViewById(R.id.et_linkImageMusician);
+                Button submitButton = dialog.findViewById(R.id.btn_submit);
+
+                ItemMusicianReponse musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("item");
+                String name = musicianModel.getNameMusician(), image =musicianModel.getImageMusician() ;
+                musicianName.setText(name);
+                linkImageMusician.setText(image);
+
+                submitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sqLite.queryData("UPDATE musician SET name = '" + musicianName.getText() + "', image = '" + linkImageMusician.getText()+ "'" +
+                                " WHERE musician.id = " + MusicianDetail.idMusician);
+                        dialog.dismiss();
+                        Intent intent = new Intent(view.getContext(), MusicianFragment.class);
+                        startActivity(intent);
+                    }
+                });
+                dialog.show();
             }
         });
         btnThemBaiHat.setOnClickListener(new View.OnClickListener() {
@@ -85,16 +119,20 @@ public class MusicianDetail extends AppCompatActivity {
                 dialog.setContentView(R.layout.add_song_dialog);
 
                 //Initializing the views of the dialog.
-                final EditText nameSong = dialog.findViewById(R.id.et_songName);
-                final EditText yearOfCreation = dialog.findViewById(R.id.et_yearOfCreation);
-                Button submitButton = dialog.findViewById(R.id.btn_submit);
+                final TextView tv_musicianName = dialog.findViewById(R.id.tv_musicianName);
+                final EditText et_songName = dialog.findViewById(R.id.et_songName);
+                final EditText et_yearOfCreation = dialog.findViewById(R.id.et_yearOfCreation);
+                Button btn_submit = dialog.findViewById(R.id.btn_submit);
 
+                ItemMusicianReponse musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("item");
+                tv_musicianName.setText(musicianModel.getNameMusician());
 
-                submitButton.setOnClickListener(new View.OnClickListener() {
+                btn_submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(MusicianDetail.this, "Da them bai hat", Toast.LENGTH_LONG).show();
+                        sqLite.queryData("INSERT INTO song VALUES(null, '" + et_songName.getText() + "','" + et_yearOfCreation.getText() + "')");
                         dialog.dismiss();
+                        setEvent();
                     }
                 });
 

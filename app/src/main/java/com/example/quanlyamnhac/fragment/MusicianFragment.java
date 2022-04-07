@@ -59,8 +59,9 @@ public class MusicianFragment extends Fragment {
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getContext(), "Da them nhac si", Toast.LENGTH_LONG).show();
+                        sqLite.queryData("INSERT INTO musician VALUES(null, '" + musicianName.getText() + "','" + linkImageMusician.getText() + "')");
                         dialog.dismiss();
+                        setEvent();
                     }
                 });
                 dialog.show();
@@ -93,26 +94,6 @@ public class MusicianFragment extends Fragment {
         fbThem = view.findViewById(R.id.fbThem);
         gvListMusician = view.findViewById(R.id.gvDanhSachMusician);
     }
-
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        SingerModel singerModel = (SingerModel) data.getSerializableExtra("item");
-//        if(requestCode ==2)
-//        {
-//            if(resultCode ==2){
-//
-//            }else{
-//
-//            }
-//        }
-//        if(requestCode ==1)
-//        {
-//            //Toast.makeText(this,"Them",Toast.LENGTH_SHORT).show();
-//
-//        }
-//    }
 
 
 }

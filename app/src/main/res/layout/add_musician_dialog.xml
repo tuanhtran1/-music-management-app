@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add musician"
+        android:text="Setting musician"
         android:textSize="24sp"
         android:textColor="@color/colorBlack"
         android:layout_marginBottom="16dp"/>
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Link image"
-        android:inputType="number"
+        android:inputType="text"
         android:imeOptions="actionNext"
         android:id="@+id/et_linkImageMusician"/>
 
