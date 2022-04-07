@@ -112,7 +112,6 @@ public class SingerDetail extends AppCompatActivity {
     }
 
     private ArrayList<SingerReponse> getList() {
-        SingerDetail.idSinger = (Integer) getIntent().getSerializableExtra("idSinger");
         Cursor cursor = sqLite.getData(" SELECT DISTINCT song.name, musician.name, song.yearofcreation " +
                 " FROM song, musician, singer, performance_info " +
                 " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
@@ -126,7 +125,6 @@ public class SingerDetail extends AppCompatActivity {
 
     private void layDL() {
         ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
-        //tvId.setText(nhacSi.getId()); //Không cần thiết id
         et_name.setText(singerModel.getNameSinger());
         Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
     }

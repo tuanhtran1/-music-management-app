@@ -36,7 +36,7 @@ public class Song extends AppCompatActivity {
 
     EditText et_songName, et_musicianName, et_singerName;
 
-    public static Integer idSong, idSinger;
+    public static Integer idSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +77,9 @@ public class Song extends AppCompatActivity {
 
     private void layDL() {
 
-        Song.idSong = (Integer) getIntent().getSerializableExtra("idSong");
-        Song.idSinger = (Integer) getIntent().getSerializableExtra("idSinger");
         Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
                 " FROM song, singer, musician " +
-                " WHERE song.id = " + Song.idSong + " AND singer.id = " + Song.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
+                " WHERE song.id = " + Song.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
         if(cursor.moveToNext()){
             et_songName.setText(cursor.getString(0));
             et_musicianName.setText(cursor.getString(2));
@@ -94,7 +92,7 @@ public class Song extends AppCompatActivity {
         Cursor cursor = sqLite.getData(" SELECT singer.name, performance_info.performance_day, performance_info.place " +
                 " FROM singer, performance_info, song " +
                 " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
-                " AND song.id = " + Song.idSong + " AND singer.id = " + Song.idSinger);
+                " AND song.id = " + Song.idSong + " AND singer.id = " + SingerDetail.idSinger);
         while (cursor.moveToNext()) {
             songReponses.add(SongMapper.toSongReponse(cursor));
         }

@@ -66,15 +66,15 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
                     Intent intent = new Intent(context, Song.class);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
-                    Cursor cursor = sqLite.getData(" SELECT song.id, singer.id, musician.id " +
-                            " FROM song, singer, performance_info, musician " +
+                    Cursor cursor = sqLite.getData(" SELECT song.id, musician.id " +
+                            " FROM song, musician, singer, performance_info " +
                             " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
-                            " AND song.id_musician = musician.id AND song.id = " + SingerDetail.idSinger + " LIMIT 1 OFFSET " + position);
+                            " AND song.id_musician = musician.id AND singer.id = " + SingerDetail.idSinger + " LIMIT 1 OFFSET " + position);
+
                     if(cursor.moveToNext()){
-                        System.out.println(cursor.getInt(0) + " "+ cursor.getInt(1));
-                        intent.putExtra("idSong", cursor.getInt(0));
-                        intent.putExtra("idSinger", cursor.getInt(1));
-                        MusicianDetail.idMusician = cursor.getInt(2);
+                        System.out.println(SingerDetail.idSinger + " " + cursor.getInt(0) + " "+ cursor.getInt(1));
+                        Song.idSong = cursor.getInt(0);
+                        MusicianDetail.idMusician = cursor.getInt(1);
                     }
                     context.startActivity(intent);
                     Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();

@@ -65,7 +65,7 @@ public class ItemSingerAdapter extends ArrayAdapter<ItemSingerReponse> {
                 sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
                 Cursor cursor = sqLite.getData("SELECT singer.id FROM singer LIMIT 1 OFFSET " + position);
                 if(cursor.moveToNext()){
-                    intent.putExtra("idSinger", cursor.getInt(0));
+                    SingerDetail.idSinger= cursor.getInt(0);
                 }
                 getContext().startActivity(intent);
             }

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.SingerDetail;
 import com.example.quanlyamnhac.Song;
 import com.example.quanlyamnhac.entity.MusicianEntity;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
@@ -72,8 +73,8 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                             " AND song.id_musician = " + MusicianDetail.idMusician + " LIMIT 1 OFFSET " + position);
                     if(cursor.moveToNext()){
                         System.out.println(cursor.getInt(0) + " "+ cursor.getInt(1));
-                        intent.putExtra("idSong", cursor.getInt(0));
-                        intent.putExtra("idSinger", cursor.getInt(1));
+                        Song.idSong =  cursor.getInt(0);
+                        SingerDetail.idSinger = cursor.getInt(1);
                     }
                     context.startActivity(intent);
                     Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();

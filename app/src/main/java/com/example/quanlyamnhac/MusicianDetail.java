@@ -58,7 +58,6 @@ public class MusicianDetail extends AppCompatActivity {
         rvDanhSachBaiHat.setLayoutManager(new LinearLayoutManager(this));
         MusicianAdapter musicianAdapter = new MusicianAdapter(this, getList());
         rvDanhSachBaiHat.setAdapter(musicianAdapter);
-
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +104,6 @@ public class MusicianDetail extends AppCompatActivity {
     }
 
     private ArrayList<MusicianReponse> getList() {
-        MusicianDetail.idMusician = (Integer) getIntent().getSerializableExtra("idMusician");
         Cursor cursor = sqLite.getData(" SELECT DISTINCT song.name, song.yearofcreation, singer.name " +
                 " FROM song, singer, performance_info " +
                 " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
