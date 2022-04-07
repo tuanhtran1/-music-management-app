@@ -102,9 +102,8 @@ public class MusicianDetail extends AppCompatActivity {
             }
         });
     }
-
     private ArrayList<MusicianReponse> getList() {
-        Cursor cursor = sqLite.getData(" SELECT DISTINCT song.name, song.yearofcreation, singer.name " +
+        Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation, singer.name " +
                 " FROM song, singer, performance_info " +
                 " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
                 " AND song.id_musician = " + MusicianDetail.idMusician);
