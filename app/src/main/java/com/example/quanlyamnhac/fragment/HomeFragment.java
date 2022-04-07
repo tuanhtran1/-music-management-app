@@ -37,7 +37,6 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         mapping();
         setRecyclerHome();
-        //https://www.tutorialspoint.com/how-to-call-an-activity-method-from-a-fragment-in-android-app
         return view;
     }
 
@@ -57,7 +56,7 @@ public class HomeFragment extends Fragment {
 
     private List<HomeReponse> getList() {
 
-        Cursor cursor = sqLite.getData("SELECT song.name, musician.name, song.yearofcreation FROM song, musician"
+        Cursor cursor = sqLite.getData("SELECT song.name, musician.name, singer.name, song.yearofcreation FROM song, musician, singer "
         + " WHERE song.id_musician = musician.id");
         List<HomeReponse> homeReponses = new ArrayList<>();
         while(cursor.moveToNext()){

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1,2,3,4">
+    android:stretchColumns="1,2,3,4,5">
 
     <!--    <include-->
     <!--        android:id="@+id/toolbar"-->
@@ -37,6 +37,14 @@
             />
         <TextView
             android:text="Musical"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_column="1"
+            />
+        <TextView
+            android:text="Singer"
             android:textSize="20dp"
             android:textStyle="bold"
             android:padding="10dp"
