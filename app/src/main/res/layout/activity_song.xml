@@ -12,24 +12,29 @@
         layout="@layout/toolbar" />
 
     <LinearLayout
-        android:background="#25AFC1"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
+            android:background="@color/black"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bài hát"
             android:textSize="30dp"
             android:textAlignment="center"/>
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:text="Tên bài hát"/>
+            android:gravity="center_vertical"
+            android:text="Tên bài hát" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,6 +47,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="Tên nhạc sĩ"/>
             <EditText
                 android:layout_width="match_parent"
@@ -55,6 +61,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="Ca sĩ"/>
             <EditText
                 android:layout_width="match_parent"
@@ -68,22 +75,25 @@
             android:gravity="right">
 
             <ImageButton
+                android:background="@drawable/border_button"
                 android:id="@+id/ib_save"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />
 
             <ImageButton
+                android:background="@drawable/border_button"
                 android:id="@+id/ib_delete"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_baseline_save_24" />
         </LinearLayout>
     </LinearLayout>
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+<!--    <SearchView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
     <TableLayout
         android:layout_width="match_parent"

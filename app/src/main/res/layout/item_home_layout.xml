@@ -5,17 +5,18 @@
     android:stretchColumns="1,2,3,4,5">
 
     <TableRow>
+
         <TextView
             android:id="@+id/tv_stt"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:gravity="center"
             android:layout_column="1"
-            />
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tv_music"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -23,7 +24,7 @@
             />
         <TextView
             android:id="@+id/tv_singer_name"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -31,7 +32,7 @@
             />
         <TextView
             android:id="@+id/tv_musical"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -39,7 +40,7 @@
             />
         <TextView
             android:id="@+id/tv_year_of_creation"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"

@@ -9,7 +9,8 @@ public class HomeMapper {
         HomeReponse homeReponse = new HomeReponse();
         homeReponse.setSongName(cursor.getString(0));
         homeReponse.setMusicianName(cursor.getString(1));
-        homeReponse.setYearOfCreation(cursor.getString(2));
+        homeReponse.setSingerName(cursor.getString(2));
+        homeReponse.setYearOfCreation(cursor.getString(3));
         return homeReponse;
     }
 }

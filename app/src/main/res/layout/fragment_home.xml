@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,7 +20,7 @@
     <TableRow>
         <TextView
             android:text="STT"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -29,15 +28,15 @@
             />
         <TextView
             android:text="Music"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
             android:layout_column="1"
             />
         <TextView
-            android:text="Musical"
-            android:textSize="20dp"
+            android:text="Musician"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -45,7 +44,7 @@
             />
         <TextView
             android:text="Singer"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -53,7 +52,7 @@
             />
         <TextView
             android:text="Year of creation"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
