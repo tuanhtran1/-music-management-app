@@ -38,51 +38,51 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setDatabase() {
-//        //user
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
-//                "avatar VARCHAR(500))");
-//        // musician
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "name VARCHAR(50), image VARCHAR(500))");
-//        // song
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS song(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "name VARCHAR(50), yearofcreation VARCHAR(50), id_musician INTEGER," +
-//                "FOREIGN KEY (id_musician) REFERENCES musician(id))");
-//        // singer
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS singer(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "name VARCHAR(50), image VARCHAR(500))");
-//        // performance_info
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS performance_info(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "singer_id INTEGER , song_id INTEGER, performance_day VARCHAR(50), " +
-//                "place VARCHAR(50)," +
-//                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
-//
-//        // add data for musician
-//        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
-//        sqLite.queryData("INSERT INTO musician VALUES(null,'Long Le', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
-//        // add data for song
-//        sqLite.queryData("INSERT INTO song VALUES(null,'Yeu duoi', '1990', 1)");
-//        sqLite.queryData("INSERT INTO song VALUES(null,'Hoa no khong mau', '1995', 1)");
-//        sqLite.queryData("INSERT INTO song VALUES(null,'La lung', '2000', 2)");
-//        // add data for user
+        //user
+        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
+                "avatar VARCHAR(500))");
+        // musician
+        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name VARCHAR(50), image VARCHAR(500))");
+        // song
+        sqLite.queryData("CREATE TABLE IF NOT EXISTS song(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name VARCHAR(50), yearofcreation VARCHAR(50), id_musician INTEGER," +
+                "FOREIGN KEY (id_musician) REFERENCES musician(id))");
+        // singer
+        sqLite.queryData("CREATE TABLE IF NOT EXISTS singer(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name VARCHAR(50), image VARCHAR(500))");
+        // performance_info
+        sqLite.queryData("CREATE TABLE IF NOT EXISTS performance_info(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "singer_id INTEGER , song_id INTEGER, performance_day VARCHAR(50), " +
+                "place VARCHAR(50)," +
+                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
 
-//        sqLite.queryData("INSERT INTO user VALUES(null,'admin@gmail','0987654321','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
-//        sqLite.queryData("INSERT INTO user VALUES(null,'hoang@gmail','0123456789','hoang','321','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
-//        // add data for singer
-//        sqLite.queryData("INSERT INTO singer VALUES(null,'Viet Hoang', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
-//        sqLite.queryData("INSERT INTO singer VALUES(null,'Chi Tin', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
-//        // add data for performance_info
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/04/06', 'quan khu 7')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/04/06', 'quan khu 9')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/04/06', 'quan khu 10')");
+        // add data for musician
+        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
+        sqLite.queryData("INSERT INTO musician VALUES(null,'Long Le', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
+        // add data for song
+        sqLite.queryData("INSERT INTO song VALUES(null,'Yeu duoi', '1990', 1)");
+        sqLite.queryData("INSERT INTO song VALUES(null,'Hoa no khong mau', '1995', 1)");
+        sqLite.queryData("INSERT INTO song VALUES(null,'La lung', '2000', 2)");
+        // add data for user
 
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/04/06', 'quan khu 11')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/09/10', 'PTIT')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/07/08', 'Ha Noi')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/11/06', 'Bac Giang')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/03/12', 'DakLak')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 2, '2022/03/12', 'Nha Hoang')");
+        sqLite.queryData("INSERT INTO user VALUES(null,'admin@gmail','0987654321','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
+        sqLite.queryData("INSERT INTO user VALUES(null,'hoang@gmail','0123456789','hoang','321','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
+        // add data for singer
+        sqLite.queryData("INSERT INTO singer VALUES(null,'Viet Hoang', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
+        sqLite.queryData("INSERT INTO singer VALUES(null,'Chi Tin', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
+        // add data for performance_info
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/04/06', 'quan khu 7')");
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/04/06', 'quan khu 9')");
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/04/06', 'quan khu 10')");
+
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/04/06', 'quan khu 11')");
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/09/10', 'PTIT')");
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/07/08', 'Ha Noi')");
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/11/06', 'Bac Giang')");
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/03/12', 'DakLak')");
+        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 2, '2022/03/12', 'Nha Hoang')");
     }
 
     private void setControl() {
