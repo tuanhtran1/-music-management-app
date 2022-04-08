@@ -20,6 +20,7 @@ import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.SingerDetail;
 import com.example.quanlyamnhac.Song;
+import com.example.quanlyamnhac.SongDetail;
 import com.example.quanlyamnhac.entity.MusicianEntity;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.model.reponse.HomeReponse;
@@ -63,10 +64,10 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(context, Song.class);
+                    Intent intent = new Intent(context,  SongDetail.class);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
-                    Cursor cursor = sqLite.getData(" SELECT song.id, singer.id" +
+                    Cursor cursor = sqLite.getData(" SELECT *" +
                             " FROM song " +
                             " WHERE song.id_musician = " + MusicianDetail.idMusician + " LIMIT 1 OFFSET " + position);
                     System.out.println("Vi tri: " + position);

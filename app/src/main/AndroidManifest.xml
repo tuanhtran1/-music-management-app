@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuanLyAmNhac">
         <activity
+            android:name=".SongDetail"
+            android:exported="false" />
+        <activity
             android:name=".PerformanceInfo"
             android:exported="false" />
         <activity
