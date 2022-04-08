@@ -3,34 +3,31 @@ package com.example.quanlyamnhac;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.quanlyamnhac.adapter.SongAdapter;
-import com.example.quanlyamnhac.mapper.SongMapper;
-import com.example.quanlyamnhac.model.reponse.SongReponse;
+import com.example.quanlyamnhac.entity.SongEntity;
 import com.example.quanlyamnhac.sqlite.SQLite;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SongDetail extends AppCompatActivity {
+
+    public static Integer idSong;
 
     SQLite sqLite;
     Toolbar toolbar;
 
     TextView tv_musicianName;
     EditText et_songName, et_yearOfCreation;
-
-    public static Integer idSong;
+    ImageButton ib_save, ib_delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +36,33 @@ public class SongDetail extends AppCompatActivity {
         mapping();
         setToolBar();
         layDL();
+
+        ib_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor cursor = sqLite.getData("SELECT song.id FROM song WHERE EXISTS " +
+                        " (SELECT performance_info.song_id FROM performance_info WHERE performance_info.song_id = " + SongDetail.idSong + ")");
+                if(cursor.moveToNext()){
+                    Toast.makeText(view.getContext(),"Hay chac chan vi da trinh dien",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                sqLite.queryData("DELETE FROM song WHERE song.id = " + SongDetail.idSong);
+                Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ib_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sqLite.queryData("UPDATE song SET name = '" + et_songName.getText() + "', yearofcreation = '" + et_yearOfCreation.getText()+ "'" +
+                        " WHERE song.id = " + SongDetail.idSong);
+                Toast.makeText(view.getContext(),"Update sucess",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setToolBar() {
@@ -56,18 +80,19 @@ public class SongDetail extends AppCompatActivity {
         et_songName = findViewById(R.id.et_songName);
         tv_musicianName= findViewById(R.id.tv_musicianName);
         et_yearOfCreation = findViewById(R.id.et_yearOfCreation);
+
+        ib_save = findViewById(R.id.ib_save);
+        ib_delete = findViewById(R.id.ib_delete);
     }
 
     private void layDL() {
-
-        Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation, musician.name " +
-                " FROM song, musician " +
-                " WHERE musician.id = song.id_musician"+
-                " AND song.id = " + Song.idSong);
+        SongEntity songEntity = (SongEntity) getIntent().getSerializableExtra("songEntity");
+        et_songName.setText(songEntity.getName());
+        et_yearOfCreation.setText(songEntity.getYearCreation());
+        Cursor cursor = sqLite.getData(" SELECT musician.name FROM musician " +
+                " WHERE musician.id = " + MusicianDetail.idMusician);
         if(cursor.moveToNext()){
-            et_songName.setText(cursor.getString(0));
-            tv_musicianName.setText(cursor.getString(2));
-            et_yearOfCreation.setText(cursor.getString(1));
+            tv_musicianName.setText(cursor.getString(0));
         }
     }
 

@@ -120,8 +120,6 @@ public class SingerDetail extends AppCompatActivity {
                 dialog.show();
             }
         });
-
-
         btnThemBaiHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

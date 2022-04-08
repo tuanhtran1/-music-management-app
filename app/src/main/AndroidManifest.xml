@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Song"
+            android:name=".SongOfPerformanceInfo"
             android:exported="false" />
     </application>
 

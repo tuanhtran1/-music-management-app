@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.SingerDetail;
-import com.example.quanlyamnhac.Song;
+import com.example.quanlyamnhac.SongOfPerformanceInfo;
 import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 
@@ -54,7 +54,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(context, Song.class);
+                    Intent intent = new Intent(context, SongOfPerformanceInfo.class);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
 
@@ -63,10 +63,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                             + " WHERE song.id_musician = musician.id LIMIT 1 OFFSET " + position);
 
                     if(cursor.moveToNext()){
-                        Song.idSong = cursor.getInt(0);
+                        SongOfPerformanceInfo.idSong = cursor.getInt(0);
                         SingerDetail.idSinger = cursor.getInt(1);
                         MusicianDetail.idMusician = cursor.getInt(2);
-                        System.out.println(Song.idSong + " " + SingerDetail.idSinger + " "+ MusicianDetail.idMusician);
+                        System.out.println(SongOfPerformanceInfo.idSong + " " + SingerDetail.idSinger + " "+ MusicianDetail.idMusician);
                     }
                     context.startActivity(intent);
                     Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".Song">
+    tools:context=".SongOfPerformanceInfo">
 
     <include
         android:id="@+id/toolbar"
@@ -67,27 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/et_singerName"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="right">
-
-            <ImageButton
-                android:background="@drawable/border_button"
-                android:id="@+id/ib_save"
-                android:layout_width="50dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_delete_24" />
-
-            <ImageButton
-                android:background="@drawable/border_button"
-                android:id="@+id/ib_delete"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_save_24" />
         </LinearLayout>
     </LinearLayout>
 

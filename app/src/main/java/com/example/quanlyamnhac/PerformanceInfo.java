@@ -3,36 +3,86 @@ package com.example.quanlyamnhac;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-//import com.example.quanlyamnhac.adapter.PerformanceInfoAdapter;
+import com.example.quanlyamnhac.mapper.PerformanceInfoMapper;
+import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.example.quanlyamnhac.model.reponse.PerformanceInfoReponse;
+import com.example.quanlyamnhac.sqlite.SQLite;
 
+import java.text.SimpleDateFormat;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class PerformanceInfo extends AppCompatActivity {
 
-    RecyclerView recycler_performance;
-//    PerformanceInfoAdapter performanceAdapter;
+    SQLite sqLite;
+
+    public static Integer idPerformanceInfo;
+
+    EditText et_song_name, et_singer_name, et_performance_day, et_place;
+    ImageButton ib_save, ib_delete;
+
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_performance_detail);
+        setContentView(R.layout.activity_performance_info);
         mapping();
-//        setRecyclerPerformance();
         setToolBar();
+
+        layDL();
+
+        ib_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sqLite.queryData("DELETE FROM performance_info WHERE performance_info.id = " + PerformanceInfo.idPerformanceInfo);
+                Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                startActivity(intent);
+            }
+        });
+        ib_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sqLite.queryData("UPDATE performance_info SET performance_day = '" + et_performance_day.getText() + "', place = '" + et_place.getText()+ "'" +
+                                " WHERE performance_info.id = " + PerformanceInfo.idPerformanceInfo);
+                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+    private void layDL() {
+        idPerformanceInfo = (Integer) getIntent().getSerializableExtra("idPerformanceInfo");
+        Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, performance_info.performance_day, performance_info.place" +
+                " FROM song, singer, performance_info" +
+                " WHERE performance_info.singer_id =  singer.id AND performance_info.song_id = song.id " +
+                " AND performance_info.id = " + PerformanceInfo.idPerformanceInfo);
+        if(cursor.moveToNext()){
+            PerformanceInfoReponse performanceInfoReponse = PerformanceInfoMapper.toPerformanceInfoReponse(cursor);
+            et_song_name.setText(performanceInfoReponse.getSongName());
+            et_singer_name.setText(performanceInfoReponse.getSingerName());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+            String strDate = formatter.format(performanceInfoReponse.getDate());
+            et_performance_day.setText(strDate);
+            et_place.setText(performanceInfoReponse.getPlace());
+        }
+    }
+
     private void setToolBar() {
         //Set toolbar as action bar
         setSupportActionBar(toolbar);
@@ -43,25 +93,18 @@ public class PerformanceInfo extends AppCompatActivity {
     }
 
     private void mapping() {
-//        recycler_performance = findViewById(R.id.recycler_performance);
+        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+
         toolbar = findViewById(R.id.toolbar);
+
+        et_song_name = findViewById(R.id.et_song_name);
+        et_singer_name = findViewById(R.id.et_singer_name);
+        et_performance_day = findViewById(R.id.et_performance_day);
+        et_place = findViewById(R.id.et_place);
+        ib_save = findViewById(R.id.ib_save);
+        ib_delete = findViewById(R.id.ib_delete);
     }
 
-//    private void setRecyclerPerformance() {
-//        recycler_performance.setHasFixedSize(true);
-//        recycler_performance.setLayoutManager(new LinearLayoutManager((this)));
-//        performanceAdapter = new PerformanceInfoAdapter(this,getList());
-//        recycler_performance.setAdapter(performanceAdapter);
-//    }
-
-//    private List<PerformanceInfoReponse> getList() {
-//        List<PerformanceInfoReponse> performanceModels = new ArrayList<>();
-//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-//        performanceModels.add(new PerformanceInfoReponse("Trần Anh Tú","Hoa Nở Không Màu" , new Date("4/1/2022"), "97 Man Thiện"));
-//        return performanceModels;
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);

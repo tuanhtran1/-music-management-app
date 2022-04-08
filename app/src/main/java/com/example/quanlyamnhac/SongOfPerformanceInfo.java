@@ -13,25 +13,20 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.quanlyamnhac.adapter.SongAdapter;
-import com.example.quanlyamnhac.entity.MusicianEntity;
-import com.example.quanlyamnhac.mapper.MusicianMapper;
+import com.example.quanlyamnhac.adapter.SongOfPerformanceInfoAdapter;
 import com.example.quanlyamnhac.mapper.SongMapper;
-import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
-import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.model.reponse.SongReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Song extends AppCompatActivity {
+public class SongOfPerformanceInfo extends AppCompatActivity {
 
     SQLite sqLite;
 
     RecyclerView recycler_song;
-    SongAdapter songAdapter;
+    SongOfPerformanceInfoAdapter songOfPerformanceInfoAdapter;
     Toolbar toolbar;
 
     EditText et_songName, et_musicianName, et_singerName;
@@ -41,7 +36,7 @@ public class Song extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song);
+        setContentView(R.layout.activity_song_of_performance_info);
         mapping();
         setRecyclerSong();
         setToolBar();
@@ -71,15 +66,15 @@ public class Song extends AppCompatActivity {
     private void setRecyclerSong() {
         recycler_song.setHasFixedSize(true);
         recycler_song.setLayoutManager(new LinearLayoutManager((this)));
-        songAdapter = new SongAdapter(this,getList());
-        recycler_song.setAdapter(songAdapter);
+        songOfPerformanceInfoAdapter = new SongOfPerformanceInfoAdapter(this,getList());
+        recycler_song.setAdapter(songOfPerformanceInfoAdapter);
     }
 
     private void layDL() {
 
         Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
                 " FROM song, singer, musician " +
-                " WHERE song.id = " + Song.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
+                " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
         if(cursor.moveToNext()){
             et_songName.setText(cursor.getString(0));
             et_musicianName.setText(cursor.getString(2));
@@ -92,7 +87,7 @@ public class Song extends AppCompatActivity {
         Cursor cursor = sqLite.getData(" SELECT singer.name, performance_info.performance_day, performance_info.place " +
                 " FROM singer, performance_info, song " +
                 " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
-                " AND song.id = " + Song.idSong + " AND singer.id = " + SingerDetail.idSinger);
+                " AND song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger);
         while (cursor.moveToNext()) {
             songReponses.add(SongMapper.toSongReponse(cursor));
         }

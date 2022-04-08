@@ -7,29 +7,20 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
-import com.example.quanlyamnhac.SingerDetail;
-import com.example.quanlyamnhac.Song;
 import com.example.quanlyamnhac.SongDetail;
-import com.example.quanlyamnhac.entity.MusicianEntity;
-import com.example.quanlyamnhac.mapper.MusicianMapper;
-import com.example.quanlyamnhac.model.reponse.HomeReponse;
-import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
+import com.example.quanlyamnhac.entity.SongEntity;
+import com.example.quanlyamnhac.mapper.SongMapper;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHolder> {
@@ -67,17 +58,19 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                     Intent intent = new Intent(context,  SongDetail.class);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
-                    Cursor cursor = sqLite.getData(" SELECT *" +
-                            " FROM song " +
-                            " WHERE song.id_musician = " + MusicianDetail.idMusician + " LIMIT 1 OFFSET " + position);
+                    Cursor cursor = sqLite.getData(" SELECT * " +
+                            " FROM song WHERE song.id_musician = " + MusicianDetail.idMusician +
+                            " LIMIT 1 OFFSET " + position);
                     System.out.println("Vi tri: " + position);
+                    SongEntity songEntity = null;
                     if(cursor.moveToNext()){
-                        System.out.println(cursor.getInt(0) + " "+ cursor.getInt(1));
-                        Song.idSong =  cursor.getInt(0);
-                        SingerDetail.idSinger = cursor.getInt(1);
+                        songEntity = SongMapper.toSongEntity(cursor);
+                        System.out.println(songEntity.getId());
+                        SongDetail.idSong =  songEntity.getId();
                     }
+                    intent.putExtra("songEntity", songEntity);
                     context.startActivity(intent);
-                    Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "vao SONG Detail", Toast.LENGTH_LONG).show();
                 }
             });
         } else {

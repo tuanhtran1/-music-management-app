@@ -7,28 +7,19 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.SingerDetail;
-import com.example.quanlyamnhac.Song;
-import com.example.quanlyamnhac.entity.SingerEntity;
-import com.example.quanlyamnhac.model.reponse.HomeReponse;
-import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
-import com.example.quanlyamnhac.model.reponse.MusicianReponse;
+import com.example.quanlyamnhac.SongOfPerformanceInfo;
 import com.example.quanlyamnhac.model.reponse.SingerReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder> {
@@ -63,7 +54,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(context, Song.class);
+                    Intent intent = new Intent(context, SongOfPerformanceInfo.class);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
                     Cursor cursor = sqLite.getData(" SELECT DISTINCT song.id, musician.id, song.name, musician.name, song.yearofcreation" +
@@ -72,7 +63,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
                             " AND song.id_musician = musician.id AND singer.id = " + SingerDetail.idSinger + " LIMIT 1 OFFSET " + position);
                     if(cursor.moveToNext()){
                         System.out.println(SingerDetail.idSinger + " " + cursor.getInt(0) + " "+ cursor.getInt(1));
-                        Song.idSong = cursor.getInt(0);
+                        SongOfPerformanceInfo.idSong = cursor.getInt(0);
                         MusicianDetail.idMusician = cursor.getInt(1);
                     }
                     context.startActivity(intent);

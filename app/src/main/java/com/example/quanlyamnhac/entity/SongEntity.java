@@ -1,15 +1,17 @@
 package com.example.quanlyamnhac.entity;
 
-public class SongEntity {
+import java.io.Serializable;
+
+public class SongEntity implements Serializable {
     private Integer id;
     private String name;
     private String yearCreation;
-    private Long musicianId;
+    private Integer musicianId;
 
     public SongEntity() {
     }
 
-    public SongEntity(Integer id, String name, String yearCreation, Long musicianId) {
+    public SongEntity(Integer id, String name, String yearCreation, Integer musicianId) {
         this.id = id;
         this.name = name;
         this.yearCreation = yearCreation;
@@ -40,11 +42,11 @@ public class SongEntity {
         this.yearCreation = yearCreation;
     }
 
-    public Long getMusicianId() {
+    public Integer getMusicianId() {
         return musicianId;
     }
 
-    public void setMusicianId(Long musicianId) {
+    public void setMusicianId(Integer musicianId) {
         this.musicianId = musicianId;
     }
 }

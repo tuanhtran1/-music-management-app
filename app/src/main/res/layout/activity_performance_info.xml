@@ -43,6 +43,7 @@
                 android:text="Tên bài hát" />
 
             <EditText
+                android:id="@+id/et_song_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -55,6 +56,7 @@
                 android:layout_height="match_parent"
                 android:text="Tên ca sĩ"/>
             <EditText
+                android:id="@+id/et_singer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -67,6 +69,7 @@
                 android:layout_height="match_parent"
                 android:text="Ngày biểu diễn"/>
             <EditText
+                android:id="@+id/et_performance_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -79,6 +82,7 @@
                 android:layout_height="match_parent"
                 android:text="Địa điểm"/>
             <EditText
+                android:id="@+id/et_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -94,71 +98,16 @@
                 android:layout_width="50dp"
                 android:layout_marginRight="10dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_baseline_delete_24" />
+                app:srcCompat="@drawable/ic_baseline_save_24" />
 
             <ImageButton
                 android:background="@drawable/border_button"
                 android:id="@+id/ib_delete"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_baseline_save_24" />
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
         </LinearLayout>
     </LinearLayout>
 
-<!--    <SearchView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-
-<!--    <TableLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical">-->
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Danh sách"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textAlignment="center"/>-->
-<!--        <TableRow>-->
-<!--            <TextView-->
-<!--                android:text="STT"-->
-<!--                android:textSize="19dp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:padding="10dp"-->
-<!--                android:gravity="center"-->
-<!--                android:layout_column="1"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:text="Singer name"-->
-<!--                android:textSize="19dp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:padding="10dp"-->
-<!--                android:gravity="center"-->
-<!--                android:layout_column="1"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:text="Performance day"-->
-<!--                android:textSize="19dp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:padding="10dp"-->
-<!--                android:gravity="center"-->
-<!--                android:layout_column="1"-->
-<!--                />-->
-
-<!--            <TextView-->
-<!--                android:layout_column="1"-->
-<!--                android:gravity="center"-->
-<!--                android:padding="10dp"-->
-<!--                android:text="Place"-->
-<!--                android:textSize="19dp"-->
-<!--                android:textStyle="bold" />-->
-<!--        </TableRow>-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_performance"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--    </TableLayout>-->
 
 </LinearLayout>
