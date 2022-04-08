@@ -69,6 +69,7 @@ public class MainTabActivity extends AppCompatActivity {
         mviewPager = findViewById(R.id.view_pager);
         mTabLayout = findViewById(R.id.tabMain);
         toolbar = findViewById(R.id.toolbar);
+
     }
 
     @Override

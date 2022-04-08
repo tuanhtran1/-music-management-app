@@ -33,13 +33,6 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/et_singerName"
-            android:layout_column="1"
-            android:padding="10dp"
-            android:text="Singer"
-            android:textSize="16dp"
-            android:textStyle="bold" />
     </TableRow>
 
     <TableLayout>

@@ -14,29 +14,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.SingerAdapter;
-import com.example.quanlyamnhac.adapter.SongAdapter;
-import com.example.quanlyamnhac.entity.SingerEntity;
-import com.example.quanlyamnhac.fragment.MusicianFragment;
-import com.example.quanlyamnhac.fragment.SingerFragment;
-import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.mapper.SingerMapper;
-import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
-import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.model.reponse.SingerReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SingerDetail extends AppCompatActivity {
 
@@ -50,6 +48,8 @@ public class SingerDetail extends AppCompatActivity {
     RecyclerView rvDanhSachBaiHat;
     Toolbar toolbar;
 
+
+    Integer idSong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +79,13 @@ public class SingerDetail extends AppCompatActivity {
                 }
                 sqLite.queryData("DELETE FROM singer WHERE singer.id = " + SingerDetail.idSinger);
                 Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(view.getContext(), SingerFragment.class);
+
+
+//                // Find the view pager that will allow the user to swipe between fragments
+//                ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+//                viewPager.setCurrentItem(2);
+//
+                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
                 startActivity(intent);
             }
         });
@@ -105,9 +111,9 @@ public class SingerDetail extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         sqLite.queryData("UPDATE singer SET name = '" + singerName.getText() + "', image = '" + linkImageSinger.getText()+ "'" +
-                                " WHERE musician.id = " + MusicianDetail.idMusician);
+                                " WHERE singer.id = " + SingerDetail.idSinger);
                         dialog.dismiss();
-                        Intent intent = new Intent(view.getContext(), SingerFragment.class);
+                        Intent intent = new Intent(view.getContext(), MainTabActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -115,33 +121,61 @@ public class SingerDetail extends AppCompatActivity {
             }
         });
 
+
         btnThemBaiHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                final Dialog dialog = new Dialog(SingerDetail.this);
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                dialog.setCancelable(true);
-//                dialog.setContentView(R.layout.add_song_dialog);
-//
-//                //Initializing the views of the dialog.
-//                final TextView tv_musicianName = dialog.findViewById(R.id.tv_musicianName);
-//                final EditText et_songName = dialog.findViewById(R.id.et_songName);
-//                final EditText et_yearOfCreation = dialog.findViewById(R.id.et_yearOfCreation);
-//                Button btn_submit = dialog.findViewById(R.id.btn_submit);
-//
-//                ItemSingerReponse musicianModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
-//                tv_musicianName.setText(musicianModel.getNameMusician());
-//
-//                btn_submit.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        sqLite.queryData("INSERT INTO song VALUES(null, '" + et_songName.getText() + "','" + et_yearOfCreation.getText() + "')");
-//                        dialog.dismiss();
-//                        setEvent();
-//                    }
-//                });
-//
-//                dialog.show();
+                final Dialog dialog = new Dialog(SingerDetail.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.add_performance_info_dialog);
+
+                final Spinner sp_song = dialog.findViewById(R.id.sp_song);
+                Cursor cursor = sqLite.getData(" SELECT song.id, song.name FROM song");
+                List<Integer> listIdSong = new ArrayList<>();
+                List<String> listNameSong = new ArrayList<>();
+                while(cursor.moveToNext()){
+                    listIdSong.add(cursor.getInt(0));
+                    listNameSong.add(cursor.getString(1));
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter(SingerDetail.this,android.R.layout.simple_list_item_1 , listNameSong);
+                adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+                sp_song.setAdapter(adapter);
+
+                sp_song.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        Toast.makeText(SingerDetail.this, listIdSong.get(i) + "", Toast.LENGTH_SHORT).show();
+                        idSong = listIdSong.get(i);
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+                final TextView tv_singer_name = dialog.findViewById(R.id.tv_singer_name);
+                cursor = sqLite.getData(" SELECT singer.name FROM singer WHERE singer.id = " +
+                        SingerDetail.idSinger);
+                if(cursor.moveToNext()){
+                    tv_singer_name.setText(cursor.getString(0));
+                }
+                final EditText et_performance_day = dialog.findViewById(R.id.et_performance_day);
+                final EditText et_place = dialog.findViewById(R.id.et_place);
+                Button btn_submit = dialog.findViewById(R.id.btn_submit);
+
+                btn_submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                      sqLite.queryData("INSERT INTO performance_info VALUES" +
+                              "(null, " + SingerDetail.idSinger + "," + idSong + ",'" + et_performance_day.getText()
+                              + "','" + et_place.getText() + "')");
+                        dialog.dismiss();
+                        setEvent();
+                    }
+                });
+                dialog.show();
             }
         });
     }

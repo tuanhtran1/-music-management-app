@@ -59,30 +59,23 @@ public class LogIn extends AppCompatActivity {
 //                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
 //
 //        // add data for musician
-//        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
-//        sqLite.queryData("INSERT INTO musician VALUES(null,'Long Le', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
+//        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/276141901_2066437443551833_3554981700837470288_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=i7SadWFsptAAX9FR_pQ&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT85qMXcGLtQVJEopK4iRTiaDyDjHIVezcqixncEzAXj9w&oe=62544A22')");
+//        sqLite.queryData("INSERT INTO musician VALUES(null,'Long Le', 'https://scontent.fsgn5-11.fna.fbcdn.net/v/t1.6435-9/40971417_1099084503581285_4490043924605304832_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=lxykUsj-HB0AX8iVmMg&tn=mgMk5d9cE_sd-XQ0&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT-0yJsFUo3aLjDv3YStt5okM1J2K_cdVO34nBTlpyrCSw&oe=62767E25')");
 //        // add data for song
-//        sqLite.queryData("INSERT INTO song VALUES(null,'Yeu duoi', '1990', 1)");
-//        sqLite.queryData("INSERT INTO song VALUES(null,'Hoa no khong mau', '1995', 1)");
-//        sqLite.queryData("INSERT INTO song VALUES(null,'La lung', '2000', 2)");
+//        sqLite.queryData("INSERT INTO song VALUES(null,'Lac troi', '1990', 1)");
+//        sqLite.queryData("INSERT INTO song VALUES(null,'Nang am xa dan', '1995', 1)");
+//        sqLite.queryData("INSERT INTO song VALUES(null,'Cong chua bong bong', '2000', 2)");
 //        // add data for user
-//
 //        sqLite.queryData("INSERT INTO user VALUES(null,'admin@gmail','0987654321','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
 //        sqLite.queryData("INSERT INTO user VALUES(null,'hoang@gmail','0123456789','hoang','321','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
 //        // add data for singer
-//        sqLite.queryData("INSERT INTO singer VALUES(null,'Viet Hoang', 'https://upload.wikimedia.org/wikipedia/vi/5/5b/Trinhcongson.jpg')");
-//        sqLite.queryData("INSERT INTO singer VALUES(null,'Chi Tin', 'https://upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Vancao.jpg/175px-Vancao.jpg')");
+//        sqLite.queryData("INSERT INTO singer VALUES(null,'Son Tung', 'https://kenh14cdn.com/thumb_w/660/203336854389633024/2021/5/28/13285652342587086741428035430233108735653736n-1622165532863738421439.jpg')");
+//        sqLite.queryData("INSERT INTO singer VALUES(null,'Bao Thy', 'https://vnn-imgs-f.vgcloud.vn/2019/11/03/17/bao-thy-moi-thong-tin-ket-hon-khong-phai-tu-toi-deu-la-tin-don.jpg')");
 //        // add data for performance_info
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/04/06', 'quan khu 7')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/04/06', 'quan khu 9')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/04/06', 'quan khu 10')");
-//
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/04/06', 'quan khu 11')");
 //        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 1, '2022/09/10', 'PTIT')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 2, '2022/07/08', 'Ha Noi')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/11/06', 'Bac Giang')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 1, '2022/03/12', 'DakLak')");
-//        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 2, '2022/03/12', 'Nha Hoang')");
+//        sqLite.queryData("INSERT INTO performance_info VALUES(null,1, 2, '2022/03/12', 'Dong Nai')");
+//        sqLite.queryData("INSERT INTO performance_info VALUES(null,2, 3, '2022/07/08', 'Ha Noi')");
+
     }
 
     private void setControl() {

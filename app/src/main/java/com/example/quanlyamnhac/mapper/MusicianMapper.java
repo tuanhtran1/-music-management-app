@@ -27,7 +27,6 @@ public class MusicianMapper {
         MusicianReponse musicianReponse = new MusicianReponse();
         musicianReponse.setSongName(cursor.getString(0));
         musicianReponse.setYearOfCreation(cursor.getString(1));
-        musicianReponse.setSingerName(cursor.getString(2));
         return musicianReponse;
     }
 }

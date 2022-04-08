@@ -3,7 +3,6 @@ package com.example.quanlyamnhac;
 import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,15 +22,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
-import com.example.quanlyamnhac.entity.MusicianEntity;
-import com.example.quanlyamnhac.fragment.MusicianFragment;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -75,8 +70,9 @@ public class MusicianDetail extends AppCompatActivity {
                     }
                     sqLite.queryData("DELETE FROM musician WHERE musician.id = " + MusicianDetail.idMusician);
                     Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(view.getContext(), MusicianFragment.class);
+                    Intent intent = new Intent(view.getContext(), MainTabActivity.class);
                     startActivity(intent);
+
             }
         });
         btnSua.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +99,7 @@ public class MusicianDetail extends AppCompatActivity {
                         sqLite.queryData("UPDATE musician SET name = '" + musicianName.getText() + "', image = '" + linkImageMusician.getText()+ "'" +
                                 " WHERE musician.id = " + MusicianDetail.idMusician);
                         dialog.dismiss();
-                        Intent intent = new Intent(view.getContext(), MusicianFragment.class);
+                        Intent intent = new Intent(view.getContext(), MainTabActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -119,7 +115,7 @@ public class MusicianDetail extends AppCompatActivity {
                 dialog.setContentView(R.layout.add_song_dialog);
 
                 //Initializing the views of the dialog.
-                final TextView tv_musicianName = dialog.findViewById(R.id.tv_musicianName);
+                final TextView tv_musicianName = dialog.findViewById(R.id.et_musicianName);
                 final EditText et_songName = dialog.findViewById(R.id.et_songName);
                 final EditText et_yearOfCreation = dialog.findViewById(R.id.et_yearOfCreation);
                 Button btn_submit = dialog.findViewById(R.id.btn_submit);
@@ -130,7 +126,7 @@ public class MusicianDetail extends AppCompatActivity {
                 btn_submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        sqLite.queryData("INSERT INTO song VALUES(null, '" + et_songName.getText() + "','" + et_yearOfCreation.getText() + "')");
+                        sqLite.queryData("INSERT INTO song VALUES(null, '" + et_songName.getText() + "','" + et_yearOfCreation.getText() + "'," + MusicianDetail.idMusician + ")");
                         dialog.dismiss();
                         setEvent();
                     }
@@ -141,10 +137,8 @@ public class MusicianDetail extends AppCompatActivity {
         });
     }
     private ArrayList<MusicianReponse> getList() {
-        Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation, singer.name " +
-                " FROM song, singer, performance_info " +
-                " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
-                " AND song.id_musician = " + MusicianDetail.idMusician);
+        Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation " +
+                " FROM song WHERE song.id_musician = " + MusicianDetail.idMusician);
         ArrayList<MusicianReponse> musicianReponses = new ArrayList<>();
         while (cursor.moveToNext()) {
             musicianReponses.add(MusicianMapper.toMusicianReponse(cursor));

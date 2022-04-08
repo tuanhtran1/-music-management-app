@@ -18,23 +18,29 @@
         android:inputType="text"
         android:layout_marginBottom="10dp"
         android:imeOptions="actionNext"
-        android:id="@+id/et_musicianName"/>
+        android:id="@+id/tv_singer_name"/>
+
+    <Spinner
+        android:id="@+id/sp_song"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Song name"
+        android:hint="Performance day"
         android:inputType="text"
         android:layout_marginBottom="10dp"
         android:imeOptions="actionNext"
-        android:id="@+id/et_songName"/>
+        android:id="@+id/et_performance_day"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Year of creation"
+        android:hint="Place"
         android:imeOptions="actionNext"
-        android:id="@+id/et_yearOfCreation"/>
+        android:id="@+id/et_place"/>
 
     <Button
         android:layout_width="wrap_content"
