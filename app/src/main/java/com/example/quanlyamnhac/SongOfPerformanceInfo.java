@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -115,6 +116,8 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
                 break;
             case R.id.it_log_out:
                 Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SongOfPerformanceInfo.this, LogIn.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);

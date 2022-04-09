@@ -61,7 +61,7 @@ public class SongDetail extends AppCompatActivity {
                     return;
                 }
                 sqLite.queryData("DELETE FROM song WHERE song.id = " + SongDetail.idSong);
-                Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(),"Delete Success",Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(view.getContext(), MusicianDetail.class); //MusicianDetail
                 intent.putExtra("ItemFromSongDetail", itemMusicianReponse);
@@ -72,11 +72,21 @@ public class SongDetail extends AppCompatActivity {
         ib_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //putExtra qua MusicianDetail
+                Cursor cursor1 = sqLite.getData("SELECT musician.name, musician.image FROM song, musician " +
+                        "WHERE song.id_musician = musician.id " +
+                        "AND song.id = " + SongDetail.idSong);
+                if(cursor1.moveToNext())
+                {
+                    itemMusicianReponse.setNameMusician(cursor1.getString(0));
+                    itemMusicianReponse.setImageMusician(cursor1.getString(1));
+                }
+
                 sqLite.queryData("UPDATE song SET name = '" + et_songName.getText() + "', yearofcreation = '" + et_yearOfCreation.getText()+ "'" +
                         " WHERE song.id = " + SongDetail.idSong);
                 Toast.makeText(view.getContext(),"Update sucess",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
-                intent.putExtra("cTab", "MusicianTab");
+                Intent intent = new Intent(view.getContext(), MusicianDetail.class);
+                intent.putExtra("ItemFromSongDetail", itemMusicianReponse);
                 startActivity(intent);
             }
         });
@@ -133,6 +143,8 @@ public class SongDetail extends AppCompatActivity {
                 break;
             case R.id.it_log_out:
                 Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SongDetail.this, LogIn.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);

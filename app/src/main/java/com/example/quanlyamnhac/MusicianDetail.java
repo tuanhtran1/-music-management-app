@@ -179,7 +179,6 @@ public class MusicianDetail extends AppCompatActivity {
         btnThemBaiHat = findViewById(R.id.btnThem);
     }
 
-
     private void setToolBar() {
         //Set toolbar as action bar
         setSupportActionBar(toolbar);
@@ -193,6 +192,13 @@ public class MusicianDetail extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainTabActivity.class);
+        intent.putExtra("cTab", "MusicianTab");
+        startActivity(intent);
     }
 
     @Override
@@ -215,6 +221,8 @@ public class MusicianDetail extends AppCompatActivity {
                 break;
             case R.id.it_log_out:
                 Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MusicianDetail.this, LogIn.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
