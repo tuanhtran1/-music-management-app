@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_edit_user.xml" value="0.12158054711246201" />
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_enter_otp.xml" value="0.12158054711246201" />
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_log_in.xml" value="0.12158054711246201" />
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_user.xml" value="0.12158054711246201" />
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/item_user_layout.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/drawable/border_edittext.xml" value="0.1325" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1" />

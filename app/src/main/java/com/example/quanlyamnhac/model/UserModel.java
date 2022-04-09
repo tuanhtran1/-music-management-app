@@ -3,12 +3,14 @@ package com.example.quanlyamnhac.model;
 import java.io.Serializable;
 
 public class UserModel implements Serializable {
+    Integer id;
     String email,phone,username,password,avatar;
 
     public UserModel() {
     }
 
-    public UserModel(String email, String phone, String username, String password, String avatar) {
+    public UserModel(Integer id,String email, String phone, String username, String password, String avatar) {
+        this.id = id;
         this.email = email;
         this.phone = phone;
         this.username = username;
@@ -56,5 +58,11 @@ public class UserModel implements Serializable {
         this.avatar = avatar;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

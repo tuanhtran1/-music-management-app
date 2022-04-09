@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.example.quanlyamnhac.EditUser;
 import com.example.quanlyamnhac.R;
+import com.example.quanlyamnhac.User;
 import com.example.quanlyamnhac.model.UserModel;
 import com.squareup.picasso.Picasso;
 
@@ -68,17 +69,16 @@ public class UserAdapter extends BaseAdapter {
 
         UserModel user = userModels.get(i);
         holder.tvEmail.setText("Mail: " + user.getEmail());
-        holder.tvPhone.setText("SDT: " + user.getPhone());
+        holder.tvPhone.setText("Phone: " + user.getPhone());
         holder.tvUsername.setText("Username: " + user.getUsername());
         Picasso.get().load(user.getAvatar()).into(holder.ivAvatar);
 
         holder.ivAvatar.setOnClickListener(new View.OnClickListener() {     // bắt sự kiện khi bấm vào hình
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context, EditUser.class);
-//                // ((MainActivity)context).start activity(intent) - ép kiểu context về activity
-//                intent.putExtra("item",user);    // gửi nguyên cả 1 đối tượng 'country'
-//                ((DatabaseUserAdapter)context).startActivityForResult(intent,2);
+                Intent intent = new Intent(context, EditUser.class);
+                intent.putExtra("item",user);    // gửi nguyên cả 1 đối tượng 'country'
+                ((User)context).startActivityForResult(intent,2);
             }
         });
 
