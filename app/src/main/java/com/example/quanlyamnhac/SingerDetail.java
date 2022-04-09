@@ -193,9 +193,18 @@ public class SingerDetail extends AppCompatActivity {
     }
 
     private void layDL() {
-        ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
-        et_name.setText(singerModel.getNameSinger());
-        Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
+        //2 luong
+        try {
+            ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("toSongOfPerformanceInfo");
+            et_name.setText(singerModel.getNameSinger());
+            Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
+        }
+        catch (Exception e)
+        {
+            ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
+            et_name.setText(singerModel.getNameSinger());
+            Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
+        }
     }
 
     //ánh xạ qua
@@ -252,5 +261,12 @@ public class SingerDetail extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainTabActivity.class);
+        intent.putExtra("cTab", "SingerTab");
+        startActivity(intent);
     }
 }

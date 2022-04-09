@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.SongOfPerformanceInfoAdapter;
 import com.example.quanlyamnhac.mapper.SongMapper;
+import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.example.quanlyamnhac.model.reponse.SongReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 
@@ -25,6 +26,9 @@ import java.util.List;
 
 public class SongOfPerformanceInfo extends AppCompatActivity {
 
+    public static Integer idSong;
+    ItemSingerReponse itemSingerReponse = new ItemSingerReponse();
+
     SQLite sqLite;
 
     RecyclerView recycler_song;
@@ -32,8 +36,6 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
     Toolbar toolbar;
 
     TextView tv_songName, tv_musicianName, tv_singerName;
-
-    public static Integer idSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +75,22 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
     }
 
     private void layDL() {
-
-        Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
-                " FROM song, singer, musician " +
-                " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
-        if(cursor.moveToNext()){
-            tv_songName.setText(cursor.getString(0));
-            tv_musicianName.setText(cursor.getString(2));
-            tv_singerName.setText(cursor.getString(1));
+        boolean check = getIntent().getBooleanExtra("toSongOfPerformanceInfo", false);
+        if(check)
+        {
+            tv_songName.setText(getIntent().getStringExtra("songName"));
+            tv_musicianName.setText(getIntent().getStringExtra("musicianName"));
+            tv_singerName.setText(getIntent().getStringExtra("singerName"));
+        }
+        else {
+            Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
+                    " FROM song, singer, musician " +
+                    " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
+            if(cursor.moveToNext()){
+                tv_songName.setText(cursor.getString(0));
+                tv_musicianName.setText(cursor.getString(2));
+                tv_singerName.setText(cursor.getString(1));
+            }
         }
     }
 
@@ -127,5 +137,17 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, SingerDetail.class);
+        Cursor cursor = sqLite.getData(" SELECT singer.name, singer.image FROM singer WHERE singer.id =" + MusicianDetail.idMusician);
+        if(cursor.moveToNext()){
+           itemSingerReponse.setNameSinger(cursor.getString(0));
+           itemSingerReponse.setImageSinger(cursor.getString(1));
+        }
+        intent.putExtra("toSongOfPerformanceInfo", itemSingerReponse);
+        startActivity(intent);
     }
 }
