@@ -110,6 +110,8 @@ public class MainTabActivity extends AppCompatActivity {
                 break;
             case R.id.it_log_out:
                 Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainTabActivity.this, LogIn.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
