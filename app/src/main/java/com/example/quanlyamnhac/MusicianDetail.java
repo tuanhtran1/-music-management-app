@@ -179,7 +179,6 @@ public class MusicianDetail extends AppCompatActivity {
         btnThemBaiHat = findViewById(R.id.btnThem);
     }
 
-
     private void setToolBar() {
         //Set toolbar as action bar
         setSupportActionBar(toolbar);
@@ -193,6 +192,13 @@ public class MusicianDetail extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainTabActivity.class);
+        intent.putExtra("cTab", "MusicianTab");
+        startActivity(intent);
     }
 
     @Override
