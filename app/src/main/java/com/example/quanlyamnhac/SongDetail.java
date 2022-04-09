@@ -16,11 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.entity.SongEntity;
+import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
+import com.example.quanlyamnhac.model.reponse.MusicianReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 
 public class SongDetail extends AppCompatActivity {
 
     public static Integer idSong;
+    ItemMusicianReponse itemMusicianReponse = new ItemMusicianReponse();
 
     SQLite sqLite;
     Toolbar toolbar;
@@ -40,6 +43,17 @@ public class SongDetail extends AppCompatActivity {
         ib_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //putExtra qua MusicianDetail
+                Cursor cursor1 = sqLite.getData("SELECT musician.name, musician.image FROM song, musician " +
+                        "WHERE song.id_musician = musician.id " +
+                        "AND song.id = " + SongDetail.idSong);
+                if(cursor1.moveToNext())
+                {
+                    itemMusicianReponse.setNameMusician(cursor1.getString(0));
+                    itemMusicianReponse.setImageMusician(cursor1.getString(1));
+                }
+                // Thực hiện xóa
                 Cursor cursor = sqLite.getData("SELECT song.id FROM song WHERE EXISTS " +
                         " (SELECT performance_info.song_id FROM performance_info WHERE performance_info.song_id = " + SongDetail.idSong + ")");
                 if(cursor.moveToNext()){
@@ -48,8 +62,9 @@ public class SongDetail extends AppCompatActivity {
                 }
                 sqLite.queryData("DELETE FROM song WHERE song.id = " + SongDetail.idSong);
                 Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
-                intent.putExtra("cTab", "MusicianTab");
+
+                Intent intent = new Intent(view.getContext(), MusicianDetail.class); //MusicianDetail
+                intent.putExtra("ItemFromSongDetail", itemMusicianReponse);
                 startActivity(intent);
             }
         });

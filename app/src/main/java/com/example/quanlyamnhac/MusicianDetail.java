@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class MusicianDetail extends AppCompatActivity {
 
     public static Integer idMusician;
-
+    ItemMusicianReponse musicianModel = new ItemMusicianReponse();
     SQLite sqLite;
 
     ImageView ivImg;
@@ -152,11 +152,19 @@ public class MusicianDetail extends AppCompatActivity {
     }
 
     private void layDL() {
-        ItemMusicianReponse musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("item");
-        et_name.setText(musicianModel.getNameMusician());
-        Picasso.get().load(musicianModel.getImageMusician()).into(ivImg);
+        //ý tưởng chia 2 luồng
+        try {
+            musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("ItemFromSongDetail");
+            et_name.setText(musicianModel.getNameMusician());
+            Picasso.get().load(musicianModel.getImageMusician()).into(ivImg);
+        }
+        catch (Exception e)
+        {
+            musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("item");
+            et_name.setText(musicianModel.getNameMusician());
+            Picasso.get().load(musicianModel.getImageMusician()).into(ivImg);
+        }
     }
-
     //ánh xạ qua
     private void setControl() {
 
