@@ -18,10 +18,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
+import com.example.quanlyamnhac.fragment.MusicianFragment;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
@@ -70,7 +72,9 @@ public class MusicianDetail extends AppCompatActivity {
                     }
                     sqLite.queryData("DELETE FROM musician WHERE musician.id = " + MusicianDetail.idMusician);
                     Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+
+                    Intent intent = new Intent(view.getContext(), MainTabActivity.class); // MainActivity
+                    intent.putExtra("cTab", "MusicianTab");
                     startActivity(intent);
 
             }
@@ -100,6 +104,7 @@ public class MusicianDetail extends AppCompatActivity {
                                 " WHERE musician.id = " + MusicianDetail.idMusician);
                         dialog.dismiss();
                         Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                        intent.putExtra("cTab", "MusicianTab");
                         startActivity(intent);
                     }
                 });
@@ -165,6 +170,7 @@ public class MusicianDetail extends AppCompatActivity {
         btnSua = findViewById(R.id.btnSua);
         btnThemBaiHat = findViewById(R.id.btnThem);
     }
+
 
     private void setToolBar() {
         //Set toolbar as action bar

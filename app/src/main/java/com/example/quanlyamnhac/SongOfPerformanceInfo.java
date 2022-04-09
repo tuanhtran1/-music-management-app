@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.adapter.SongOfPerformanceInfoAdapter;
@@ -29,7 +30,7 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
     SongOfPerformanceInfoAdapter songOfPerformanceInfoAdapter;
     Toolbar toolbar;
 
-    EditText et_songName, et_musicianName, et_singerName;
+    TextView tv_songName, tv_musicianName, tv_singerName;
 
     public static Integer idSong;
 
@@ -58,9 +59,9 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
         recycler_song = findViewById(R.id.recycler_song);
         toolbar = findViewById(R.id.toolbar);
 
-        et_songName = findViewById(R.id.et_songName);
-        et_musicianName= findViewById(R.id.et_musicianName);
-        et_singerName = findViewById(R.id.et_singerName);
+        tv_songName = findViewById(R.id.tv_songName);
+        tv_musicianName= findViewById(R.id.tv_musicianName);
+        tv_singerName = findViewById(R.id.tv_singerName);
     }
 
     private void setRecyclerSong() {
@@ -76,9 +77,9 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
                 " FROM song, singer, musician " +
                 " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
         if(cursor.moveToNext()){
-            et_songName.setText(cursor.getString(0));
-            et_musicianName.setText(cursor.getString(2));
-            et_singerName.setText(cursor.getString(1));
+            tv_songName.setText(cursor.getString(0));
+            tv_musicianName.setText(cursor.getString(2));
+            tv_singerName.setText(cursor.getString(1));
         }
     }
 

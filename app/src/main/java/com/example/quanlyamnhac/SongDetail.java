@@ -49,6 +49,7 @@ public class SongDetail extends AppCompatActivity {
                 sqLite.queryData("DELETE FROM song WHERE song.id = " + SongDetail.idSong);
                 Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                intent.putExtra("cTab", "MusicianTab");
                 startActivity(intent);
             }
         });
@@ -60,6 +61,7 @@ public class SongDetail extends AppCompatActivity {
                         " WHERE song.id = " + SongDetail.idSong);
                 Toast.makeText(view.getContext(),"Update sucess",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                intent.putExtra("cTab", "MusicianTab");
                 startActivity(intent);
             }
         });

@@ -7,7 +7,7 @@
     <TableRow>
         <TextView
             android:id="@+id/tv_stt"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -15,7 +15,7 @@
             />
         <TextView
             android:id="@+id/tv_singer_name"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -23,7 +23,7 @@
             />
         <TextView
             android:id="@+id/tv_song_name"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -31,7 +31,7 @@
             />
         <TextView
             android:id="@+id/tv_performance_day"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"
@@ -39,7 +39,7 @@
             />
         <TextView
             android:id="@+id/tv_place"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:gravity="center"

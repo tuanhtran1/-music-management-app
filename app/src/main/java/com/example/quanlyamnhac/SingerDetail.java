@@ -86,6 +86,7 @@ public class SingerDetail extends AppCompatActivity {
 //                viewPager.setCurrentItem(2);
 //
                 Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                intent.putExtra("cTab", "SingerTab");
                 startActivity(intent);
             }
         });
@@ -114,6 +115,7 @@ public class SingerDetail extends AppCompatActivity {
                                 " WHERE singer.id = " + SingerDetail.idSinger);
                         dialog.dismiss();
                         Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                        intent.putExtra("cTab", "SingerTab");
                         startActivity(intent);
                     }
                 });

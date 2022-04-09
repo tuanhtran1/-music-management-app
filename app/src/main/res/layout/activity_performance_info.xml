@@ -38,33 +38,38 @@
             android:orientation="horizontal">
 
             <TextView
+                android:gravity="center_vertical"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Tên bài hát" />
 
-            <EditText
-                android:id="@+id/et_song_name"
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tv_song_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="40dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:gravity="center_vertical"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Tên ca sĩ"/>
-            <EditText
-                android:id="@+id/et_singer_name"
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tv_singer_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="40dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:gravity="center_vertical"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Ngày biểu diễn"/>
@@ -78,6 +83,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:gravity="center_vertical"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Địa điểm"/>

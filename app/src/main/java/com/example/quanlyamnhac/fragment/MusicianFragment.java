@@ -84,7 +84,6 @@ public class MusicianFragment extends Fragment {
         while (cursor.moveToNext()) {
             itemMusicianReponses.add(MusicianMapper.toItemMusicianReponse(cursor));
         }
-
         cursor.close();
         return itemMusicianReponses;
     }

@@ -33,6 +33,24 @@ public class MainTabActivity extends AppCompatActivity {
         setControl();
         setEvent();
         setToolBar();
+        checkTab();
+    }
+
+    private void checkTab() {
+        String current_tab;
+        try{
+            current_tab = getIntent().getStringExtra("cTab");
+            if(current_tab.equals("MusicianTab"))
+            {
+                mviewPager.setCurrentItem(1);
+            }
+            if(current_tab.equals("SingerTab"))
+            {
+                mviewPager.setCurrentItem(2);
+            }
+        }catch (Exception e) {
+            mviewPager.setCurrentItem(0);
+        }
     }
 
     private void setToolBar() {

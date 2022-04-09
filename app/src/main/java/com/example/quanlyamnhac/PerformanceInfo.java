@@ -16,6 +16,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlyamnhac.mapper.PerformanceInfoMapper;
@@ -32,7 +33,8 @@ public class PerformanceInfo extends AppCompatActivity {
 
     public static Integer idPerformanceInfo;
 
-    EditText et_song_name, et_singer_name, et_performance_day, et_place;
+    EditText et_performance_day, et_place;
+    TextView et_song_name, et_singer_name;
     ImageButton ib_save, ib_delete;
 
     Toolbar toolbar;
@@ -97,8 +99,8 @@ public class PerformanceInfo extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
 
-        et_song_name = findViewById(R.id.et_song_name);
-        et_singer_name = findViewById(R.id.et_singer_name);
+        et_song_name = findViewById(R.id.tv_song_name);
+        et_singer_name = findViewById(R.id.tv_singer_name);
         et_performance_day = findViewById(R.id.et_performance_day);
         et_place = findViewById(R.id.et_place);
         ib_save = findViewById(R.id.ib_save);

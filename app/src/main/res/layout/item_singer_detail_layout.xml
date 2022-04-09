@@ -6,7 +6,6 @@
     android:stretchColumns="1,2,3,4">
 
     <TableRow>
-
         <TextView
             android:id="@+id/et_stt"
             android:layout_column="1"
