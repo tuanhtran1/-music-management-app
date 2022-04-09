@@ -49,10 +49,11 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setDatabase() {
-//        //user
-//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
-//                "avatar VARCHAR(500))");
+        //user
+        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
+                "avatar VARCHAR(500))");
 //        // musician
 //        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                "name VARCHAR(50), image VARCHAR(500))");
@@ -77,8 +78,8 @@ public class LogIn extends AppCompatActivity {
 //        sqLite.queryData("INSERT INTO song VALUES(null,'Nang am xa dan', '1995', 1)");
 //        sqLite.queryData("INSERT INTO song VALUES(null,'Cong chua bong bong', '2000', 2)");
 //        // add data for user
-//        sqLite.queryData("INSERT INTO user VALUES(null,'admin@gmail','0987654321','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
-//        sqLite.queryData("INSERT INTO user VALUES(null,'hoang@gmail','0123456789','hoang','321','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
+//        sqLite.queryData("INSERT INTO user VALUES(null,'johnnyhoang482@gmail.com','+840355114279','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
+//        sqLite.queryData("INSERT INTO user VALUES(null,'johnnyhoang482@gmail.com','+840355114279','hoang','321','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
 //        // add data for singer
 //        sqLite.queryData("INSERT INTO singer VALUES(null,'Son Tung', 'https://kenh14cdn.com/thumb_w/660/203336854389633024/2021/5/28/13285652342587086741428035430233108735653736n-1622165532863738421439.jpg')");
 //        sqLite.queryData("INSERT INTO singer VALUES(null,'Bao Thy', 'https://vnn-imgs-f.vgcloud.vn/2019/11/03/17/bao-thy-moi-thong-tin-ket-hon-khong-phai-tu-toi-deu-la-tin-don.jpg')");
