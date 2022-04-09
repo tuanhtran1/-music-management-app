@@ -11,15 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.quanlyamnhac.mapper.HomeMapper;
-import com.example.quanlyamnhac.mapper.UserMapper;
-import com.example.quanlyamnhac.model.UserModel;
-import com.example.quanlyamnhac.model.reponse.HomeReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -43,8 +37,8 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        setDatabase();
         setControl();
+        setDatabase();
         setEvent();
     }
 
@@ -90,6 +84,7 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setControl() {
+        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
         txtUser = findViewById(R.id.txtUser);
         txtPass = findViewById(R.id.txtPass);
         btnXacNhan = findViewById(R.id.btnXacNhan);
@@ -151,7 +146,7 @@ public class LogIn extends AppCompatActivity {
                         final String password = "ahtxuatpvsbecehk";
                         Random random = new Random();
                         int randomNumber = random.nextInt(999999);
-                        sqLite.queryData("UPDATE user SET password = '"+randomNumber+"' WHERE id = '"+cursor.getString(0)+"'");
+                        sqLite.queryData("UPDATE user SET password = '"+randomNumber+"' WHERE id = "+cursor.getInt(0));
                         String messageToSend = String.valueOf(randomNumber);
                         Properties props = new Properties();
                         props.put("mail.smtp.auth","true");
@@ -166,7 +161,6 @@ public class LogIn extends AppCompatActivity {
                                     }
                                 });
                         try{
-
                             Message message = new MimeMessage(session);
                             message.setFrom(new InternetAddress(username));
                             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(cursor.getString(1)));
@@ -186,7 +180,6 @@ public class LogIn extends AppCompatActivity {
         });
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
     }
 
     private void khoiTao() {
