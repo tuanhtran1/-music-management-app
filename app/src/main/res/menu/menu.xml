@@ -11,8 +11,8 @@
     <item android:title="Home"
         android:id="@+id/it_home"
         />
-    <item android:title="Advance search"
-        android:id="@+id/it_advance_search"
+    <item android:title="List user"
+        android:id="@+id/it_list_user"
         />
     <item android:title="Log out"
         android:id="@+id/it_log_out"

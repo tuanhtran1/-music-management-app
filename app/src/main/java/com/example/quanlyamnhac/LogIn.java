@@ -43,11 +43,11 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setDatabase() {
-        //user
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
-                "avatar VARCHAR(500))");
+//        //user
+//        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
+//                "avatar VARCHAR(500))");
 //        // musician
 //        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                "name VARCHAR(50), image VARCHAR(500))");

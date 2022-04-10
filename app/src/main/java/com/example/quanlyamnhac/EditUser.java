@@ -2,6 +2,8 @@ package com.example.quanlyamnhac;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.quanlyamnhac.model.UserModel;
 import com.squareup.picasso.Picasso;
@@ -21,6 +25,8 @@ public class EditUser extends AppCompatActivity {
     ImageView ivAvatar;
     Button btnXoa,btnSua,btnHuy;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -29,9 +35,16 @@ public class EditUser extends AppCompatActivity {
 
         setControl();
         setEvent();
-
+        setToolBar();
     }
-
+    private void setToolBar() {
+        //Set toolbar as action bar
+        setSupportActionBar(toolbar);
+        //Enable Home icon
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Toolbar title
+        getSupportActionBar().setTitle(getString(R.string.app_name));
+    }
     private void setEvent() {
         layDL();
         btnSua.setOnClickListener(new View.OnClickListener() {  // không xử lý hàm sửa ở đây mà phải chuyển qua hàm main
@@ -61,7 +74,7 @@ public class EditUser extends AppCompatActivity {
         });
     }
 
-    private void setControl() {
+    private void setControl() {toolbar = findViewById(R.id.toolbar);
         tvID = findViewById(R.id.tvID);
         txtEmail = findViewById(R.id.txtEmail);
         txtPhone = findViewById(R.id.txtPhone);
@@ -96,5 +109,39 @@ public class EditUser extends AppCompatActivity {
         Picasso.get().load(user.getAvatar()).into(ivAvatar);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.it_search:
+                Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.it_home:
+                Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.it_list_user:
+                Toast.makeText(this, "Ban chon list user", Toast.LENGTH_SHORT).show();
+                intent = new Intent(EditUser.this, User.class);
+                startActivity(intent);
+                break;
+            case R.id.it_log_out:
+                Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+                intent = new Intent(EditUser.this, LogIn.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
