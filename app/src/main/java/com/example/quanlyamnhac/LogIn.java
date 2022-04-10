@@ -95,7 +95,6 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setEvent() {
-        khoiTao();
 
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +117,7 @@ public class LogIn extends AppCompatActivity {
 //                    }
 //                    Toast.makeText(LogIn.this, "Thông tin đăng nhập sai!", Toast.LENGTH_SHORT).show();
 //                }
-                Intent intent = new Intent(LogIn.this, MainTabActivity.class);
+                Intent intent = new Intent(LogIn.this, User.class);
                 startActivity(intent);
                 Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
             }
@@ -145,7 +144,7 @@ public class LogIn extends AppCompatActivity {
                 String userName = txtUser.getText().toString();
                 Cursor cursor = sqLite.getData("SELECT * FROM user");
                 while(cursor.moveToNext()){
-                    if(!userName.equals("") && cursor.getString(3).equals(userName)) {
+                    if(!userName.trim().equals(null) && cursor.getString(3).equals(userName)) {
                         final String username = "johnnyhoang482@gmail.com";
                         final String password = "ahtxuatpvsbecehk";
                         Random random = new Random();
@@ -172,6 +171,7 @@ public class LogIn extends AppCompatActivity {
                             message.setText(messageToSend);
                             Transport.send(message);
                             Toast.makeText(getApplicationContext(),"Password mới đã được gửi vào email",Toast.LENGTH_LONG).show();
+                            break;
                         }catch (MessagingException e){
                             throw new RuntimeException();
                         }
@@ -184,10 +184,5 @@ public class LogIn extends AppCompatActivity {
         });
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-    }
-
-    private void khoiTao() {
-        txtUser.setText(getIntent().getStringExtra("username"));
-        txtPass.setText(getIntent().getStringExtra("password"));
     }
 }
