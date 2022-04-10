@@ -145,7 +145,7 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, SingerDetail.class);
-        Cursor cursor = sqLite.getData(" SELECT singer.name, singer.image FROM singer WHERE singer.id =" + MusicianDetail.idMusician);
+        Cursor cursor = sqLite.getData(" SELECT singer.name, singer.image FROM singer WHERE singer.id =" + SingerDetail.idSinger);
         if(cursor.moveToNext()){
            itemSingerReponse.setNameSinger(cursor.getString(0));
            itemSingerReponse.setImageSinger(cursor.getString(1));
