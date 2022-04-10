@@ -137,6 +137,7 @@ public class PerformanceInfo extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.it_search:
                 Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
@@ -144,12 +145,14 @@ public class PerformanceInfo extends AppCompatActivity {
             case R.id.it_home:
                 Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.it_advance_search:
-                Toast.makeText(this, "Ban chon advance search", Toast.LENGTH_SHORT).show();
+            case R.id.it_list_user:
+                Toast.makeText(this, "Ban chon list user", Toast.LENGTH_SHORT).show();
+                intent = new Intent(PerformanceInfo.this, User.class);
+                startActivity(intent);
                 break;
             case R.id.it_log_out:
                 Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(PerformanceInfo.this, LogIn.class);
+                intent = new Intent(PerformanceInfo.this, LogIn.class);
                 startActivity(intent);
                 break;
         }

@@ -43,11 +43,11 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setDatabase() {
-        //user
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
-                "avatar VARCHAR(500))");
+//        //user
+//        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
+//                "avatar VARCHAR(500))");
 //        // musician
 //        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                "name VARCHAR(50), image VARCHAR(500))");
@@ -95,32 +95,28 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setEvent() {
-        khoiTao();
 
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String userName = txtUser.getText().toString();
-//                String password = txtPass.getText().toString();
-//                if(userName.equals("") || password.equals("")){
-//                    Toast.makeText(LogIn.this, "Vui lòng nhập đủ username và password", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//                    Cursor cursor = sqLite.getData("SELECT * FROM user");
-////                    List<UserModel> userModels = new ArrayList<>();
-//                    while(cursor.moveToNext()){
-//                        if(cursor.getString(3).equals(userName) && cursor.getString(4).equals(password)) {
-//                            Intent intent = new Intent(LogIn.this, MainTabActivity.class);
-//                            startActivity(intent);
-//                            Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
-//                            return;
-//                        }
-//                    }
-//                    Toast.makeText(LogIn.this, "Thông tin đăng nhập sai!", Toast.LENGTH_SHORT).show();
-//                }
-                Intent intent = new Intent(LogIn.this, MainTabActivity.class);
-                startActivity(intent);
-                Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
+                String userName = txtUser.getText().toString();
+                String password = txtPass.getText().toString();
+                if(userName.equals("") || password.equals("")){
+                    Toast.makeText(LogIn.this, "Vui lòng nhập đủ username và password", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Cursor cursor = sqLite.getData("SELECT * FROM user");
+//                    List<UserModel> userModels = new ArrayList<>();
+                    while(cursor.moveToNext()){
+                        if(cursor.getString(3).equals(userName) && cursor.getString(4).equals(password)) {
+                            Intent intent = new Intent(LogIn.this, MainTabActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    Toast.makeText(LogIn.this, "Thông tin đăng nhập sai!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -143,9 +139,13 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String userName = txtUser.getText().toString();
-                Cursor cursor = sqLite.getData("SELECT * FROM user");
-                while(cursor.moveToNext()){
-                    if(!userName.equals("") && cursor.getString(3).equals(userName)) {
+
+                if(userName.equals("")){
+                    Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Cursor cursor = sqLite.getData("SELECT * FROM user WHERE username = '" + userName + "'");
+                if(cursor.moveToNext()){
                         final String username = "johnnyhoang482@gmail.com";
                         final String password = "ahtxuatpvsbecehk";
                         Random random = new Random();
@@ -177,17 +177,12 @@ public class LogIn extends AppCompatActivity {
                         }
                     }
                     else{
-                        Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogIn.this, "Tai khoan khong ton tai!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
-        });
+        );
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-    }
-
-    private void khoiTao() {
-        txtUser.setText(getIntent().getStringExtra("username"));
-        txtPass.setText(getIntent().getStringExtra("password"));
     }
 }
