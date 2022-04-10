@@ -56,8 +56,9 @@ public class HomeFragment extends Fragment {
 
     private List<HomeReponse> getList() {
 
-        Cursor cursor = sqLite.getData("SELECT song.name, musician.name, singer.name, song.yearofcreation FROM song, musician, singer "
-        + " WHERE song.id_musician = musician.id");
+        Cursor cursor = sqLite.getData("SELECT song.name, musician.name, singer.name, song.yearofcreation FROM song, performance_info, musician, singer "
+        + " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id " +
+                " AND song.id_musician = musician.id");
         List<HomeReponse> homeReponses = new ArrayList<>();
         while(cursor.moveToNext()){
             homeReponses.add(HomeMapper.toHomeReponse(cursor));

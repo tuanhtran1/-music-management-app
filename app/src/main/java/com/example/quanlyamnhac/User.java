@@ -3,11 +3,15 @@ package com.example.quanlyamnhac;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.quanlyamnhac.adapter.UserAdapter;
 import com.example.quanlyamnhac.model.UserModel;
@@ -21,6 +25,8 @@ public class User extends AppCompatActivity {
     ListView lvUser;
     ArrayList<UserModel> arrayUser;
     UserAdapter adapter;
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +47,22 @@ public class User extends AppCompatActivity {
 
         setControl();
         setEvent();
-
+        setToolBar();
     }
-
+    private void setToolBar() {
+        //Set toolbar as action bar
+        setSupportActionBar(toolbar);
+        //Enable Home icon
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Toolbar title
+        getSupportActionBar().setTitle(getString(R.string.app_name));
+    }
     private void setEvent() {
 
     }
 
     private void setControl() {
+        toolbar = findViewById(R.id.toolbar);
         lvUser = findViewById(R.id.lvUser);
     }
 
@@ -96,5 +110,40 @@ public class User extends AppCompatActivity {
         sqLite.queryData("DELETE FROM User WHERE id = '"+user.getId()+"' ");
         arrayUser.remove(user);
         GetDataUser();  //cập nhật lại DL
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.it_search:
+                Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.it_home:
+                Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.it_list_user:
+                Toast.makeText(this, "Ban chon list user", Toast.LENGTH_SHORT).show();
+                intent = new Intent(User.this, User.class);
+                startActivity(intent);
+                break;
+            case R.id.it_log_out:
+                Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
+                intent = new Intent(User.this, LogIn.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

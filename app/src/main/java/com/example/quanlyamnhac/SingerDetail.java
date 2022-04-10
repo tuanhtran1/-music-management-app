@@ -193,9 +193,18 @@ public class SingerDetail extends AppCompatActivity {
     }
 
     private void layDL() {
-        ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
-        et_name.setText(singerModel.getNameSinger());
-        Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
+        //2 luong
+        try {
+            ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("toSongOfPerformanceInfo");
+            et_name.setText(singerModel.getNameSinger());
+            Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
+        }
+        catch (Exception e)
+        {
+            ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
+            et_name.setText(singerModel.getNameSinger());
+            Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
+        }
     }
 
     //ánh xạ qua
@@ -229,6 +238,7 @@ public class SingerDetail extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.it_search:
                 Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
@@ -236,12 +246,14 @@ public class SingerDetail extends AppCompatActivity {
             case R.id.it_home:
                 Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.it_advance_search:
-                Toast.makeText(this, "Ban chon advance search", Toast.LENGTH_SHORT).show();
+            case R.id.it_list_user:
+                Toast.makeText(this, "Ban chon list user", Toast.LENGTH_SHORT).show();
+                intent = new Intent(SingerDetail.this, User.class);
+                startActivity(intent);
                 break;
             case R.id.it_log_out:
                 Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SingerDetail.this, LogIn.class);
+                intent = new Intent(SingerDetail.this, LogIn.class);
                 startActivity(intent);
                 break;
         }
@@ -252,5 +264,12 @@ public class SingerDetail extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainTabActivity.class);
+        intent.putExtra("cTab", "SingerTab");
+        startActivity(intent);
     }
 }

@@ -43,11 +43,11 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setDatabase() {
-        //user
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
-        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
-                "avatar VARCHAR(500))");
+//        //user
+//        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+//        sqLite.queryData("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "email VARCHAR(50), phone VARCHAR(50), username VARCHAR(50), password VARCHAR(50), " +
+//                "avatar VARCHAR(500))");
 //        // musician
 //        sqLite.queryData("CREATE TABLE IF NOT EXISTS musician(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                "name VARCHAR(50), image VARCHAR(500))");
@@ -142,9 +142,13 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String userName = txtUser.getText().toString();
-                Cursor cursor = sqLite.getData("SELECT * FROM user");
-                while(cursor.moveToNext()){
-                    if(!userName.trim().equals(null) && cursor.getString(3).equals(userName)) {
+
+                if(userName.equals("")){
+                    Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Cursor cursor = sqLite.getData("SELECT * FROM user WHERE username = '" + userName + "'");
+                if(cursor.moveToNext()){
                         final String username = "johnnyhoang482@gmail.com";
                         final String password = "ahtxuatpvsbecehk";
                         Random random = new Random();
@@ -171,17 +175,16 @@ public class LogIn extends AppCompatActivity {
                             message.setText(messageToSend);
                             Transport.send(message);
                             Toast.makeText(getApplicationContext(),"Password mới đã được gửi vào email",Toast.LENGTH_LONG).show();
-                            break;
                         }catch (MessagingException e){
                             throw new RuntimeException();
                         }
                     }
                     else{
-                        Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogIn.this, "Tai khoan khong ton tai!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
-        });
+        );
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }

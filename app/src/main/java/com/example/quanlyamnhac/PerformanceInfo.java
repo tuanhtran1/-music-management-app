@@ -51,18 +51,41 @@ public class PerformanceInfo extends AppCompatActivity {
         ib_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //put trả về lại
+                Intent intent = new Intent(view.getContext(), SongOfPerformanceInfo.class); //SongOfPerformanceInfo
+                Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
+                        " FROM song, singer, musician " +
+                        " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
+                if(cursor.moveToNext()){
+                    intent.putExtra("songName", cursor.getInt(0));
+                    System.out.println(cursor.getInt(0));
+                    intent.putExtra("musicianName", cursor.getInt(1));
+                    intent.putExtra("singerName", cursor.getInt(2));
+                }
                 sqLite.queryData("DELETE FROM performance_info WHERE performance_info.id = " + PerformanceInfo.idPerformanceInfo);
-                Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                Toast.makeText(view.getContext(),"Delete success",Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
         ib_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //put trả về lại
+                Intent intent = new Intent(view.getContext(), SongOfPerformanceInfo.class); //SongOfPerformanceInfo
+                Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
+                        " FROM song, singer, musician " +
+                        " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
+                if(cursor.moveToNext()){
+                    intent.putExtra("songName", cursor.getString(0));
+                    intent.putExtra("musicianName", cursor.getString(1));
+                    intent.putExtra("singerName", cursor.getString(2));
+
+                    intent.putExtra("toSongOfPerformanceInfo", 1);
+                }
+
                 sqLite.queryData("UPDATE performance_info SET performance_day = '" + et_performance_day.getText() + "', place = '" + et_place.getText()+ "'" +
                                 " WHERE performance_info.id = " + PerformanceInfo.idPerformanceInfo);
-                Intent intent = new Intent(view.getContext(), MainTabActivity.class);
+                Toast.makeText(view.getContext(),"Update success",Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -114,6 +137,7 @@ public class PerformanceInfo extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.it_search:
                 Toast.makeText(this, "Ban chon search", Toast.LENGTH_SHORT).show();
@@ -121,12 +145,14 @@ public class PerformanceInfo extends AppCompatActivity {
             case R.id.it_home:
                 Toast.makeText(this, "Ban chon home", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.it_advance_search:
-                Toast.makeText(this, "Ban chon advance search", Toast.LENGTH_SHORT).show();
+            case R.id.it_list_user:
+                Toast.makeText(this, "Ban chon list user", Toast.LENGTH_SHORT).show();
+                intent = new Intent(PerformanceInfo.this, User.class);
+                startActivity(intent);
                 break;
             case R.id.it_log_out:
                 Toast.makeText(this, "Ban chon log out", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(PerformanceInfo.this, LogIn.class);
+                intent = new Intent(PerformanceInfo.this, LogIn.class);
                 startActivity(intent);
                 break;
         }
