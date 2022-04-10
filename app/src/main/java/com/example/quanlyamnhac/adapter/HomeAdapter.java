@@ -58,9 +58,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
 
-                    Cursor cursor = sqLite.getData("SELECT song.id, singer.id, musician.id"
-                            + " FROM song, musician, singer "
-                            + " WHERE song.id_musician = musician.id LIMIT 1 OFFSET " + position);
+                    Cursor cursor = sqLite.getData("SELECT song.id, singer.id, musician.id, song.name, musician.name, singer.name, song.yearofcreation FROM song, performance_info, musician, singer "
+                                    + " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id " +
+                                    " AND song.id_musician = musician.id LIMIT 1 OFFSET " + position);
 
                     if(cursor.moveToNext()){
                         SongOfPerformanceInfo.idSong = cursor.getInt(0);

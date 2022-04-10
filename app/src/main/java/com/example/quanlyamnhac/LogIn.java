@@ -143,9 +143,12 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String userName = txtUser.getText().toString();
-                Cursor cursor = sqLite.getData("SELECT * FROM user");
-                while(cursor.moveToNext()){
-                    if(!userName.equals("") && cursor.getString(3).equals(userName)) {
+                if(userName.equals("")){
+                    Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Cursor cursor = sqLite.getData("SELECT * FROM user WHERE username = '" + userName + "'");
+                if(cursor.moveToNext()){
                         final String username = "johnnyhoang482@gmail.com";
                         final String password = "ahtxuatpvsbecehk";
                         Random random = new Random();
@@ -177,11 +180,11 @@ public class LogIn extends AppCompatActivity {
                         }
                     }
                     else{
-                        Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogIn.this, "Tai khoan khong ton tai!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
-        });
+        );
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
