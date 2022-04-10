@@ -99,27 +99,24 @@ public class LogIn extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String userName = txtUser.getText().toString();
-//                String password = txtPass.getText().toString();
-//                if(userName.equals("") || password.equals("")){
-//                    Toast.makeText(LogIn.this, "Vui lòng nhập đủ username và password", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//                    Cursor cursor = sqLite.getData("SELECT * FROM user");
-////                    List<UserModel> userModels = new ArrayList<>();
-//                    while(cursor.moveToNext()){
-//                        if(cursor.getString(3).equals(userName) && cursor.getString(4).equals(password)) {
-//                            Intent intent = new Intent(LogIn.this, MainTabActivity.class);
-//                            startActivity(intent);
-//                            Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
-//                            return;
-//                        }
-//                    }
-//                    Toast.makeText(LogIn.this, "Thông tin đăng nhập sai!", Toast.LENGTH_SHORT).show();
-//                }
-                Intent intent = new Intent(LogIn.this, User.class);
-                startActivity(intent);
-                Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
+                String userName = txtUser.getText().toString();
+                String password = txtPass.getText().toString();
+                if(userName.equals("") || password.equals("")){
+                    Toast.makeText(LogIn.this, "Vui lòng nhập đủ username và password", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Cursor cursor = sqLite.getData("SELECT * FROM user");
+//                    List<UserModel> userModels = new ArrayList<>();
+                    while(cursor.moveToNext()){
+                        if(cursor.getString(3).equals(userName) && cursor.getString(4).equals(password)) {
+                            Intent intent = new Intent(LogIn.this, MainTabActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    Toast.makeText(LogIn.this, "Thông tin đăng nhập sai!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

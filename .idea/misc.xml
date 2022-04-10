@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/drawable/ic_backicon.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/drawable/ic_playicon.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_edit_user.xml" value="0.12158054711246201" />
         <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_enter_otp.xml" value="0.12158054711246201" />
         <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_log_in.xml" value="0.12158054711246201" />
         <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/activity_user.xml" value="0.12158054711246201" />
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/fragment_rank.xml" value="0.2259963768115942" />
+        <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/item_song_of_rank.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/-music-management-app/app/src/main/res/layout/item_user_layout.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/drawable/border_edittext.xml" value="0.1325" />
@@ -18,9 +22,7 @@
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_log_in.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_main_tab.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_register.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_song.xml" value="0.2706209453197405" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/activity_user.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/add_performance_info_dialog.xml" value="0.25" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/add_song_dialog.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/QuanLyAmNhac/app/src/main/res/layout/fragment_home.xml" value="0.20427305888483585" />
