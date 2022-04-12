@@ -1,6 +1,7 @@
 package com.example.quanlyamnhac;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -77,12 +78,13 @@ public class Register extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = txtEmail.getText().toString();
-                String phone = txtPhone.getText().toString();
-                String userName = txtUsername.getText().toString();
-                String password = txtPass.getText().toString();
-                String confirmPass = txtConfirmPass.getText().toString();
-                String avatar = txtAvatar.getText().toString();
+                String email = txtEmail.getText().toString().trim();
+                String phone = txtPhone.getText().toString().trim();
+                String userName = txtUsername.getText().toString().trim();
+                String password = txtPass.getText().toString().trim();
+                String confirmPass = txtConfirmPass.getText().toString().trim();
+                String avatar = txtAvatar.getText().toString().trim();
+
                 if(userName.equals("") || password.equals("") || confirmPass.equals("")){
                     Toast.makeText(Register.this, "Phải có đầy đủ thông tin user name và password", Toast.LENGTH_SHORT).show();
                 }
@@ -96,7 +98,7 @@ public class Register extends AppCompatActivity {
                     user.setPassword(password);
                     user.setAvatar(avatar);
 
-                    String phoneNumber = txtPhone.getText().toString();
+                    String phoneNumber = "+84" + txtPhone.getText().toString();
                     startVerifyPhoneNumber(phoneNumber);
 
                 }
@@ -118,7 +120,7 @@ public class Register extends AppCompatActivity {
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(Register.this, "Verification Fail!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Register.this, "Verification Fail!\nPlease check your phone num again!", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override // dt ko tu verify dc ma phai nhap

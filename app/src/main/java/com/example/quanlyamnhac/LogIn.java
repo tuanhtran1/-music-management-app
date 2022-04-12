@@ -65,15 +65,15 @@ public class LogIn extends AppCompatActivity {
 //                "FOREIGN KEY (singer_id) REFERENCES singer(id), FOREIGN KEY (song_id) REFERENCES song(id))");
 //
 //        // add data for musician
-//        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/276141901_2066437443551833_3554981700837470288_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=i7SadWFsptAAX9FR_pQ&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT85qMXcGLtQVJEopK4iRTiaDyDjHIVezcqixncEzAXj9w&oe=62544A22')");
+//        sqLite.queryData("INSERT INTO musician VALUES(null,'Tu Tran', 'https://scontent.fsgn8-1.fna.fbcdn.net/v/t39.30808-6/276141901_2066437443551833_3554981700837470288_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=32AQd9MTsRYAX9nfyGz&_nc_ht=scontent.fsgn8-1.fna&oh=00_AT-TFqmheEOH9ycVaW_PhjbyhRzsmn-rUePCV7mqfvAR8g&oe=625A38E2')");
 //        sqLite.queryData("INSERT INTO musician VALUES(null,'Long Le', 'https://scontent.fsgn5-11.fna.fbcdn.net/v/t1.6435-9/40971417_1099084503581285_4490043924605304832_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=lxykUsj-HB0AX8iVmMg&tn=mgMk5d9cE_sd-XQ0&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT-0yJsFUo3aLjDv3YStt5okM1J2K_cdVO34nBTlpyrCSw&oe=62767E25')");
 //        // add data for song
 //        sqLite.queryData("INSERT INTO song VALUES(null,'Lac troi', '1990', 1)");
 //        sqLite.queryData("INSERT INTO song VALUES(null,'Nang am xa dan', '1995', 1)");
 //        sqLite.queryData("INSERT INTO song VALUES(null,'Cong chua bong bong', '2000', 2)");
 //        // add data for user
-//        sqLite.queryData("INSERT INTO user VALUES(null,'johnnyhoang482@gmail.com','+840355114279','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
-//        sqLite.queryData("INSERT INTO user VALUES(null,'johnnyhoang482@gmail.com','+840355114279','hoang','321','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
+//        sqLite.queryData("INSERT INTO user VALUES(null,'johnnyhoang482@gmail.com','0355114279','admin','123','https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg')");
+//        sqLite.queryData("INSERT INTO user VALUES(null,'johnnyhoang482@gmail.com','0355114279','hoang','123','https://thuthuatnhanh.com/wp-content/uploads/2021/02/Anh-avatar-bua-cute-dep-390x390.jpg')");
 //        // add data for singer
 //        sqLite.queryData("INSERT INTO singer VALUES(null,'Son Tung', 'https://kenh14cdn.com/thumb_w/660/203336854389633024/2021/5/28/13285652342587086741428035430233108735653736n-1622165532863738421439.jpg')");
 //        sqLite.queryData("INSERT INTO singer VALUES(null,'Bao Thy', 'https://vnn-imgs-f.vgcloud.vn/2019/11/03/17/bao-thy-moi-thong-tin-ket-hon-khong-phai-tu-toi-deu-la-tin-don.jpg')");
@@ -99,8 +99,8 @@ public class LogIn extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userName = txtUser.getText().toString();
-                String password = txtPass.getText().toString();
+                String userName = txtUser.getText().toString().trim();
+                String password = txtPass.getText().toString().trim();
                 if(userName.equals("") || password.equals("")){
                     Toast.makeText(LogIn.this, "Vui lòng nhập đủ username và password", Toast.LENGTH_SHORT).show();
                 }
@@ -138,8 +138,7 @@ public class LogIn extends AppCompatActivity {
         fbQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userName = txtUser.getText().toString();
-
+                String userName = txtUser.getText().toString().trim();
                 if(userName.equals("")){
                     Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
                     return;
@@ -184,5 +183,6 @@ public class LogIn extends AppCompatActivity {
         );
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        // lam viec voi network tren thread chinh
     }
 }
