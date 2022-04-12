@@ -99,7 +99,7 @@ public class EditUser extends AppCompatActivity {
     }
 
     private void layDL(){
-        UserModel user = (UserModel) getIntent().getSerializableExtra("item");   //lay nguyen doi tuong(getSerializableExtra) country mà bên kia (adapter) gửi qua (bằng intent) (nhớ ép kiểu lại)
+        UserModel user = (UserModel) getIntent().getSerializableExtra("item");   //lay nguyen doi tuong(getSerializableExtra) user mà bên kia (adapter) gửi qua (bằng intent) (nhớ ép kiểu lại)
         tvID.setText( String.valueOf(user.getId()));
         txtEmail.setText(user.getEmail());
         txtPhone.setText(user.getPhone());

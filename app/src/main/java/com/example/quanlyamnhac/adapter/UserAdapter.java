@@ -30,17 +30,15 @@ public class UserAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return userModels.size();
-    }
+    public int getCount() {             // trả về số phần tử mà ListView hiện thị
+        return userModels.size(); }
 
     @Override
-    public Object getItem(int i) {
-        return null;
-    }
+    public Object getItem(int i) {      // trả về đối tượng dữ liệu phần tử ở vị trí position
+        return null; }
 
     @Override
-    public long getItemId(int i) {
+    public long getItemId(int i) {      //Trả về một ID liên quan đến phần tử ở vị trí position
         return 0;
     }
 
@@ -52,10 +50,10 @@ public class UserAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-
+        // viewholder giup tranh viec findViewById nhieu lan
         if(view == null){
             holder = new ViewHolder();
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); //chuyen layout thanh view de sd trong getView
             view = inflater.inflate(layout,null);
             holder.ivAvatar = (ImageView) view.findViewById(R.id.ivAvatar);
             holder.tvEmail = (TextView) view.findViewById(R.id.tvEmail);
@@ -77,7 +75,7 @@ public class UserAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, EditUser.class);
-                intent.putExtra("item",user);    // gửi nguyên cả 1 đối tượng 'country'
+                intent.putExtra("item",user);    // gửi nguyên cả 1 đối tượng 'user'
                 ((User)context).startActivityForResult(intent,2);
             }
         });
