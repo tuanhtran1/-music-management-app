@@ -1,19 +1,18 @@
 package com.example.quanlyamnhac;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.adapter.SongOfPerformanceInfoAdapter;
 import com.example.quanlyamnhac.mapper.SongMapper;
@@ -57,36 +56,34 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
     }
 
     private void mapping() {
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
 
         recycler_song = findViewById(R.id.recycler_song);
         toolbar = findViewById(R.id.toolbar);
 
         tv_songName = findViewById(R.id.tv_songName);
-        tv_musicianName= findViewById(R.id.tv_musicianName);
+        tv_musicianName = findViewById(R.id.tv_musicianName);
         tv_singerName = findViewById(R.id.tv_singerName);
     }
 
     private void setRecyclerSong() {
         recycler_song.setHasFixedSize(true);
         recycler_song.setLayoutManager(new LinearLayoutManager((this)));
-        songOfPerformanceInfoAdapter = new SongOfPerformanceInfoAdapter(this,getList());
+        songOfPerformanceInfoAdapter = new SongOfPerformanceInfoAdapter(this, getList());
         recycler_song.setAdapter(songOfPerformanceInfoAdapter);
     }
 
     private void layDL() {
         boolean check = getIntent().getBooleanExtra("toSongOfPerformanceInfo", false);
-        if(check)
-        {
+        if (check) {
             tv_songName.setText(getIntent().getStringExtra("songName"));
             tv_musicianName.setText(getIntent().getStringExtra("musicianName"));
             tv_singerName.setText(getIntent().getStringExtra("singerName"));
-        }
-        else {
+        } else {
             Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
                     " FROM song, singer, musician " +
-                    " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
-            if(cursor.moveToNext()){
+                    " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger + " AND musician.id = " + MusicianDetail.idMusician);
+            if (cursor.moveToNext()) {
                 tv_songName.setText(cursor.getString(0));
                 tv_musicianName.setText(cursor.getString(2));
                 tv_singerName.setText(cursor.getString(1));
@@ -108,7 +105,7 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -146,9 +143,9 @@ public class SongOfPerformanceInfo extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, SingerDetail.class);
         Cursor cursor = sqLite.getData(" SELECT singer.name, singer.image FROM singer WHERE singer.id =" + SingerDetail.idSinger);
-        if(cursor.moveToNext()){
-           itemSingerReponse.setNameSinger(cursor.getString(0));
-           itemSingerReponse.setImageSinger(cursor.getString(1));
+        if (cursor.moveToNext()) {
+            itemSingerReponse.setNameSinger(cursor.getString(0));
+            itemSingerReponse.setImageSinger(cursor.getString(1));
         }
         intent.putExtra("toSongOfPerformanceInfo", itemSingerReponse);
         startActivity(intent);

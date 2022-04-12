@@ -3,13 +3,13 @@ package com.example.quanlyamnhac.model.reponse;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PerformanceInfoReponse  implements Serializable {
+public class PerformanceInfoReponse implements Serializable {
     private String singerName;
     private String songName;
     private Date date;
     private String place;
 
-    public PerformanceInfoReponse(){
+    public PerformanceInfoReponse() {
 
     }
 

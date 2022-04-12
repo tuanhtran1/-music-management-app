@@ -2,14 +2,14 @@ package com.example.quanlyamnhac.fragment;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.adapter.HomeAdapter;
 import com.example.quanlyamnhac.mapper.HomeMapper;
@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
 
     private void mapping() {
 
-        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(getContext(), "music-managerment.sqlite", null, 1);
         recycler_home = view.findViewById(R.id.recycler_home);
     }
 
@@ -50,17 +50,17 @@ public class HomeFragment extends Fragment {
         recycler_home.setHasFixedSize(true);
         recycler_home.setLayoutManager(new LinearLayoutManager((getContext())));
         List<HomeReponse> homeReponseList = getList();
-        homeAdapter = new HomeAdapter(getContext(),homeReponseList);
+        homeAdapter = new HomeAdapter(getContext(), homeReponseList);
         recycler_home.setAdapter(homeAdapter);
     }
 
     private List<HomeReponse> getList() {
 
         Cursor cursor = sqLite.getData("SELECT song.name, musician.name, singer.name, song.yearofcreation FROM song, performance_info, musician, singer "
-        + " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id " +
+                + " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id " +
                 " AND song.id_musician = musician.id");
         List<HomeReponse> homeReponses = new ArrayList<>();
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             homeReponses.add(HomeMapper.toHomeReponse(cursor));
         }
 

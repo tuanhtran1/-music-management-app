@@ -31,7 +31,7 @@ public class Register extends AppCompatActivity {
 
     SQLite sqLite;
 
-    EditText txtEmail,txtPhone, txtUsername, txtPass, txtConfirmPass, txtAvatar;
+    EditText txtEmail, txtPhone, txtUsername, txtPass, txtConfirmPass, txtAvatar;
     Button btnDangKy;
     FloatingActionButton fbBack;
 
@@ -52,7 +52,7 @@ public class Register extends AppCompatActivity {
     private void setControl() {
 
         user = new UserModel();
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
 
         txtEmail = findViewById(R.id.txtEmail);
         txtPhone = findViewById(R.id.txtPhone);
@@ -77,26 +77,25 @@ public class Register extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = txtEmail.getText().toString();
-                String phone = txtPhone.getText().toString();
-                String userName = txtUsername.getText().toString();
-                String password = txtPass.getText().toString();
-                String confirmPass = txtConfirmPass.getText().toString();
-                String avatar = txtAvatar.getText().toString();
-                if(userName.equals("") || password.equals("") || confirmPass.equals("")){
+                String email = txtEmail.getText().toString().trim();
+                String phone = txtPhone.getText().toString().trim();
+                String userName = txtUsername.getText().toString().trim();
+                String password = txtPass.getText().toString().trim();
+                String confirmPass = txtConfirmPass.getText().toString().trim();
+                String avatar = txtAvatar.getText().toString().trim();
+
+                if (userName.equals("") || password.equals("") || confirmPass.equals("")) {
                     Toast.makeText(Register.this, "Phải có đầy đủ thông tin user name và password", Toast.LENGTH_SHORT).show();
-                }
-                else if(!password.equals(confirmPass)){
+                } else if (!password.equals(confirmPass)) {
                     Toast.makeText(Register.this, "Password không khớp", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     user.setEmail(email);
                     user.setPhone(phone);
                     user.setUsername(userName);
                     user.setPassword(password);
                     user.setAvatar(avatar);
 
-                    String phoneNumber = txtPhone.getText().toString();
+                    String phoneNumber = "+84" + txtPhone.getText().toString();
                     startVerifyPhoneNumber(phoneNumber);
 
                 }
@@ -118,7 +117,7 @@ public class Register extends AppCompatActivity {
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(Register.this, "Verification Fail!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Register.this, "Verification Fail!\nPlease check your phone num again!", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override // dt ko tu verify dc ma phai nhap
@@ -128,7 +127,7 @@ public class Register extends AppCompatActivity {
                                 Intent intent = new Intent(Register.this, EnterOTP.class);
                                 intent.putExtra("phone_number", phoneNumber);
                                 intent.putExtra("verification_id", verificationID);
-                                intent.putExtra("user",user);
+                                intent.putExtra("user", user);
                                 startActivity(intent);
                             }
                         })          // OnVerificationStateChangedCallbacks
@@ -148,7 +147,7 @@ public class Register extends AppCompatActivity {
 
                             FirebaseUser user = task.getResult().getUser();
                             // Update UI
-                            Intent intent = new Intent(Register.this,MainTabActivity.class);
+                            Intent intent = new Intent(Register.this, MainTabActivity.class);
                             startActivity(intent);
                         } else {
                             // Sign in failed, display a message and update the UI

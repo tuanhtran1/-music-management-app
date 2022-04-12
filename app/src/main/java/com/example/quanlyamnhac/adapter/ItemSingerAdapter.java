@@ -13,10 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.quanlyamnhac.MusicianDetail;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.SingerDetail;
-import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
@@ -47,7 +45,7 @@ public class ItemSingerAdapter extends ArrayAdapter<ItemSingerReponse> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(resource,null);
+        convertView = LayoutInflater.from(context).inflate(resource, null);
         ImageView ivImage = convertView.findViewById(R.id.ivImage);
         TextView tvName = convertView.findViewById(R.id.tvName);
 
@@ -62,10 +60,10 @@ public class ItemSingerAdapter extends ArrayAdapter<ItemSingerReponse> {
                 intent.putExtra("item", itemSinger); // gửi 1 đối tượng qua intent
 
                 // tìm ra row trong table musician có vi tri = positon = entiy
-                sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
+                sqLite = new SQLite(getContext(), "music-managerment.sqlite", null, 1);
                 Cursor cursor = sqLite.getData("SELECT singer.id FROM singer LIMIT 1 OFFSET " + position);
-                if(cursor.moveToNext()){
-                    SingerDetail.idSinger= cursor.getInt(0);
+                if (cursor.moveToNext()) {
+                    SingerDetail.idSinger = cursor.getInt(0);
                 }
                 getContext().startActivity(intent);
             }

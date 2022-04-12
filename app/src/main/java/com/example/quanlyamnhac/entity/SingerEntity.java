@@ -1,7 +1,5 @@
 package com.example.quanlyamnhac.entity;
 
-import java.io.Serializable;
-
 public class SingerEntity {
     private Integer id;
     private String name;

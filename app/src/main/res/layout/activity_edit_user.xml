@@ -18,7 +18,7 @@
         android:background="@drawable/border_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:hint="ID"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -28,28 +28,28 @@
         android:background="@drawable/border_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:hint="Email"
         android:id="@+id/txtEmail"/>
     <EditText
         android:background="@drawable/border_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:hint="Phone"
         android:id="@+id/txtPhone"/>
     <EditText
         android:background="@drawable/border_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:hint="Username"
         android:id="@+id/txtUsername"/>
     <EditText
         android:background="@drawable/border_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:hint="Password"
         android:id="@+id/txtPass"/>
     <EditText
@@ -57,13 +57,13 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:maxHeight="300dp"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:hint="Avartar"
         android:id="@+id/txtAvatar"/>
     <ImageView
         android:id="@+id/ivAvatar"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_gravity="center"/>
 
     <LinearLayout android:layout_width="match_parent"
