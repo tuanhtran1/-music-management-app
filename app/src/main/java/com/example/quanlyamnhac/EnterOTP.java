@@ -44,7 +44,7 @@ public class EnterOTP extends AppCompatActivity {
         setContentView(R.layout.activity_enter_otp);
 
         user = new UserModel();
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
 
         setControl();
         getDataIntent();
@@ -68,7 +68,7 @@ public class EnterOTP extends AppCompatActivity {
         });
     }
 
-    private void getDataIntent(){
+    private void getDataIntent() {
         mPhoneNumber = getIntent().getStringExtra("phone_number");
         mVerificationID = getIntent().getStringExtra("verification_id");
         user = (UserModel) getIntent().getSerializableExtra("user");
@@ -82,7 +82,7 @@ public class EnterOTP extends AppCompatActivity {
     }
 
     private void startSendOTPCode(String otp) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationID,otp);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationID, otp);
         signInWithPhoneAuthCredential(credential);
     }
 
@@ -96,10 +96,10 @@ public class EnterOTP extends AppCompatActivity {
                             Log.e(TAG, "signInWithCredential:success");
 
 
-                            String sql= "INSERT INTO user VALUES(null,'"+user.getEmail()+"','"+user.getPhone()+"','"+user.getUsername()+"','"+user.getPassword()+"','"+user.getAvatar()+"')";
+                            String sql = "INSERT INTO user VALUES(null,'" + user.getEmail() + "','" + user.getPhone() + "','" + user.getUsername() + "','" + user.getPassword() + "','" + user.getAvatar() + "')";
                             sqLite.queryData(sql);
 
-                            Intent intent = new Intent(EnterOTP.this,MainTabActivity.class);
+                            Intent intent = new Intent(EnterOTP.this, MainTabActivity.class);
                             startActivity(intent);
                             Toast.makeText(EnterOTP.this, "OTP verification success", Toast.LENGTH_SHORT).show();
 

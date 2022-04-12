@@ -27,5 +27,6 @@ public class ItemSingerReponse implements Serializable {
         this.imageSinger = imageSinger;
     }
 
-    public ItemSingerReponse(){}
+    public ItemSingerReponse() {
+    }
 }

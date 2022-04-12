@@ -3,9 +3,6 @@ package com.example.quanlyamnhac.fragment;
 import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +10,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.adapter.ItemSingerAdapter;
-import com.example.quanlyamnhac.adapter.SingerAdapter;
-import com.example.quanlyamnhac.entity.SingerEntity;
-import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.mapper.SingerMapper;
-import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -89,14 +83,14 @@ public class SingerFragment extends Fragment {
     private ArrayList<ItemSingerReponse> khoitao() {
         Cursor cursor = sqLite.getData("SELECT * FROM singer");
         ArrayList<ItemSingerReponse> itemSingerReponses = new ArrayList<>();
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             itemSingerReponses.add(SingerMapper.toItemSingerReponse(cursor));
         }
         return itemSingerReponses;
     }
 
     private void setControl() {
-        sqLite = new SQLite(getContext(),"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(getContext(), "music-managerment.sqlite", null, 1);
         fbThem = view.findViewById(R.id.fbThem);
         gvListSinger = view.findViewById(R.id.gvDanhSachCasi);
 

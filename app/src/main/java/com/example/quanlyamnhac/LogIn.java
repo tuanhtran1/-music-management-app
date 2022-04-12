@@ -1,7 +1,5 @@
 package com.example.quanlyamnhac;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quanlyamnhac.sqlite.SQLite;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,7 +29,7 @@ public class LogIn extends AppCompatActivity {
 
     SQLite sqLite;
 
-    EditText txtUser,txtPass;
+    EditText txtUser, txtPass;
     Button btnXacNhan;
     FloatingActionButton fbDangKy, fbBack, fbQuenMK;
 
@@ -85,7 +85,7 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void setControl() {
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
         txtUser = findViewById(R.id.txtUser);
         txtPass = findViewById(R.id.txtPass);
         btnXacNhan = findViewById(R.id.btnXacNhan);
@@ -101,14 +101,13 @@ public class LogIn extends AppCompatActivity {
             public void onClick(View view) {
                 String userName = txtUser.getText().toString().trim();
                 String password = txtPass.getText().toString().trim();
-                if(userName.equals("") || password.equals("")){
+                if (userName.equals("") || password.equals("")) {
                     Toast.makeText(LogIn.this, "Vui lòng nhập đủ username và password", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     Cursor cursor = sqLite.getData("SELECT * FROM user");
 //                    List<UserModel> userModels = new ArrayList<>();
-                    while(cursor.moveToNext()){
-                        if(cursor.getString(3).equals(userName) && cursor.getString(4).equals(password)) {
+                    while (cursor.moveToNext()) {
+                        if (cursor.getString(3).equals(userName) && cursor.getString(4).equals(password)) {
                             Intent intent = new Intent(LogIn.this, MainTabActivity.class);
                             startActivity(intent);
                             Toast.makeText(LogIn.this, "MAIN TAB", Toast.LENGTH_SHORT).show();
@@ -136,50 +135,49 @@ public class LogIn extends AppCompatActivity {
         });
 
         fbQuenMK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userName = txtUser.getText().toString().trim();
-                if(userName.equals("")){
-                    Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Cursor cursor = sqLite.getData("SELECT * FROM user WHERE username = '" + userName + "'");
-                if(cursor.moveToNext()){
-                        final String username = "johnnyhoang482@gmail.com";
-                        final String password = "ahtxuatpvsbecehk";
-                        Random random = new Random();
-                        int randomNumber = random.nextInt(999999);
-                        sqLite.queryData("UPDATE user SET password = '"+randomNumber+"' WHERE id = "+cursor.getInt(0));
-                        String messageToSend = String.valueOf(randomNumber);
-                        Properties props = new Properties();
-                        props.put("mail.smtp.auth","true");
-                        props.put("mail.smtp.starttls.enable","true");
-                        props.put("mail.smtp.host","smtp.gmail.com");
-                        props.put("mail.smtp.port","587");
-                        Session session = Session.getInstance(props,
-                                new javax.mail.Authenticator(){
-                                    @Override
-                                    protected PasswordAuthentication getPasswordAuthentication() {
-                                        return new PasswordAuthentication(username, password);
+                                        @Override
+                                        public void onClick(View view) {
+                                            String userName = txtUser.getText().toString().trim();
+                                            if (userName.equals("")) {
+                                                Toast.makeText(LogIn.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+                                            Cursor cursor = sqLite.getData("SELECT * FROM user WHERE username = '" + userName + "'");
+                                            if (cursor.moveToNext()) {
+                                                final String username = "johnnyhoang482@gmail.com";
+                                                final String password = "ahtxuatpvsbecehk";
+                                                Random random = new Random();
+                                                int randomNumber = random.nextInt(999999);
+                                                sqLite.queryData("UPDATE user SET password = '" + randomNumber + "' WHERE id = " + cursor.getInt(0));
+                                                String messageToSend = String.valueOf(randomNumber);
+                                                Properties props = new Properties();
+                                                props.put("mail.smtp.auth", "true");
+                                                props.put("mail.smtp.starttls.enable", "true");
+                                                props.put("mail.smtp.host", "smtp.gmail.com");
+                                                props.put("mail.smtp.port", "587");
+                                                Session session = Session.getInstance(props,
+                                                        new javax.mail.Authenticator() {
+                                                            @Override
+                                                            protected PasswordAuthentication getPasswordAuthentication() {
+                                                                return new PasswordAuthentication(username, password);
+                                                            }
+                                                        });
+                                                try {
+                                                    Message message = new MimeMessage(session);
+                                                    message.setFrom(new InternetAddress(username));
+                                                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(cursor.getString(1)));
+                                                    message.setSubject("Thay đổi mật khẩu!");
+                                                    message.setText(messageToSend);
+                                                    Transport.send(message);
+                                                    Toast.makeText(getApplicationContext(), "Password mới đã được gửi vào email", Toast.LENGTH_LONG).show();
+                                                } catch (MessagingException e) {
+                                                    throw new RuntimeException();
+                                                }
+                                            } else {
+                                                Toast.makeText(LogIn.this, "Tai khoan khong ton tai!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
                                     }
-                                });
-                        try{
-                            Message message = new MimeMessage(session);
-                            message.setFrom(new InternetAddress(username));
-                            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(cursor.getString(1)));
-                            message.setSubject("Thay đổi mật khẩu!");
-                            message.setText(messageToSend);
-                            Transport.send(message);
-                            Toast.makeText(getApplicationContext(),"Password mới đã được gửi vào email",Toast.LENGTH_LONG).show();
-                        }catch (MessagingException e){
-                            throw new RuntimeException();
-                        }
-                    }
-                    else{
-                        Toast.makeText(LogIn.this, "Tai khoan khong ton tai!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
         );
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);

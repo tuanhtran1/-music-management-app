@@ -39,7 +39,7 @@ public class User extends AppCompatActivity {
         adapter = new UserAdapter(this, R.layout.item_user_layout, arrayUser);
         lvUser.setAdapter(adapter);
 
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
 //        String pathdb = getDatabasePath("music-managerment.sqlite").getPath();
 //        sqLite = SQLiteDatabase.openDatabase(pathdb, null, SQLiteDatabase.OPEN_READWRITE);
 
@@ -49,6 +49,7 @@ public class User extends AppCompatActivity {
         setEvent();
         setToolBar();
     }
+
     private void setToolBar() {
         //Set toolbar as action bar
         setSupportActionBar(toolbar);
@@ -57,6 +58,7 @@ public class User extends AppCompatActivity {
         //Toolbar title
         getSupportActionBar().setTitle(getString(R.string.app_name));
     }
+
     private void setEvent() {
 
     }
@@ -66,17 +68,17 @@ public class User extends AppCompatActivity {
         lvUser = findViewById(R.id.lvUser);
     }
 
-    public void GetDataUser(){
+    public void GetDataUser() {
         Cursor dataUser = sqLite.getData("SELECT * FROM User ");
         arrayUser.clear();
-        while (dataUser.moveToNext()){
+        while (dataUser.moveToNext()) {
             int id = dataUser.getInt(0);
             String email = dataUser.getString(1); //lay data tu cot 1: email
             String phone = dataUser.getString(2);
             String username = dataUser.getString(3);
             String password = dataUser.getString(4);
             String avatar = dataUser.getString(5);
-            arrayUser.add(new UserModel(id,email,phone,username,password,avatar)); //list
+            arrayUser.add(new UserModel(id, email, phone, username, password, avatar)); //list
         }
         adapter.notifyDataSetChanged();
     }
@@ -84,8 +86,8 @@ public class User extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-          // lấy dữ liệu được gửi từ edit đưa sang
-        if(requestCode == 2) {
+        // lấy dữ liệu được gửi từ edit đưa sang
+        if (requestCode == 2) {
 
             if (resultCode == 1) {
                 UserModel user = (UserModel) data.getSerializableExtra("item");
@@ -96,24 +98,25 @@ public class User extends AppCompatActivity {
                 deleteUser(user);
                 Toast.makeText(this, "Đã xóa", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             finish();
         }
     }
 
-    public void editUser(UserModel user){
-        sqLite.queryData("UPDATE User SET email = '"+user.getEmail()+"', phone = '"+user.getPhone()+"', username = '"+user.getUsername()+"', password = '"+user.getPassword()+"', avatar = '"+user.getAvatar()+"' WHERE id = '"+user.getId()+"'");
+    public void editUser(UserModel user) {
+        sqLite.queryData("UPDATE User SET email = '" + user.getEmail() + "', phone = '" + user.getPhone() + "', username = '" + user.getUsername() + "', password = '" + user.getPassword() + "', avatar = '" + user.getAvatar() + "' WHERE id = '" + user.getId() + "'");
         GetDataUser();
     }
 
-    public void deleteUser(UserModel user){
-        sqLite.queryData("DELETE FROM User WHERE id = '"+user.getId()+"' ");
+    public void deleteUser(UserModel user) {
+        sqLite.queryData("DELETE FROM User WHERE id = '" + user.getId() + "' ");
         arrayUser.remove(user);
         GetDataUser();  //cập nhật lại DL
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

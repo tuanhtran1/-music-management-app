@@ -9,7 +9,7 @@ public class PerformanceInfoEntity {
     private Date performanceDay;
     private String place;
 
-    public PerformanceInfoEntity(){
+    public PerformanceInfoEntity() {
     }
 
     public PerformanceInfoEntity(Integer id, Integer singerId, Integer songId, Date performanceDay, String place) {

@@ -5,7 +5,7 @@ import android.database.Cursor;
 import com.example.quanlyamnhac.model.reponse.HomeReponse;
 
 public class HomeMapper {
-    public static HomeReponse toHomeReponse(Cursor cursor){
+    public static HomeReponse toHomeReponse(Cursor cursor) {
         HomeReponse homeReponse = new HomeReponse();
         homeReponse.setSongName(cursor.getString(0));
         homeReponse.setMusicianName(cursor.getString(1));

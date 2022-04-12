@@ -1,10 +1,8 @@
 package com.example.quanlyamnhac.entity;
 
-import java.io.Serializable;
-
-public class UserEntity{
+public class UserEntity {
     private Integer id;
-    private String email,phone,username,password,avatar;
+    private String email, phone, username, password, avatar;
 
     public UserEntity() {
     }

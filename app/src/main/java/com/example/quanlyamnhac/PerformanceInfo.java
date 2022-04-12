@@ -1,26 +1,21 @@
 package com.example.quanlyamnhac;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.quanlyamnhac.mapper.PerformanceInfoMapper;
-import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
 import com.example.quanlyamnhac.model.reponse.PerformanceInfoReponse;
 import com.example.quanlyamnhac.sqlite.SQLite;
 
@@ -55,15 +50,15 @@ public class PerformanceInfo extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), SongOfPerformanceInfo.class); //SongOfPerformanceInfo
                 Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
                         " FROM song, singer, musician " +
-                        " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
-                if(cursor.moveToNext()){
+                        " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger + " AND musician.id = " + MusicianDetail.idMusician);
+                if (cursor.moveToNext()) {
                     intent.putExtra("songName", cursor.getInt(0));
                     System.out.println(cursor.getInt(0));
                     intent.putExtra("musicianName", cursor.getInt(1));
                     intent.putExtra("singerName", cursor.getInt(2));
                 }
                 sqLite.queryData("DELETE FROM performance_info WHERE performance_info.id = " + PerformanceInfo.idPerformanceInfo);
-                Toast.makeText(view.getContext(),"Delete success",Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Delete success", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -74,8 +69,8 @@ public class PerformanceInfo extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), SongOfPerformanceInfo.class); //SongOfPerformanceInfo
                 Cursor cursor = sqLite.getData(" SELECT song.name, singer.name, musician.name " +
                         " FROM song, singer, musician " +
-                        " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger+ " AND musician.id = " + MusicianDetail.idMusician);
-                if(cursor.moveToNext()){
+                        " WHERE song.id = " + SongOfPerformanceInfo.idSong + " AND singer.id = " + SingerDetail.idSinger + " AND musician.id = " + MusicianDetail.idMusician);
+                if (cursor.moveToNext()) {
                     intent.putExtra("songName", cursor.getString(0));
                     intent.putExtra("musicianName", cursor.getString(1));
                     intent.putExtra("singerName", cursor.getString(2));
@@ -83,9 +78,9 @@ public class PerformanceInfo extends AppCompatActivity {
                     intent.putExtra("toSongOfPerformanceInfo", 1);
                 }
 
-                sqLite.queryData("UPDATE performance_info SET performance_day = '" + et_performance_day.getText() + "', place = '" + et_place.getText()+ "'" +
-                                " WHERE performance_info.id = " + PerformanceInfo.idPerformanceInfo);
-                Toast.makeText(view.getContext(),"Update success",Toast.LENGTH_SHORT).show();
+                sqLite.queryData("UPDATE performance_info SET performance_day = '" + et_performance_day.getText() + "', place = '" + et_place.getText() + "'" +
+                        " WHERE performance_info.id = " + PerformanceInfo.idPerformanceInfo);
+                Toast.makeText(view.getContext(), "Update success", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -97,7 +92,7 @@ public class PerformanceInfo extends AppCompatActivity {
                 " FROM song, singer, performance_info" +
                 " WHERE performance_info.singer_id =  singer.id AND performance_info.song_id = song.id " +
                 " AND performance_info.id = " + PerformanceInfo.idPerformanceInfo);
-        if(cursor.moveToNext()){
+        if (cursor.moveToNext()) {
             PerformanceInfoReponse performanceInfoReponse = PerformanceInfoMapper.toPerformanceInfoReponse(cursor);
             et_song_name.setText(performanceInfoReponse.getSongName());
             et_singer_name.setText(performanceInfoReponse.getSingerName());
@@ -118,7 +113,7 @@ public class PerformanceInfo extends AppCompatActivity {
     }
 
     private void mapping() {
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
 
         toolbar = findViewById(R.id.toolbar);
 
@@ -132,9 +127,10 @@ public class PerformanceInfo extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
@@ -158,6 +154,7 @@ public class PerformanceInfo extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
