@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0C000000">
+
+    <TextView
+        android:id="@+id/hang"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:lineHeight="56dp"
+        android:minWidth="25dp"
+        android:text="num"
+        android:textColor="#123"
+        android:textSize="12sp"
+        android:textStyle="bold"></TextView>
+
 
     <ImageView
-        android:layout_width="55dp"
-        android:layout_height="55dp"
         android:id="@+id/imgsong"
-        android:src="@mipmap/ic_launcher">
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_toRightOf="@+id/hang"
+        android:src="@drawable/img">
 
     </ImageView>
 
@@ -16,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imgsong"
-        android:text="THE SCHOOL"
+        android:text="NAME SONG"
         android:textColor="#123"
         android:textSize="17sp"
         android:textStyle="bold"></TextView>
@@ -27,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/ten"
-        android:text="decription"
+        android:text="CA SI"
         android:textColor="#123"
         android:textSize="13sp">
 
@@ -42,7 +57,7 @@
         android:layout_toRightOf="@+id/imgsong"
         android:text="sáng tác"
         android:textColor="#123"
-        android:textSize="12sp"
+        android:textSize="13sp"
         android:textStyle="italic">
 
     </TextView>

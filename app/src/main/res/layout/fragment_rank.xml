@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-
+        android:layout_width="402dp"
+        android:layout_height="52dp"
         android:layout_marginBottom="10dp"
-        android:text="Báº£ng Xáº¿p Háº¡ng"
+        android:background="@drawable/img_1"
+        android:gravity="center"
+        android:text="Bảng Xếp Hạng"
         android:textAlignment="center"
-        android:textColor="#2E2525"
+        android:textColor="#FFF"
+
         android:textSize="20sp"></TextView>
 
     <TextView
@@ -23,45 +23,29 @@
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_below="@+id/title"
-        android:text="Báº£ng Xáº¿p Háº¡ng  cáº­p nháº­t vĂ o thá»© Hai hĂ ng tuáº§n dá»±a trĂªn sá»‘ liá»‡u thá»‘ng kĂª thá»±c táº¿ trĂªn desktop vĂ  mobile . Trong Ä‘Ă³ nhá»¯ng trá»ng sá»‘ quan trá»ng quyáº¿t Ä‘á»‹nh thá»© háº¡ng: Nghe, ThĂ­ch, BĂ¬nh Luáº­n, Chia sáº», Táº£i v.v."
+        android:text="Bảng Xếp Hạng  cập nhật vào thứ Hai hàng tuần dựa trên số liệu thống kê thực tế trên desktop và mobile . Trong đó những trọng số quan trọng quyết định thứ hạng: Nghe, Thích, Bình Luận, Chia sẻ, Tải v.v."
         android:textAlignment="center"
         android:textSize="10sp"></TextView>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
         android:id="@+id/layoutbxh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0C000000"
-        android:layout_below="@+id/decriptiontitle">
+        android:layout_below="@+id/decriptiontitle"
+        android:layout_marginTop="10dp"
+        android:background="#0C000000">
 
-        <ImageButton
-            android:id="@+id/BTN_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:src="@drawable/ic_playicon" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:layout_toRightOf="@+id/BTN_1"
-
-            android:text="Tuáº§n 12 (21/03/2022 - 27/03/2022)"
-
-            >
-
-        </TextView>
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="280dp"
+            android:layout_height="42dp" />
 
         <ImageButton
             android:id="@+id/BTN_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/spinner1"
 
-            android:layout_toRightOf="@+id/textView5"
             android:drawablePadding="10dp"
             android:src="@drawable/ic_backicon" />
 
@@ -74,6 +58,7 @@
             android:layout_toRightOf="@+id/BTN_2"
             android:text="PlayAll" />
 
+
     </RelativeLayout>
 
     <ListView
@@ -81,7 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layoutbxh"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="18dp"
+        >
 
     </ListView>
 
