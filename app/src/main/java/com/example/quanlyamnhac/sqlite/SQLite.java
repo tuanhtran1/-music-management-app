@@ -24,12 +24,12 @@ public class SQLite extends SQLiteOpenHelper {
     }
 
     // cursor = resultset
-    public Cursor getData(String sql){
+    public Cursor getData(String sql) {
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(sql, null);
     }
 
-    public void queryData(String sql){
+    public void queryData(String sql) {
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL(sql);
         database.close();

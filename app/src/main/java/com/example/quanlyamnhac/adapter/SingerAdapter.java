@@ -45,7 +45,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
     public void onBindViewHolder(@NonNull SingerAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (singerModels != null && singerModels.size() > 0) {
             SingerReponse singerReponse = singerModels.get(position);
-            holder.et_stt.setText(String.valueOf(position+1));
+            holder.et_stt.setText(String.valueOf(position + 1));
             holder.et_music.setText(singerReponse.getSongName());
             holder.et_musician.setText(singerReponse.getMusicianName());
             holder.et_year_of_creation.setText(singerReponse.getYearOfCreation());
@@ -61,8 +61,8 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
                             " FROM song, musician, singer, performance_info " +
                             " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id" +
                             " AND song.id_musician = musician.id AND singer.id = " + SingerDetail.idSinger + " LIMIT 1 OFFSET " + position);
-                    if(cursor.moveToNext()){
-                        System.out.println(SingerDetail.idSinger + " " + cursor.getInt(0) + " "+ cursor.getInt(1));
+                    if (cursor.moveToNext()) {
+                        System.out.println(SingerDetail.idSinger + " " + cursor.getInt(0) + " " + cursor.getInt(1));
                         SongOfPerformanceInfo.idSong = cursor.getInt(0);
                         MusicianDetail.idMusician = cursor.getInt(1);
                     }
@@ -82,6 +82,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView et_stt, et_music, et_musician, et_year_of_creation;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

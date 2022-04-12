@@ -9,13 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
-
 import com.example.quanlyamnhac.EditUser;
 import com.example.quanlyamnhac.R;
 import com.example.quanlyamnhac.User;
 import com.example.quanlyamnhac.model.UserModel;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class UserAdapter extends BaseAdapter {
     // nạp dữ liệu cho listview của ds user
@@ -44,26 +44,25 @@ public class UserAdapter extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         ImageView ivAvatar;
-        TextView tvEmail,tvPhone,tvUsername;
+        TextView tvEmail, tvPhone, tvUsername;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
 
-        if(view == null){
+        if (view == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(layout,null);
+            view = inflater.inflate(layout, null);
             holder.ivAvatar = (ImageView) view.findViewById(R.id.ivAvatar);
             holder.tvEmail = (TextView) view.findViewById(R.id.tvEmail);
             holder.tvPhone = (TextView) view.findViewById(R.id.tvPhone);
             holder.tvUsername = (TextView) view.findViewById(R.id.tvUsername);
             view.setTag(holder);
-        }
-        else{
+        } else {
             holder = (ViewHolder) view.getTag();
         }
 
@@ -77,8 +76,8 @@ public class UserAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, EditUser.class);
-                intent.putExtra("item",user);    // gửi nguyên cả 1 đối tượng 'country'
-                ((User)context).startActivityForResult(intent,2);
+                intent.putExtra("item", user);    // gửi nguyên cả 1 đối tượng 'country'
+                ((User) context).startActivityForResult(intent, 2);
             }
         });
 

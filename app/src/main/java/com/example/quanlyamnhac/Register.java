@@ -1,7 +1,6 @@
 package com.example.quanlyamnhac;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +31,7 @@ public class Register extends AppCompatActivity {
 
     SQLite sqLite;
 
-    EditText txtEmail,txtPhone, txtUsername, txtPass, txtConfirmPass, txtAvatar;
+    EditText txtEmail, txtPhone, txtUsername, txtPass, txtConfirmPass, txtAvatar;
     Button btnDangKy;
     FloatingActionButton fbBack;
 
@@ -53,7 +52,7 @@ public class Register extends AppCompatActivity {
     private void setControl() {
 
         user = new UserModel();
-        sqLite = new SQLite(this,"music-managerment.sqlite", null, 1);
+        sqLite = new SQLite(this, "music-managerment.sqlite", null, 1);
 
         txtEmail = findViewById(R.id.txtEmail);
         txtPhone = findViewById(R.id.txtPhone);
@@ -85,13 +84,11 @@ public class Register extends AppCompatActivity {
                 String confirmPass = txtConfirmPass.getText().toString().trim();
                 String avatar = txtAvatar.getText().toString().trim();
 
-                if(userName.equals("") || password.equals("") || confirmPass.equals("")){
+                if (userName.equals("") || password.equals("") || confirmPass.equals("")) {
                     Toast.makeText(Register.this, "Phải có đầy đủ thông tin user name và password", Toast.LENGTH_SHORT).show();
-                }
-                else if(!password.equals(confirmPass)){
+                } else if (!password.equals(confirmPass)) {
                     Toast.makeText(Register.this, "Password không khớp", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     user.setEmail(email);
                     user.setPhone(phone);
                     user.setUsername(userName);
@@ -130,7 +127,7 @@ public class Register extends AppCompatActivity {
                                 Intent intent = new Intent(Register.this, EnterOTP.class);
                                 intent.putExtra("phone_number", phoneNumber);
                                 intent.putExtra("verification_id", verificationID);
-                                intent.putExtra("user",user);
+                                intent.putExtra("user", user);
                                 startActivity(intent);
                             }
                         })          // OnVerificationStateChangedCallbacks
@@ -150,7 +147,7 @@ public class Register extends AppCompatActivity {
 
                             FirebaseUser user = task.getResult().getUser();
                             // Update UI
-                            Intent intent = new Intent(Register.this,MainTabActivity.class);
+                            Intent intent = new Intent(Register.this, MainTabActivity.class);
                             startActivity(intent);
                         } else {
                             // Sign in failed, display a message and update the UI

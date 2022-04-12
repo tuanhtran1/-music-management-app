@@ -47,7 +47,7 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
     public void onBindViewHolder(@NonNull MusicianAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (musicianModels != null && musicianModels.size() > 0) {
             MusicianReponse musicianReponse = musicianModels.get(position);
-            holder.et_stt.setText(String.valueOf(position+1));
+            holder.et_stt.setText(String.valueOf(position + 1));
             holder.et_songName.setText(musicianReponse.getSongName());
             holder.et_yearOfCreation.setText(musicianReponse.getYearOfCreation());
 
@@ -55,7 +55,7 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(context,  SongDetail.class);
+                    Intent intent = new Intent(context, SongDetail.class);
 
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
                     Cursor cursor = sqLite.getData(" SELECT * " +
@@ -63,10 +63,10 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
                             " LIMIT 1 OFFSET " + position);
                     System.out.println("Vi tri: " + position);
                     SongEntity songEntity = null;
-                    if(cursor.moveToNext()){
+                    if (cursor.moveToNext()) {
                         songEntity = SongMapper.toSongEntity(cursor);
                         System.out.println(songEntity.getId());
-                        SongDetail.idSong =  songEntity.getId();
+                        SongDetail.idSong = songEntity.getId();
                     }
                     intent.putExtra("songEntity", songEntity);
                     context.startActivity(intent);
@@ -88,7 +88,7 @@ public class MusicianAdapter extends RecyclerView.Adapter<MusicianAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            et_stt =  itemView.findViewById(R.id.et_stt);
+            et_stt = itemView.findViewById(R.id.et_stt);
             et_songName = itemView.findViewById(R.id.et_songName);
             et_yearOfCreation = itemView.findViewById(R.id.et_yearOfCreation);
         }

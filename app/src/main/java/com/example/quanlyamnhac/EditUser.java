@@ -21,9 +21,9 @@ import com.squareup.picasso.Picasso;
 
 public class EditUser extends AppCompatActivity {
     TextView tvID;
-    EditText txtEmail,txtPhone,txtUsername,txtPass,txtAvatar;
+    EditText txtEmail, txtPhone, txtUsername, txtPass, txtAvatar;
     ImageView ivAvatar;
-    Button btnXoa,btnSua,btnHuy;
+    Button btnXoa, btnSua, btnHuy;
 
     Toolbar toolbar;
 
@@ -37,6 +37,7 @@ public class EditUser extends AppCompatActivity {
         setEvent();
         setToolBar();
     }
+
     private void setToolBar() {
         //Set toolbar as action bar
         setSupportActionBar(toolbar);
@@ -45,14 +46,15 @@ public class EditUser extends AppCompatActivity {
         //Toolbar title
         getSupportActionBar().setTitle(getString(R.string.app_name));
     }
+
     private void setEvent() {
         layDL();
         btnSua.setOnClickListener(new View.OnClickListener() {  // không xử lý hàm sửa ở đây mà phải chuyển qua hàm main
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("item",getUser()); // đưa dữ liệu lấy được từ getCountry vào item
-                setResult(1,intent);    // set result code cho intent để khi gửi qua main phân biệt đc
+                intent.putExtra("item", getUser()); // đưa dữ liệu lấy được từ getCountry vào item
+                setResult(1, intent);    // set result code cho intent để khi gửi qua main phân biệt đc
                 finish();   // finish giúp quay về trang trước
             }
         });
@@ -60,8 +62,8 @@ public class EditUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("item",getUser());
-                setResult(2,intent);
+                intent.putExtra("item", getUser());
+                setResult(2, intent);
                 finish();
             }
         });
@@ -74,7 +76,8 @@ public class EditUser extends AppCompatActivity {
         });
     }
 
-    private void setControl() {toolbar = findViewById(R.id.toolbar);
+    private void setControl() {
+        toolbar = findViewById(R.id.toolbar);
         tvID = findViewById(R.id.tvID);
         txtEmail = findViewById(R.id.txtEmail);
         txtPhone = findViewById(R.id.txtPhone);
@@ -87,7 +90,7 @@ public class EditUser extends AppCompatActivity {
         btnHuy = findViewById(R.id.btnHuy);
     }
 
-    private UserModel getUser(){
+    private UserModel getUser() {
         UserModel user = new UserModel();
         user.setId(Integer.parseInt((tvID.getText().toString())));
         user.setEmail(txtEmail.getText().toString());
@@ -98,9 +101,9 @@ public class EditUser extends AppCompatActivity {
         return user;
     }
 
-    private void layDL(){
+    private void layDL() {
         UserModel user = (UserModel) getIntent().getSerializableExtra("item");   //lay nguyen doi tuong(getSerializableExtra) country mà bên kia (adapter) gửi qua (bằng intent) (nhớ ép kiểu lại)
-        tvID.setText( String.valueOf(user.getId()));
+        tvID.setText(String.valueOf(user.getId()));
         txtEmail.setText(user.getEmail());
         txtPhone.setText(user.getPhone());
         txtUsername.setText(user.getUsername());
@@ -111,7 +114,7 @@ public class EditUser extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -1,21 +1,17 @@
 package com.example.quanlyamnhac;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.example.quanlyamnhac.adapter.ViewPagerAdapter;
-import com.example.quanlyamnhac.fragment.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -38,17 +34,15 @@ public class MainTabActivity extends AppCompatActivity {
 
     private void checkTab() {
         String current_tab;
-        try{
+        try {
             current_tab = getIntent().getStringExtra("cTab");
-            if(current_tab.equals("MusicianTab"))
-            {
+            if (current_tab.equals("MusicianTab")) {
                 mviewPager.setCurrentItem(1);
             }
-            if(current_tab.equals("SingerTab"))
-            {
+            if (current_tab.equals("SingerTab")) {
                 mviewPager.setCurrentItem(2);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             mviewPager.setCurrentItem(0);
         }
     }
@@ -66,7 +60,7 @@ public class MainTabActivity extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(this);
         mviewPager.setAdapter(viewPagerAdapter);
         new TabLayoutMediator(mTabLayout, mviewPager, (tab, position) -> {
-            switch (position){
+            switch (position) {
                 case 0:
                     tab.setText("Home");
                     break;
@@ -92,7 +86,7 @@ public class MainTabActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

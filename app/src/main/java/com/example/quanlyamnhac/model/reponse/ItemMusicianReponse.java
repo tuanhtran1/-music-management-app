@@ -27,5 +27,6 @@ public class ItemMusicianReponse implements Serializable {
         this.imageMusician = imageMusician;
     }
 
-    public ItemMusicianReponse(){}
+    public ItemMusicianReponse() {
+    }
 }
