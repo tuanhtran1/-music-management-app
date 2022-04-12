@@ -1,11 +1,5 @@
 package com.example.quanlyamnhac;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,6 +18,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.quanlyamnhac.adapter.SingerAdapter;
 import com.example.quanlyamnhac.mapper.SingerMapper;
 import com.example.quanlyamnhac.model.reponse.ItemSingerReponse;
@@ -32,9 +32,7 @@ import com.example.quanlyamnhac.sqlite.SQLite;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SingerDetail extends AppCompatActivity {
 
@@ -50,6 +48,7 @@ public class SingerDetail extends AppCompatActivity {
 
 
     Integer idSong;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +64,7 @@ public class SingerDetail extends AppCompatActivity {
         //list Bai Hat
         rvDanhSachBaiHat.setHasFixedSize(true);
         rvDanhSachBaiHat.setLayoutManager(new LinearLayoutManager(this));
-        SingerAdapter singerAdapter= new SingerAdapter(this, getList());
+        SingerAdapter singerAdapter = new SingerAdapter(this, getList());
         rvDanhSachBaiHat.setAdapter(singerAdapter);
 
         btnXoa.setOnClickListener(new View.OnClickListener() {
@@ -73,12 +72,12 @@ public class SingerDetail extends AppCompatActivity {
             public void onClick(View view) {
                 Cursor cursor = sqLite.getData("SELECT singer.id FROM singer WHERE EXISTS " +
                         " (SELECT performance_info.singer_id FROM performance_info WHERE performance_info.singer_id = " + SingerDetail.idSinger + ")");
-                if(cursor.moveToNext()){
-                    Toast.makeText(view.getContext(),"Hay chac chan vi da co  ",Toast.LENGTH_SHORT).show();
+                if (cursor.moveToNext()) {
+                    Toast.makeText(view.getContext(), "Hay chac chan vi da co  ", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 sqLite.queryData("DELETE FROM singer WHERE singer.id = " + SingerDetail.idSinger);
-                Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Deleting...", Toast.LENGTH_SHORT).show();
 
 
 //                // Find the view pager that will allow the user to swipe between fragments
@@ -104,14 +103,14 @@ public class SingerDetail extends AppCompatActivity {
                 Button submitButton = dialog.findViewById(R.id.btn_submit);
 
                 ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
-                String name = singerModel.getNameSinger(), image = singerModel.getImageSinger() ;
+                String name = singerModel.getNameSinger(), image = singerModel.getImageSinger();
                 singerName.setText(name);
                 linkImageSinger.setText(image);
 
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        sqLite.queryData("UPDATE singer SET name = '" + singerName.getText() + "', image = '" + linkImageSinger.getText()+ "'" +
+                        sqLite.queryData("UPDATE singer SET name = '" + singerName.getText() + "', image = '" + linkImageSinger.getText() + "'" +
                                 " WHERE singer.id = " + SingerDetail.idSinger);
                         dialog.dismiss();
                         Intent intent = new Intent(view.getContext(), MainTabActivity.class);
@@ -134,12 +133,12 @@ public class SingerDetail extends AppCompatActivity {
                 Cursor cursor = sqLite.getData(" SELECT song.id, song.name FROM song");
                 List<Integer> listIdSong = new ArrayList<>();
                 List<String> listNameSong = new ArrayList<>();
-                while(cursor.moveToNext()){
+                while (cursor.moveToNext()) {
                     listIdSong.add(cursor.getInt(0));
                     listNameSong.add(cursor.getString(1));
                 }
 
-                ArrayAdapter<String> adapter = new ArrayAdapter(SingerDetail.this,android.R.layout.simple_list_item_1 , listNameSong);
+                ArrayAdapter<String> adapter = new ArrayAdapter(SingerDetail.this, android.R.layout.simple_list_item_1, listNameSong);
                 adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
                 sp_song.setAdapter(adapter);
 
@@ -149,6 +148,7 @@ public class SingerDetail extends AppCompatActivity {
                         Toast.makeText(SingerDetail.this, listIdSong.get(i) + "", Toast.LENGTH_SHORT).show();
                         idSong = listIdSong.get(i);
                     }
+
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -158,7 +158,7 @@ public class SingerDetail extends AppCompatActivity {
                 final TextView tv_singer_name = dialog.findViewById(R.id.tv_singer_name);
                 cursor = sqLite.getData(" SELECT singer.name FROM singer WHERE singer.id = " +
                         SingerDetail.idSinger);
-                if(cursor.moveToNext()){
+                if (cursor.moveToNext()) {
                     tv_singer_name.setText(cursor.getString(0));
                 }
                 final EditText et_performance_day = dialog.findViewById(R.id.et_performance_day);
@@ -168,9 +168,9 @@ public class SingerDetail extends AppCompatActivity {
                 btn_submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                      sqLite.queryData("INSERT INTO performance_info VALUES" +
-                              "(null, " + SingerDetail.idSinger + "," + idSong + ",'" + et_performance_day.getText()
-                              + "','" + et_place.getText() + "')");
+                        sqLite.queryData("INSERT INTO performance_info VALUES" +
+                                "(null, " + SingerDetail.idSinger + "," + idSong + ",'" + et_performance_day.getText()
+                                + "','" + et_place.getText() + "')");
                         dialog.dismiss();
                         setEvent();
                     }
@@ -198,9 +198,7 @@ public class SingerDetail extends AppCompatActivity {
             ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("toSongOfPerformanceInfo");
             et_name.setText(singerModel.getNameSinger());
             Picasso.get().load(singerModel.getImageSinger()).into(ivImg);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             ItemSingerReponse singerModel = (ItemSingerReponse) getIntent().getSerializableExtra("item");
             et_name.setText(singerModel.getNameSinger());
             Picasso.get().load(singerModel.getImageSinger()).into(ivImg);

@@ -18,12 +18,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlyamnhac.adapter.MusicianAdapter;
-import com.example.quanlyamnhac.fragment.MusicianFragment;
 import com.example.quanlyamnhac.mapper.MusicianMapper;
 import com.example.quanlyamnhac.model.reponse.ItemMusicianReponse;
 import com.example.quanlyamnhac.model.reponse.MusicianReponse;
@@ -64,18 +62,18 @@ public class MusicianDetail extends AppCompatActivity {
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Cursor cursor = sqLite.getData("SELECT musician.id FROM musician WHERE EXISTS " +
-                            " (SELECT song.id_musician FROM song WHERE song.id_musician = " + MusicianDetail.idMusician + ")");
-                    if(cursor.moveToNext()){
-                        Toast.makeText(view.getContext(),"Hay chac chan vi da co bai hat",Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    sqLite.queryData("DELETE FROM musician WHERE musician.id = " + MusicianDetail.idMusician);
-                    Toast.makeText(view.getContext(),"Deleting...",Toast.LENGTH_SHORT).show();
+                Cursor cursor = sqLite.getData("SELECT musician.id FROM musician WHERE EXISTS " +
+                        " (SELECT song.id_musician FROM song WHERE song.id_musician = " + MusicianDetail.idMusician + ")");
+                if (cursor.moveToNext()) {
+                    Toast.makeText(view.getContext(), "Hay chac chan vi da co bai hat", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                sqLite.queryData("DELETE FROM musician WHERE musician.id = " + MusicianDetail.idMusician);
+                Toast.makeText(view.getContext(), "Deleting...", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(view.getContext(), MainTabActivity.class); // MainActivity
-                    intent.putExtra("cTab", "MusicianTab");
-                    startActivity(intent);
+                Intent intent = new Intent(view.getContext(), MainTabActivity.class); // MainActivity
+                intent.putExtra("cTab", "MusicianTab");
+                startActivity(intent);
 
             }
         });
@@ -93,14 +91,14 @@ public class MusicianDetail extends AppCompatActivity {
                 Button submitButton = dialog.findViewById(R.id.btn_submit);
 
                 ItemMusicianReponse musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("item");
-                String name = musicianModel.getNameMusician(), image =musicianModel.getImageMusician() ;
+                String name = musicianModel.getNameMusician(), image = musicianModel.getImageMusician();
                 musicianName.setText(name);
                 linkImageMusician.setText(image);
 
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        sqLite.queryData("UPDATE musician SET name = '" + musicianName.getText() + "', image = '" + linkImageMusician.getText()+ "'" +
+                        sqLite.queryData("UPDATE musician SET name = '" + musicianName.getText() + "', image = '" + linkImageMusician.getText() + "'" +
                                 " WHERE musician.id = " + MusicianDetail.idMusician);
                         dialog.dismiss();
                         Intent intent = new Intent(view.getContext(), MainTabActivity.class);
@@ -141,6 +139,7 @@ public class MusicianDetail extends AppCompatActivity {
             }
         });
     }
+
     private ArrayList<MusicianReponse> getList() {
         Cursor cursor = sqLite.getData(" SELECT song.name, song.yearofcreation " +
                 " FROM song WHERE song.id_musician = " + MusicianDetail.idMusician);
@@ -157,14 +156,13 @@ public class MusicianDetail extends AppCompatActivity {
             musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("ItemFromSongDetail");
             et_name.setText(musicianModel.getNameMusician());
             Picasso.get().load(musicianModel.getImageMusician()).into(ivImg);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             musicianModel = (ItemMusicianReponse) getIntent().getSerializableExtra("item");
             et_name.setText(musicianModel.getNameMusician());
             Picasso.get().load(musicianModel.getImageMusician()).into(ivImg);
         }
     }
+
     //ánh xạ qua
     private void setControl() {
 

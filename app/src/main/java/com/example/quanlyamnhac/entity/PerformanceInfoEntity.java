@@ -1,16 +1,18 @@
 package com.example.quanlyamnhac.entity;
 
+import java.util.Date;
+
 public class PerformanceInfoEntity {
     private Integer id;
     private Integer singerId;
     private Integer songId;
-    private String performanceDay;
+    private Date performanceDay;
     private String place;
 
-    public PerformanceInfoEntity(){
+    public PerformanceInfoEntity() {
     }
 
-    public PerformanceInfoEntity(Integer id, Integer singerId, Integer songId, String performanceDay, String place) {
+    public PerformanceInfoEntity(Integer id, Integer singerId, Integer songId, Date performanceDay, String place) {
         this.id = id;
         this.singerId = singerId;
         this.songId = songId;
@@ -42,11 +44,11 @@ public class PerformanceInfoEntity {
         this.songId = songId;
     }
 
-    public String getPerformanceDay() {
+    public Date getPerformanceDay() {
         return performanceDay;
     }
 
-    public void setPerformanceDay(String performanceDay) {
+    public void setPerformanceDay(Date performanceDay) {
         this.performanceDay = performanceDay;
     }
 

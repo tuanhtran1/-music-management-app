@@ -28,6 +28,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     Context context;
     List<HomeReponse> homeModels;
+
     public HomeAdapter(Context context, List<HomeReponse> homeModels) {
         this.context = context;
         this.homeModels = homeModels;
@@ -44,7 +45,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (homeModels != null && homeModels.size() > 0) {
             HomeReponse model = homeModels.get(position);
-            holder.tv_stt.setText(String.valueOf(position+1));
+            holder.tv_stt.setText(String.valueOf(position + 1));
             holder.tv_music.setText(model.getSongName());
             holder.tv_musical.setText(model.getMusicianName());
             holder.tv_singer_name.setText(model.getSingerName());
@@ -59,14 +60,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                     sqLite = new SQLite(v.getContext(), "music-managerment.sqlite", null, 1);
 
                     Cursor cursor = sqLite.getData("SELECT song.id, singer.id, musician.id, song.name, musician.name, singer.name, song.yearofcreation FROM song, performance_info, musician, singer "
-                                    + " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id " +
-                                    " AND song.id_musician = musician.id LIMIT 1 OFFSET " + position);
+                            + " WHERE performance_info.singer_id = singer.id AND performance_info.song_id = song.id " +
+                            " AND song.id_musician = musician.id LIMIT 1 OFFSET " + position);
 
-                    if(cursor.moveToNext()){
+                    if (cursor.moveToNext()) {
                         SongOfPerformanceInfo.idSong = cursor.getInt(0);
                         SingerDetail.idSinger = cursor.getInt(1);
                         MusicianDetail.idMusician = cursor.getInt(2);
-                        System.out.println(SongOfPerformanceInfo.idSong + " " + SingerDetail.idSinger + " "+ MusicianDetail.idMusician);
+                        System.out.println(SongOfPerformanceInfo.idSong + " " + SingerDetail.idSinger + " " + MusicianDetail.idMusician);
                     }
                     context.startActivity(intent);
                     Toast.makeText(context, "vao SONG", Toast.LENGTH_LONG).show();

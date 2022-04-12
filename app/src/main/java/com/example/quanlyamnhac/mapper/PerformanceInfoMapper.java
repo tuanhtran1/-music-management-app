@@ -7,7 +7,7 @@ import com.example.quanlyamnhac.model.reponse.PerformanceInfoReponse;
 import java.util.Date;
 
 public class PerformanceInfoMapper {
-    public static PerformanceInfoReponse toPerformanceInfoReponse(Cursor cursor){
+    public static PerformanceInfoReponse toPerformanceInfoReponse(Cursor cursor) {
         PerformanceInfoReponse performanceInfoReponse = new PerformanceInfoReponse();
         performanceInfoReponse.setSongName(cursor.getString(0));
         performanceInfoReponse.setSingerName(cursor.getString(1));
