@@ -23,12 +23,11 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 public class EnterOTP extends AppCompatActivity {
-    SQLite sqLite;
 
+    SQLite sqLite;
     EditText txtOTP;
     Button btnSend;
     FloatingActionButton fbBack;
-
     UserModel user;
 
     FirebaseAuth mAuth;

@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class MusicianFragment extends Fragment {
 
     SQLite sqLite;
-
     View view;
     FloatingActionButton fbThem;
     GridView gvListMusician;

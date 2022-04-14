@@ -25,7 +25,6 @@ import java.util.List;
 public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder> {
 
     SQLite sqLite;
-
     Context context;
     List<SingerReponse> singerModels;
 

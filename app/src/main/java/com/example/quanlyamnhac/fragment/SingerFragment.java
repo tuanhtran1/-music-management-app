@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class SingerFragment extends Fragment {
 
     SQLite sqLite;
-
     //them menu de logout
 
     View view;

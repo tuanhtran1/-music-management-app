@@ -25,7 +25,6 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     SQLite sqLite;
-
     Context context;
     List<HomeReponse> homeModels;
 
@@ -33,7 +32,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         this.context = context;
         this.homeModels = homeModels;
     }
-
     @NonNull
     @Override
     public HomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

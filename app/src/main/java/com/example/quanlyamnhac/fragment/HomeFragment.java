@@ -23,7 +23,6 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     SQLite sqLite;
-
     RecyclerView recycler_home;
     HomeAdapter homeAdapter;
     View view;

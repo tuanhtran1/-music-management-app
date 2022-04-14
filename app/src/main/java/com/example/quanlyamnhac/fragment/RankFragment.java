@@ -38,8 +38,6 @@ import java.util.List;
 
 public class RankFragment extends Fragment {
 
-
-
     private ListView lvSchool;
     private List<RankReponse> ranklist = new ArrayList<>();
     private List<PerformanceInfoEntity> thongtinbieudiens = new ArrayList<>();

@@ -24,7 +24,6 @@ public class EditUser extends AppCompatActivity {
     EditText txtEmail, txtPhone, txtUsername, txtPass, txtAvatar;
     ImageView ivAvatar;
     Button btnXoa, btnSua, btnHuy;
-
     Toolbar toolbar;
 
     @Override

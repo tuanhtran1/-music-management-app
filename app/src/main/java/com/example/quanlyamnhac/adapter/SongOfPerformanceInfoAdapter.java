@@ -25,7 +25,6 @@ import java.util.List;
 public class SongOfPerformanceInfoAdapter extends RecyclerView.Adapter<SongOfPerformanceInfoAdapter.ViewHolder> {
 
     SQLite sqLite;
-
     Context context;
     List<SongReponse> songModels;
 

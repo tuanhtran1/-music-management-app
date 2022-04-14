@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class ItemMusicianAdapter extends ArrayAdapter<ItemMusicianReponse> {
 
     SQLite sqLite;
-
     Context context;
     int resource;
     ArrayList<ItemMusicianReponse> musicianModels;
